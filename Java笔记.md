@@ -1,4 +1,4 @@
-# 第一阶段--JavaSE
+# JavaSE
 
 ## Java基础
 
@@ -17,23 +17,23 @@
 
 ### 基本数据类型
 
-整数型：
-	byte	  占用内存1个字节(8位)	  取值范围：[-128,127]
-	short	占用内存2个字节(16位)	取值范围：-32768~32767																	  **短整型**
-	int	     占用内存4个字节(32位)	取值范围：-2147483648~2147483647	主要被使用的整数类型(默认类型)
-	long	  占用内存8个字节(64位)	取值范围：-9223372036854775808~9223372036854775807		**长整型**
+| 整数型：               |                       | 取值范围                                 | 默认值   |
+| ---------------------- | --------------------- | ---------------------------------------- | -------- |
+| byte                   | 占用内存1个字节(8位)  | [-128,127]                               | 0        |
+| short（短整型）        | 占用内存2个字节(16位) | -32768~32767                             | 0        |
+| int（默认整型）        | 占用内存4个字节(32位) | -2147483648~2147483647                   | 0        |
+| long（长整型）         | 占用内存8个字节(64位) | -9223372036854775808~9223372036854775807 | 0        |
+| **浮点型**             |                       |                                          |          |
+| float（单精度浮点数）  | 占用内存4个字节       | -3.40E+38 ~ +3.40E+38                    | 0.0      |
+| double（双精度浮点数） | 占用内存8个字节       | -1.79E+308 ~ +1.79E+308                  | 0.0      |
+| **布尔型**             |                       |                                          |          |
+| boolean                |                       | true、false                              | false    |
+| **字符型**             |                       |                                          |          |
+| char                   | 只能存储单个值        | ''                                       | 空白字符 |
 
-浮点型：
-	float		占用内存4个字节		单精度浮点数
-	double	占用内存8个字节		双精度浮点数			主要被使用浮点类型(默认类型)
+**引用类型数组默认值为null**
 
-布尔型：
-	boolean		取值范围：true(真、对)、false(假、错)
-
-字符型：
-	char			特点：只能存储单个值			符号：' '
-
-![](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/强转.png)
+![强转](https://java-laplace.oss-cn-shanghai.aliyuncs.com/img/%E5%BC%BA%E8%BD%AC.png)
 
 ### 位运算符
 
@@ -105,7 +105,7 @@ int num = r.nextInt(100) + 1
 ### JVM内存
 
 1. 栈：存放方法。（局部变量）
-2. 堆：new 出来的对象（垃圾回收器主要针对）
+2. 堆：new 出来的对象（垃圾回收器主要针对）（实例变量）
 3. 方法区：类的信息、字节码信息、代码片段。（静态变量）
 4. 本地方法区
 5. 寄存器
@@ -170,18 +170,6 @@ int[] scores = {12,456,567,23}
 + 堆中对象内部的区域空间都有默认值
 
 【**注意**】：数组长度一旦确定就不可改变
-
-### 数组元素默认值
-
-整数型：byte、short、int、long  ==>  0
-
-浮点型：float、double  				 ==>  0.0
-
-布尔型：boolean  						   ==>  false
-
-字符型：char  								  ==>  空白字符
-
-引用类型数组：								==>  null
 
 ### 数组拷贝
 
@@ -382,21 +370,23 @@ public void setMoney(double m){
 
 **注意事项：**
 
-	场景一：
-			类名可以直接访问类中的静态成员(属性、方法)					同一生命周期
-			类名不可以直接访问类中的非静态成员(属性、方法)				早的不能调用晚的
-			对象名可以直接访问类中的非静态成员(属性、方法)				同一生命周期
-			对象名可以直接访问类中的静态成员(属性、方法)					晚的可以调用早的
-	
-	场景二：
-			在静态方法中可以直接访问本类的静态成员(属性、方法)			同一生命周期
-			在静态方法中不可以直接访问本类的非静态成员(属性、方法)		早的不能直接调用晚的
-			在静态方法中可以间接访问本类的非静态成员(属性、方法)
-					具体步骤如下：
-						第一步：先创建一个Demo对象
-						第二步：通过对象调用非静态成员(属性、方法)即可
-			在非静态方法中可以直接访问本类的非静态成员(属性、方法)		同一生命周期
-			在非静态方法中可以直接访问本类的静态成员(属性、方法)		晚的可以调用早的
+```markdown
+场景一：
+		类名可以直接访问类中的静态成员(属性、方法)					同一生命周期
+		类名不可以直接访问类中的非静态成员(属性、方法)				早的不能调用晚的
+		对象名可以直接访问类中的非静态成员(属性、方法)				同一生命周期
+		对象名可以直接访问类中的静态成员(属性、方法)					晚的可以调用早的
+
+场景二：
+		在静态方法中可以直接访问本类的静态成员(属性、方法)			同一生命周期
+		在静态方法中不可以直接访问本类的非静态成员(属性、方法)		早的不能直接调用晚的
+		在静态方法中可以间接访问本类的非静态成员(属性、方法)
+				具体步骤如下：
+					第一步：先创建一个Demo对象
+					第二步：通过对象调用非静态成员(属性、方法)即可
+		在非静态方法中可以直接访问本类的非静态成员(属性、方法)		同一生命周期
+		在非静态方法中可以直接访问本类的静态成员(属性、方法)		晚的可以调用早的
+```
 ## 代码块
 
 ### 静态代码块
@@ -1098,7 +1088,7 @@ java9版本：字符串底层是一个字节数组	-->	byte[]
 > ==操作比较的是地址值是否相同
 
 【**结论模板**】：
- * 		常量 + 变量  		结果：在堆中
+ * 		常量 + 变量  	  结果：在堆中
  * 		变量 + 常量		结果：在堆中
  * 		变量 + 变量		结果：在堆中
  * 		常量 + 常量		结果：在常量池
@@ -1115,28 +1105,28 @@ jvm会去常量池中查找是否有该对象存在
 
 ### 字符串常用方法
 
-| 变量和类型 | 方法                                                         |
-| :--------- | ------------------------------------------------------------ |
-| boolean    | equals(Object Obj)将此字符串与指定对象比较                   |
-| int        | length()返回此字符串长度                                     |
-| char       | charAt(int index)返回指定索引的char值                        |
-| String     | concat(String str)将指定字符串连接到此字符串末尾             |
-| String[]   | split(String regex)根据给定的regex拆分字符串                 |
-| String     | substring(int beginIndex)返回一个字符串，该字符串是此字符串的子字符串 |
-| String     | substring(int beginIndex, int endIndex)返回一个字符串，该字符串是此字符串的子字符串 |
-| int        | indexOf(String str)返回指定子字符串在此字符串中第一次出现处的索引 |
-| int        | indexOf(String str, int fromIndex)返回指定子字符串在此字符串中第一次出现处的索引，从指定的索引开始 |
-| int        | lastIndexOf(String str)返回指定子字符串在此字符串中最右边出现处的索引 |
-| int        | lastIndexOf(String str, int fromIndex)返回指定子字符串在此字符串中最后一次出现处的索引，从指定的索引开始反向搜索 |
-| String     | toUpperCase()使用默认语言环境的规则将此 String 中的所有字符都转换为大写 |
-| String     | toLowerCase()使用默认语言环境的规则将此 String 中的所有字符都转换为小写 |
-| String     | trim()返回一个字符串，该字符串忽略前导空白和尾部空白         |
-| boolean    | startsWith(String prefix)测试此字符串是否以指定前缀开头      |
-| boolean    | endsWith(String suffix)测试此字符串是否以指定后缀开头        |
-| boolean    | contains(CharSequence s)当且仅当此字符串包含指定的char值序列时，才返回true |
-| int        | compareTo(String anotherString)按字典顺序比较两个字符串      |
-| int        | compareToIgnoreCase(String str)按字典比较两个字符串，不考虑大小写 |
-| String     | replaceAll(String regex,String replacement)根据regex替换此字符串中匹配的子字符串 |
+| 类型     | 方法                                        | 描述                                                         |
+| :------- | ------------------------------------------- | ------------------------------------------------------------ |
+| boolean  | equals(Object Obj)                          | 将此字符串与指定对象比较                                     |
+| int      | length()                                    | 返回此字符串长度                                             |
+| char     | charAt(int index)                           | 返回指定索引的char值                                         |
+| String   | concat(String str)                          | 将指定字符串连接到此字符串末尾                               |
+| String[] | split(String regex)                         | 根据给定的regex拆分字符串                                    |
+| String   | substring(int beginIndex)                   | 返回一个字符串，该字符串是此字符串的子字符串                 |
+| String   | substring(int beginIndex, int endIndex)     | 返回一个字符串，该字符串是此字符串的子字符串                 |
+| int      | indexOf(String str)                         | 返回指定子字符串在此字符串中第一次出现处的索引               |
+| int      | indexOf(String str, int fromIndex)          | 返回指定子字符串在此字符串中第一次出现处的索引，从指定的索引开始 |
+| int      | lastIndexOf(String str)                     | 返回指定子字符串在此字符串中最右边出现处的索引               |
+| int      | lastIndexOf(String str, int fromIndex)      | 返回指定子字符串在此字符串中最后一次出现处的索引，从指定的索引开始反向搜索 |
+| String   | toUpperCase()                               | 使用默认语言环境的规则将此 String 中的所有字符都转换为大写   |
+| String   | toLowerCase()                               | 使用默认语言环境的规则将此 String 中的所有字符都转换为小写   |
+| String   | trim()                                      | 返回一个字符串，该字符串忽略前导空白和尾部空白               |
+| boolean  | startsWith(String prefix)                   | 测试此字符串是否以指定前缀开头                               |
+| boolean  | endsWith(String suffix)                     | 测试此字符串是否以指定后缀开头                               |
+| boolean  | contains(CharSequence s)                    | 当且仅当此字符串包含指定的char值序列时，才返回true           |
+| int      | compareTo(String anotherString)             | 按字典顺序比较两个字符串                                     |
+| int      | compareToIgnoreCase(String str)             | 按字典比较两个字符串，不考虑大小写                           |
+| String   | replaceAll(String regex,String replacement) | 根据regex替换此字符串中匹配的子字符串                        |
 
 ### 字符串缓冲区
 
@@ -1154,25 +1144,29 @@ jvm会去常量池中查找是否有该对象存在
 
 ### System类
 
-java.lang.System
-System类包含几个有用的类字段和方法，不能被实例化
+> java.lang.System
+> System类包含几个有用的类字段和方法，不能被实例化
 
 #### 成员方法
 
-+ static Properties getProperties() 确定当前的系统属性
-+ static String getProperty(String key) 获取指定键指示的系统属性
-+ static long currentTimeMillis():返回以毫秒为单位的当前时间 -->可以用来测试方法的性能优劣
-+ static void setOut(PrintStream out)：重写分配**标准**输出流
+| 类型              | 方法                    | 描述                                                     |
+| ----------------- | ----------------------- | -------------------------------------------------------- |
+| static Properties | getProperties()         | 确定当前的系统属性                                       |
+| static String     | getProperty(String key) | 获取指定键指示的系统属性                                 |
+| static long       | currentTimeMillis()     | 返回以毫秒为单位的当前时间 -->可以用来测试方法的性能优劣 |
+| static void       | setOut(PrintStream out) | 重写分配**标准**输出流                                   |
 
 ### Runtime类
 
-java.lang.Runtime
+>  java.lang.Runtime
 
-【**核心方法**】：
+#### 核心方法
 
-1. static Runtime getRuntime():返回与当前Java应用程序相关的运行时对象
-2. long totalMemory():返回Java虚拟机中的内存总量
-3. long freeMemory():返回Java虚拟机中的空闲内存量
+| 类型           | 方法          | 描述                                   |
+| -------------- | ------------- | -------------------------------------- |
+| static Runtime | getRuntime()  | 返回与当前Java应用程序相关的运行时对象 |
+| long           | totalMemory() | 返回Java虚拟机中的内存总量             |
+| long           | freeMemory()  | 返回Java虚拟机中的空闲内存量           |
 
 ## 集合体系
 
@@ -1186,34 +1180,34 @@ java.lang.Runtime
 4. 集合也是一款容器，所以它的设计仍然是围绕着crud操作
 5. 集合体系框架在jdk1.2版本才真正确定
 
-![集合框架体系图解](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E4%BD%93%E7%B3%BB%E5%9B%BE%E8%A7%A3.png)
+![集合框架体系图解](https://java-laplace.oss-cn-shanghai.aliyuncs.com/img/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E4%BD%93%E7%B3%BB%E5%9B%BE%E8%A7%A3.png)
 
 【**注意**】由于Collection是接口，不能实例化对象，所以使用它的主要实现类ArrayList进行模拟
 
 ### 集合常用方法
 
-| 类型               | 方法                                                         |
-| ------------------ | ------------------------------------------------------------ |
-| boolean            | add(E e)确保此集合包含指定的元素                             |
-| boolean            | addAll(Collection c)将指定集合中的所有元素添加到此集合中     |
-| int                | size()返回此集合中的元素数                                   |
-| boolean            | remove(Object c)从此集合中移除指定元素的单个实例（调用了equals） |
-| void               | clear()删除此集合中所有元素                                  |
-| boolean            | isEmpty()如果此集合中不包含元素则返回true                    |
-| boolean            | contains(Object o)如果此集合中包含指定元素则返回true（调用了equals） |
-| boolean            | containsAll(Collection<?> c)如果此集合中包含指定集合中的所有元素则返回true |
-| boolean            | removeAll(Collection<?> c)移除此集合中那些也包含在指定集合中的所有元素（移除交集） |
-| boolean            | retainAll(Collection<?> c)仅保留此集合中那些也包含在指定集合的元素（保留交集） |
-| Object[]           | toArray()返回包含此集合中所有元素的数组（集合->数组）        |
-| static\<T>List\<T> | Arrays.asList(T... a)返回一个受指定数组支持的固定大小的列表(数组->集合) |
+| 类型               | 方法                         | 描述                                                     |
+| ------------------ | ---------------------------- | -------------------------------------------------------- |
+| boolean            | add(E e)                     | 确保此集合包含指定的元素                                 |
+| boolean            | addAll(Collection c)         | 将指定集合中的所有元素添加到此集合中                     |
+| int                | size()                       | 返回此集合中的元素数                                     |
+| boolean            | remove(Object c)             | 从此集合中移除指定元素的单个实例（调用了equals）         |
+| void               | clear()                      | 删除此集合中所有元素                                     |
+| boolean            | isEmpty()                    | 如果此集合中不包含元素则返回true                         |
+| boolean            | contains(Object o)           | 如果此集合中包含指定元素则返回true（调用了equals）       |
+| boolean            | containsAll(Collection<?> c) | 如果此集合中包含指定集合中的所有元素则返回true           |
+| boolean            | removeAll(Collection<?> c)   | 移除此集合中那些也包含在指定集合中的所有元素（移除交集） |
+| boolean            | retainAll(Collection<?> c)   | 仅保留此集合中那些也包含在指定集合的元素（保留交集）     |
+| Object[]           | toArray()                    | 返回包含此集合中所有元素的数组（集合->数组）             |
+| static\<T>List\<T> | Arrays.asList(T... a)        | 返回一个受指定数组支持的固定大小的列表(数组->集合)       |
 
 ### Iterator迭代器
 
-java.util.Iterator	用于操作集合元素遍历	是Iterator接口的实现类对象
+> java.util.Iterator	用于操作集合元素遍历	是Iterator接口的实现类对象
 
-| 类型         | 方法                                                        |
-| ------------ | ----------------------------------------------------------- |
-| Iterator\<E> | Collection.iterator()：返回在此集合的元素上进行迭代的迭代器 |
+| 类型         | 方法                  | 描述                                 |
+| ------------ | --------------------- | ------------------------------------ |
+| Iterator\<E> | Collection.iterator() | 返回在此集合的元素上进行迭代的迭代器 |
 
 【**特点**】：
 
@@ -1222,10 +1216,11 @@ java.util.Iterator	用于操作集合元素遍历	是Iterator接口的实现类�
 
 ### 迭代器常用方法
 
-| boolean | hasNext()如果仍有元素可以迭代则返回true                  |
-| ------- | -------------------------------------------------------- |
-| E       | next()返回迭代的下一个元素                               |
-| void    | remove()从迭代器指向的集合中移除迭代器返回的最后一个元素 |
+| 类型    | 方法      | 描述                                             |
+| ------- | --------- | ------------------------------------------------ |
+| boolean | hasNext() | 如果仍有元素可以迭代则返回true                   |
+| E       | next()    | 返回迭代的下一个元素                             |
+| void    | remove()  | 从迭代器指向的集合中移除迭代器返回的最后一个元素 |
 
 【**注意事项**】：
 
@@ -1267,32 +1262,32 @@ for循环 -> itar
 
 #### List常用方法
 
-| 类型     | 方法                                                         |
-| -------- | ------------------------------------------------------------ |
-| void     | add(int index, E element)将指定元素插入到此列表中的指定位置  |
-| boolean  | add(E e)将指定元素追加到此列表的末尾                         |
-| boolean  | addAll(int index, Collection<? extends E> c)将指定集合中的所有元素插入到指定位置的此列表中 |
-| boolean  | addAll(Collection<? extends E> c)将指定集合中的所有元素按指定集合的迭代器返回的顺序追加到此列表的末尾 |
-| void     | clear()删除此列表中的所有元素                                |
-| E        | remove(int index)删除此列表中指定位置的元素                  |
-| boolean  | remove(Object o)从此列表中删除指定元素的第一个匹配项         |
-| boolean  | remove(Collection<?> c)从此列表中删除指定集合中包含的所有元素 |
-| E        | set(int index, E element)用指定的元素替换此列表中指定位置的元素 |
-| E        | get(int index)返回此列表中指定位置的元素                     |
-| Object[] | toArray()以适当的顺序（从第一个元素到最后一个元素）返回包含此列表中所有元素的数组 |
-| int      | indexOf(Object o )返回此列表中第一次出现的指定元素的索引，如果此列表不包含该元素，则返回-1 |
-| int      | lastIndexOf(Object o)返回此列表中指定元素最后一次出现的索引，如果此列表不包含该元素，则返回-1 |
+| 类型     | 方法                                         | 描述                                                         |
+| -------- | -------------------------------------------- | ------------------------------------------------------------ |
+| void     | add(int index, E element)                    | 将指定元素插入到此列表中的指定位置                           |
+| boolean  | add(E e)                                     | 将指定元素追加到此列表的末尾                                 |
+| boolean  | addAll(int index, Collection<? extends E> c) | 将指定集合中的所有元素插入到指定位置的此列表中               |
+| boolean  | addAll(Collection<? extends E> c)            | 将指定集合中的所有元素按指定集合的迭代器返回的顺序追加到此列表的末尾 |
+| void     | clear()                                      | 删除此列表中的所有元素                                       |
+| E        | remove(int index)                            | 删除此列表中指定位置的元素                                   |
+| boolean  | remove(Object o)                             | 从此列表中删除指定元素的第一个匹配项                         |
+| boolean  | remove(Collection<?> c)                      | 从此列表中删除指定集合中包含的所有元素                       |
+| E        | set(int index, E element)                    | 用指定的元素替换此列表中指定位置的元素                       |
+| E        | get(int index)                               | 返回此列表中指定位置的元素                                   |
+| Object[] | toArray()                                    | 以适当的顺序（从第一个元素到最后一个元素）返回包含此列表中所有元素的数组 |
+| int      | indexOf(Object o )                           | 返回此列表中第一次出现的指定元素的索引，如果此列表不包含该元素，则返回-1 |
+| int      | lastIndexOf(Object o)                        | 返回此列表中指定元素最后一次出现的索引，如果此列表不包含该元素，则返回-1 |
 
 【**注意事项**】：一旦定义类型为List的实现类使用接口中的remove方法会首先调用List接口中的remove方法，如果需要使用Collection中的remove方法需要将数据转化为包装类型数据
 
 #### List接口迭代器
 
-| 类型             | 方法                                                         |
-| ---------------- | ------------------------------------------------------------ |
-| ListIterator\<E> | listIterator()返回此列表中元素的列表迭代器                   |
-| ListIterator\<E> | listIterator(int index)从列表中指定位置开始,返回列表中元素的列表迭代器 |
-| boolean          | hasPrevious()如果此列表迭代器在反向遍历列表时具有更多元素则返回true(listIterator中的方法) |
-| E                | previous()返回列表中的上一个元素并向后移动光标位置(listIterator中的方法) |
+| 类型             | 方法                    | 描述                                                         |
+| ---------------- | ----------------------- | ------------------------------------------------------------ |
+| ListIterator\<E> | listIterator()          | 返回此列表中元素的列表迭代器                                 |
+| ListIterator\<E> | listIterator(int index) | 从列表中指定位置开始,返回列表中元素的列表迭代器              |
+| boolean          | hasPrevious()           | 如果此列表迭代器在反向遍历列表时具有更多元素则返回true(listIterator中的方法) |
+| E                | previous()              | 返回列表中的上一个元素并向后移动光标位置(listIterator中的方法) |
 
 #### ArrayList
 
@@ -1301,7 +1296,7 @@ for循环 -> itar
 3. ArrayList的构造方法可以传初始容量
 4. ArrayList的扩容是原容量的1.5倍
 5. 数组的查询效率高，随即增删元素效率低（向末尾添加效率还是高）
-6. ArrayList是非线程安全的
+6. ArrayList是非线程安全的（可用集合工具类变为线程安全）
 7. ArrayList的构造方法可以传Collection（比如Set），可以将Set转为List
 
 #### LinkedList
@@ -1370,13 +1365,13 @@ java.util.TreeSet类	数据结构：红黑树
 
 ### Map
 
-java.util.Map接口：
+> java.util.Map
 
 ​	在实际开发中有时我们需要将有关联的一组数据绑定式存入到集合容器中，此时单列集合明显不合适，此时就需要双列集合进行数据管理存储
 
 【**特点**】
 
-1. Map集合的每个元素都是一对对的组合对象，一端数据为键，英文描述key，另一端数据我们称为值，英文描述value
+1. Map集合的每个元素都是一对对的组合对象，一端数据为键，英文描述key，另一端数据我们称为值，英文描述value（key和value都是存储java对象的内存地址）
 
 2. Map中的每个元素，我们都称为键值对组合，也被称为映射关系组合
 
@@ -1400,17 +1395,31 @@ java.util.Map接口：
 
 8. Properties只允许String作为键和值的类型
 
+#### 常用方法
+
+| 类型    | 方法                        | 描述                           |
+| ------- | --------------------------- | ------------------------------ |
+| void    | clear()                     | 清空Map集合                    |
+| V       | put(K key,V value)          | 向Map集合中添加键值对          |
+| boolean | containsKey(Object key)     | 判断Map中是否包含某个Key       |
+| boolean | containsValue(Object value) | 判断Map中是否包含某个Value     |
+| V       | get(Object key)             | 通过key获取value               |
+| boolean | isEmpty()                   | 判断Map集合中的元素个数是否为0 |
+| V       | remove(Object key)          | 通过key删除键值对              |
+| int     | size()                      | 获取Map集合中键值对的个数      |
+
 #### Map接口中定义了三个方法进行迭代
 
-| 类型                | 方法                                          |
-| ------------------- | --------------------------------------------- |
-| Set\<K>             | keySet()返回此映射中包含的键的Set视图         |
-| Collection\<V>      | values()返回此映射中包含的值的Collection视图  |
-| Set<Map.Entry<K,V>> | entrySet()返回此映射中包含的映射关系的Set视图 |
+| 类型                                             | 方法       | 描述                                            |
+| ------------------------------------------------ | ---------- | ----------------------------------------------- |
+| Set\<K>                                          | keySet()   | 获取Map集合中所有的Key（所有的键是一个Set集合） |
+| Collection\<V>                                   | values()   | 获取Map集合中所有的value，返回一个Collection    |
+| Set<Map.Entry<K,V>>（Map.Entry是一个静态内部类） | entrySet() | 将Map集合转换成Set集合                          |
 
-```
-Set<Map.Entry<E,E>> entrys = map.entrySet();
-for(Map.Entry<E,E>entry : entrys){
+```java
+Set<Map.Entry<K,V>> entrys = map.entrySet();
+for(Map.Entry<K,V>entry : entrys){
+    System.out.println(entry);
 	System.out.println(entry.getKey() + ":" + entry.getValue());
 }
 ```
@@ -1451,6 +1460,7 @@ for(Map.Entry<E,E>entry : entrys){
 
 1. HashMap里面由数组 + 链表 + 红黑树构成
 2. 链表长度（阈值/边界值）大于等于8且数组长度（数据总量）超过64会转化为红黑树O(logN)
+2. 红黑树上节点数量小于6时，会重新把红黑树转换为单向链表
 1. 将链表转换为红黑树之前会判断，如果当前数组的长度小于64，那么会先进行数组扩容，而不是转化为红黑树，以减少搜索时间。（如果在数组较小时出现红黑树结构，反而会降低效率，而红黑树需要左旋右旋变色来保持平衡）
 
 + **红黑树的性质**
@@ -1487,7 +1497,7 @@ JDK1.8：
 6.如果冲突后，发现该节点是红黑树，就将这个节点挂在树上
 ```
 
-![HashMap的put流程](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/HashMap%E7%9A%84put%E6%B5%81%E7%A8%8B.png)
+![HashMap的put流程](https://java-laplace.oss-cn-shanghai.aliyuncs.com/img/HashMap%E7%9A%84put%E6%B5%81%E7%A8%8B.png)
 
 【**HashMap的扩容方式**】	
 
@@ -1639,15 +1649,23 @@ final Node<K,V>[] resize() {
 ​	put和get并发时，可能导致get为null。线程1执行put时，因为元素个数超出threshold而导致rehash，线程2此时执行get，有可能导致这个问题，此问题在JDK1.7和JDK1.8中都存在
 ```
 
+### 集合工具类
+
+| 类型                                         | 方法                                          | 描述                                       |
+| -------------------------------------------- | --------------------------------------------- | ------------------------------------------ |
+| static \<T> List\<T>                         | synchronizedList(List\<T> list)               | 返回由指定列表支持的同步（线程安全）列表   |
+| static <T extends Comparable<? super T>>void | sort(List\<T> list)                           | 根据其元素的自然排序，将指定列表按升序排序 |
+| static \<T> void                             | sort(List\<T> list, Comparator<? super  T> c) | 根据指定比较器引发的顺序对指定列表进行排序 |
+
 ### 泛型
 
-​	设计一个容器类，设计者在设计的过程中并不确定将来内容会存入什么类型的对象
+设计一个容器类，设计者在设计的过程中并不确定将来内容会存入什么类型的对象
 
-​	设计者在设计程序的过程中定义的只是泛型形参类型，只有在程序员使用的过程中可以明确泛型实参类型
+设计者在设计程序的过程中定义的只是泛型形参类型，只有在程序员使用的过程中可以明确泛型实参类型
 
 #### 泛型形参
 
-​	类型未知/不明确
+类型未知/不明确
 
 ```java
 public interface Collection<E>{}
@@ -1658,7 +1676,7 @@ public interface Comparable<T>{}
 
 #### 泛型实参
 
-​	类型明确
+类型明确
 
 ```java
 public final class String implements Comparable<String>
@@ -1817,15 +1835,7 @@ new 接口名（）｛
 
 ​	只有使用到了类中的内容，这个类才会被触发类加载（可以用于解决饿汉式单例设计模式）
 
-![内部类](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/%E5%86%85%E9%83%A8%E7%B1%BB.png)
-
-## 常用类
-
-### java.lang.Math类
-
-### java.lang.System类
-
-### java.util.Random类
+![内部类](https://java-laplace.oss-cn-shanghai.aliyuncs.com/img/%E5%86%85%E9%83%A8%E7%B1%BB.png)
 
 ### 数字格式化类
 
@@ -1861,7 +1871,7 @@ DecimalFormat df = new DecimalFormat("###,###.0000");//保留四位小数，不�
 
 #### java.text.DateFormat类
 
-​	抽象类，不能被实例化
+> 抽象类，不能被实例化
 
 ```
 格式化操作
@@ -1896,17 +1906,18 @@ SimpleDateFormat(String pattern) ：用给定的模式和默认语言环境的�
 2.使用子类GregorianCalendar的构造方法
 ```
 
-| void set(int field, int value)                               | 将给定的日历字段设置为给定值                                 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| void set(int year, int month, int date)                      | 设置日历字段 YEAR、MONTH 和 DAY_OF_MONTH 的值                |
-| void set(int year, int month, int date, int hourOfDay, int minute) | 设置日历字段 YEAR、MONTH、DAY_OF_MONTH、HOUR_OF_DAY 和 MINUTE 的值 |
-| void set(int year, int month, int date, int hourOfDay, int minute, int second) | 设置字段 YEAR、MONTH、DAY_OF_MONTH、HOUR、MINUTE 和 SECOND 的值 |
-| int get(int field)                                           | 返回给定日历字段的值                                         |
-| abstract  void add(int field, int amount)                    | 根据日历的规则，为给定的日历字段添加或减去指定的时间量       |
-| Date getTime()                                               | 返回一个表示此 Calendar 时间值（从历元至现在的毫秒偏移量）的 Date 对象 |
-| long getTimeInMillis()                                       | 返回此 Calendar 的时间值，以毫秒为单位                       |
+| 类型           | 方法                                                         | 描述                                                         |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| void           | set(int field, int value)                                    | 将给定的日历字段设置为给定值                                 |
+| void           | set(int year, int month, int date)                           | 设置日历字段 YEAR、MONTH 和 DAY_OF_MONTH 的值                |
+| void           | set(int year, int month, int date, int hourOfDay, int minute) | 设置日历字段 YEAR、MONTH、DAY_OF_MONTH、HOUR_OF_DAY 和 MINUTE 的值 |
+| void           | set(int year, int month, int date, int hourOfDay, int minute, int second) | 设置字段 YEAR、MONTH、DAY_OF_MONTH、HOUR、MINUTE 和 SECOND 的值 |
+| int            | get(int field)                                               | 返回给定日历字段的值                                         |
+| abstract  void | add(int field, int amount)                                   | 根据日历的规则，为给定的日历字段添加或减去指定的时间量       |
+| Date           | getTime()                                                    | 返回一个表示此 Calendar 时间值（从历元至现在的毫秒偏移量）的 Date 对象 |
+| long           | getTimeInMillis()                                            | 返回此 Calendar 的时间值，以毫秒为单位                       |
 
-# 第二阶段--JavaSE强化
+# JavaSE强化
 
 ## 异常
 
@@ -1914,13 +1925,13 @@ SimpleDateFormat(String pattern) ：用给定的模式和默认语言环境的�
 
 ### Throwable
 
-​	java.lang.Throwable类是Java语言中所有**错误和异常**的超类
+>  java.lang.Throwable类是Java语言中所有**错误和异常**的超类
 
 ​	|——java.lang.Error:表示严重的问题，合理的应用程序不应该试图捕获。程序本身无法解决的问题。只能终止程序，解决错误的问题之后，重新编译运行。
 
 ​	|——java.lang.Exception:表示合理应用程序可能想要捕获的条件。程序本身可以通过捕获解决的问题。不影响程序的运行，异常解决之后（程序过程中），程序可以继续运行。
 
-![异常体系图解](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E5%9B%BE%E8%A7%A3.png)
+![异常体系图解](https://java-laplace.oss-cn-shanghai.aliyuncs.com/img/%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E5%9B%BE%E8%A7%A3.png)
 
 ### throw
 
@@ -2033,11 +2044,9 @@ i++;
 return j;
 ```
 
-
-
 ## File类
 
-​	java.io.File
+> java.io.File
 
 ​	**文件**和**目录**路径名的抽象表示
 
@@ -2053,16 +2062,20 @@ File只能操作文件或者目录本身[创建、删除、设置...]，无法�
 
 ### 成员变量
 
-+ static String separator 与系统相关的默认名称 - 分隔符字符，以方便的方式表示为字符串
-+ static char separatorChar 与系统相关的默认名称[文件名]分隔符
-+ static String pathSeparator 与系统相关的路径分隔符字符，为方便起见，表示为字符串
-+ static char pathSeparatorChar 与系统相关的路径分隔符
+| 变量和类型    | 字段              | 描述                                                        |
+| ------------- | ----------------- | ----------------------------------------------------------- |
+| static String | separator         | 与系统相关的默认名称 - 分隔符字符，以方便的方式表示为字符串 |
+| static char   | separatorChar     | 与系统相关的默认名称[文件名]分隔符                          |
+| static String | pathSeparator     | 与系统相关的路径分隔符字符，为方便起见，表示为字符串        |
+| static char   | pathSeparatorChar | 与系统相关的路径分隔符                                      |
 
 ### 构造方法
 
-+ File(String pathname) 通过将给定的路径名字符串转换为抽象路径名来创建新的 File实例
-+ File(File parent, String child) 从父抽象路径名和子路径名字符串创建新的 File实例
-+ File(String parent, String child) 从父路径名字符串和子路径名字符串创建新的 File实例
+| 构造器                            | 描述                                                        |
+| --------------------------------- | ----------------------------------------------------------- |
+| File(String pathname)             | 通过将给定的路径名字符串转换为抽象路径名来创建新的 File实例 |
+| File(File parent, String child)   | 从父抽象路径名和子路径名字符串创建新的 File实例             |
+| File(String parent, String child) | 从父路径名字符串和子路径名字符串创建新的 File实例           |
 
 【**注意事项**】
 
@@ -2072,37 +2085,52 @@ File只能操作文件或者目录本身[创建、删除、设置...]，无法�
 
 ### 获取类方法
 
-+ String getAbsolutePath() 返回此抽象路径名的绝对路径名字符串
-+ String getPath() 将此抽象路径名转换为路径名字符串：**获取构造方法中指定路径**
-+ String getName() 返回由此抽象路径名表示的文件或目录的名称
-+ long length() 返回由此抽象路径名表示的文件的长度。**文件存在但是没有内容长度是0  文件不存在长度也是0  只用于获取文件长度**
-+ long lastModified() 返回此抽象路径名表示的文件上次修改的时间
+| 类型   | 方法              | 描述                                                         |
+| ------ | ----------------- | ------------------------------------------------------------ |
+| String | getAbsolutePath() | 返回此抽象路径名的绝对路径名字符串                           |
+| String | getPath()         | 将此抽象路径名转换为路径名字符串：**获取构造方法中指定路径** |
+| String | getName()         | 返回由此抽象路径名表示的文件或目录的名称                     |
+| long   | length()          | 返回由此抽象路径名表示的文件的长度。**文件存在但是没有内容长度是0  文件不存在长度也是0  只用于获取文件长度** |
+| long   | lastModified()    | 返回此抽象路径名表示的文件上次修改的时间                     |
 
 ### 判断类方法
 
-+ boolean exists() 测试此抽象路径名表示的文件或目录是否存在
-+ boolean isDirectory() 测试此抽象路径名表示的文件是否为目录。'互斥' 
-+ boolean isFile() 测试此抽象路径名表示的文件是否为普通文件。 '互斥'
-+ boolean isHidden() 测试此抽象路径名命名的文件是否为隐藏文件
-+ boolean isAbsolute() 测试这个抽象路径名是否是绝对的
+| 类型    | 方法          | 描述                                     |
+| ------- | ------------- | ---------------------------------------- |
+| boolean | exists()      | 测试此抽象路径名表示的文件或目录是否存在 |
+| boolean | isDirectory() | 测试此抽象路径名表示的文件是否为目录     |
+| boolean | isFile()      | 测试此抽象路径名表示的文件是否为普通文件 |
+| boolean | isHidden()    | 测试此抽象路径名命名的文件是否为隐藏文件 |
+| boolean | isAbsolute()  | 测试这个抽象路径名是否是绝对的           |
 
 ### 创建类方法
 
 + 创建目录
-	+ boolean mkdir() 创建由此抽象路径名命名的目录
-	+ boolean mkdirs() 创建由此抽象路径名命名的目录，包括任何必需但不存在的父目录
+
+  | 类型    | 方法     | 描述                                                       |
+  | ------- | -------- | ---------------------------------------------------------- |
+  | boolean | mkdir()  | 创建由此抽象路径名命名的目录                               |
+  | boolean | mkdirs() | 创建由此抽象路径名命名的目录，包括任何必需但不存在的父目录 |
+
 + 创建文件
-	+ boolean createNewFile() 当且仅当具有该名称的文件尚不存在时，原子地创建一个由该抽象路径名命名的新的空文件。**文件所在的路径必须是存在的**
+	
+	| 类型    | 方法            | 描述                                                         |
+	| ------- | --------------- | ------------------------------------------------------------ |
+	| boolean | createNewFile() | 当且仅当具有该名称的文件尚不存在时，原子地创建一个由该抽象路径名命名的新的空文件。**文件所在的路径必须是存在的** |
 
 ### 删除类方法
 
-+ boolean delete() 删除由此抽象路径名表示的文件或目录。**删除目录时，不能删除有子文件的目录，只能删除空目录**
+| 类型    | 方法     | 描述                                                         |
+| ------- | -------- | ------------------------------------------------------------ |
+| boolean | delete() | 删除由此抽象路径名表示的文件或目录。**删除目录时，不能删除有子文件的目录，只能删除空目录** |
 
 ### 遍历列举方法
 
-+ static File[] listRoots() 列出可用的文件系统根
-+ String[] list() 返回一个字符串数组，命名由此抽象路径名表示的目录中的文件和目录的名字
-+ File[] listFiles() 返回一个抽象路径名数组，表示由该抽象路径名表示的目录中的子文件对象。**列举只能是目录，是文件则抛出空指针异常**，**列举的目录不存在，则抛出空指针异常**
+| 类型          | 方法        | 描述                                                         |
+| ------------- | ----------- | ------------------------------------------------------------ |
+| static File[] | listRoots() | 列出可用的文件系统根                                         |
+| String[]      | list()      | 返回一个字符串数组，命名由此抽象路径名表示的目录中的文件和目录的名字 |
+| File[]        | listFiles() | 返回一个抽象路径名数组，表示由该抽象路径名表示的目录中的子文件对象。**列举只能是目录，是文件则抛出空指针异常**，**列举的目录不存在，则抛出空指针异常** |
 
 ### 过滤器
 
@@ -2115,17 +2143,44 @@ File只能操作文件或者目录本身[创建、删除、设置...]，无法�
 			+ File dir：当前遍历的目录
 			+ String name：目录下的文件名
 			+ 返回值：boolean当结果为true时保留文件
+
+```java
+//创建文件名过滤对象
+MyFilenameFilter mff = new MyFilenameFilter();
+//列举
+File[] files = file.listFiles(mff);
+```
+
+```java
+public class MyFilenameFilter implements FilenameFilter {
+    @Override
+    public boolean accept(File dir, String name) {
+        File newFile = new File(dir, name);
+        return newFile.isDirectory() || newFile.isFile() && name.endsWith(".txt");
+    }
+}
+```
+
 + 文件对象过滤器
-	+ File[] listFiles(FileFilter filter) 返回一个抽象路径名数组，表示由此抽象路径名表示的满足指定过滤器的目录中的文件和目录
-	+ java.io.FileFilter:抽象路径名的过滤器
+  + File[] listFiles(FileFilter filter) 返回一个抽象路径名数组，表示由此抽象路径名表示的满足指定过滤器的目录中的文件和目录
+  + java.io.FileFilter:抽象路径名的过滤器
+
+```java
+File[] files = file.listFiles(new java.io.FileFilter() {
+    @Override
+    public boolean accept(File pathname) {
+        return pathname.isDirectory() || pathname.isFile() && pathname.getName().endsWith(".txt");
+    }
+});
+```
 
 ## 递归
 
-​	方法调用方法本身
+> 方法调用方法本身
 
 【**注意事项**】递归要有结束的条件，并且递归的次数不能过多。**递归和循环的本质都是让某段代码重复执行**
 
-## IOStream流
+## IO流
 
 + input 输入流[读操作]，从文件中读取到java应用程序中
 
@@ -2140,6 +2195,8 @@ File只能操作文件或者目录本身[创建、删除、设置...]，无法�
 + 字节输出流： java.io.OutputStream
 + 字符输入流： java.io.Reader
 + 字符输出流： java.io.Writer
+
+**输出流都是可刷新的**
 
 ASCII编码表：一个字节表示1个字符，0xxx xxxx 
 GBK编码表：两个字节表示一个字符， 110x xxxx xxxx xxxx
@@ -2165,37 +2222,45 @@ UTF-8编码表：三个字节表示一个字符，1110 xxxx xxxx xxxx xxxx xxxx
 
 #### FileOutputStream
 
-​	java.io.FileOutputStream：文件输出流是用于将数据写入File的输出流
+> java.io.FileOutputStream：文件输出流是用于将数据写入File的输出流
 
 ##### 构造方法
 
-路径存在但是文件不存在时，会自动创建空文件，但是如果路径不存在则报错
+> 路径存在但是文件不存在时，会自动创建空文件，但是如果路径不存在则报错
 
-+ FileOutputStream(File file) 创建文件输出流将数据写到指定的文件对象中
-+ FileOutputStream(String name) 创建文件输出流将数据写到指定的文件路径中
-+ FileOutputStream(File file, boolean append) 创建文件输出流以写入由指定的 File对象表示的文件
-+ FileOutputStream(String name, boolean append) 创建文件输出流以指定的名称写入文件
+| 构造器                                        | 描述                                            |
+| --------------------------------------------- | ----------------------------------------------- |
+| FileOutputStream(File file)                   | 创建文件输出流将数据写到指定的文件对象中        |
+| FileOutputStream(String name)                 | 创建文件输出流将数据写到指定的文件路径中        |
+| FileOutputStream(File file, boolean append)   | 创建文件输出流以写入由指定的 File对象表示的文件 |
+| FileOutputStream(String name, boolean append) | 创建文件输出流以指定的名称写入文件              |
 
 ### InputStream
 
-​	java.io.InputStream：这个抽象类是表示输入字节流的所有类的超类
+> java.io.InputStream：这个抽象类是表示输入字节流的所有类的超类
 
 #### 成员方法
 
-+ int read() 从输入流读取数据的下一个字节
-+ int read(byte[] b) 从输入流中读取一些字节数，并将它们存储到缓冲器阵列 b 
-+ int read(byte[] b, int off, int len) 从输入流读取最多 len个字节的数据到字节数组
-+ void close() 关闭此输入流并释放与流相关联的任何系统资源
+| 类型 | 方法                             | 描述                                                |
+| ---- | -------------------------------- | --------------------------------------------------- |
+| int  | read()                           | 从输入流读取数据的下一个字节                        |
+| int  | read(byte[] b)                   | 从输入流中读取一些字节数，并将它们存储到缓冲区数组b |
+| int  | read(byte[] b, int off, int len) | 从输入流读取最多 len个字节的数据到字节数组          |
+| void | close()                          | 关闭此输入流并释放与流相关联的任何系统资源          |
+| int  | available()                      | 返回流中剩余没有读到的字节数量                      |
+| long | skip(long n)                     | 跳过几个字节不读                                    |
 
 #### JDK9新方法
 
-+ int readNBytes(byte[] b, int off, int len) 将所请求的字节数从输入流读入给定的字节数组
-+ byte[] readAllBytes() 从输入流读取所有剩余字节，返回到byte数组中
-+ long transferTo(OutputStream out) 从该输入流中读取所有字节，并按读取的顺序将字节写入给定的输出流
+| 类型   | 方法                                   | 描述                                                         |
+| ------ | -------------------------------------- | ------------------------------------------------------------ |
+| int    | readNBytes(byte[] b, int off, int len) | 将所请求的字节数从输入流读入给定的字节数组                   |
+| byte[] | readAllBytes()                         | 从输入流读取所有剩余字节，返回到byte数组中                   |
+| long   | transferTo(OutputStream out)           | 从该输入流中读取所有字节，并按读取的顺序将字节写入给定的输出流 |
 
 #### FileInputStream
 
-​	java.io.FileInputStream：文件字节输入流，从指定的文件中读取字节数据
+> java.io.FileInputStream：文件字节输入流，从指定的文件中读取字节数据
 
 ##### 构造方法：路径必须存在
 
@@ -2208,7 +2273,7 @@ int ch = 0;
 while((ch = dis.read()) != -1){
 	System.out.println((char)ch)
 }
-	fis.close();//一次读取一个
+	fis.close();//一次读取一个字节
 ```
 
 ```java
@@ -2218,7 +2283,7 @@ int len = 0;
 while((len = fis.read(bytes)) != -1){
     System.out.println(new String(bytrs,0,len));
 }
-	fis.close();//一次读取多个
+	fis.close();//一次读取多个字节
 ```
 
 #### 文件复制
@@ -2233,12 +2298,13 @@ while((len = fis.read(bytes)) != -1){
 
 #### SequenceInputStream
 
-java.io.SequenceInputStream：合并输入流，表示其他输入流的逻辑级联。它从一个有序的输入流集合开始，从第一个读取到文件的结尾，然后从第二个文件读取，依此类推，直到最后一个输入流达到文件的结尾
+> java.io.SequenceInputStream：合并输入流，表示其他输入流的逻辑级联。它从一个有序的输入流集合开始，从第一个读取到文件的结尾，然后从第二个文件读取，依此类推，直到最后一个输入流达到文件的结尾
 
 ##### 构造方法
 
-SequenceInputStream(Enumeration<? extends InputStream> e)
-	初始化新创建 SequenceInputStream通过记住参数，它必须是一个 Enumeration产生对象，它们的运行时类型是 InputStream 。  
+| 构造器                                                    | 描述                                                         |
+| --------------------------------------------------------- | ------------------------------------------------------------ |
+| SequenceInputStream(Enumeration<? extends InputStream> e) | 初始化新创建 SequenceInputStream通过记住参数，它必须是一个 Enumeration产生对象，它们的运行时类型是 InputStream |
 
 1. 创建集合（ArrayList\<InputStream>） 保存输入流对象
 2. 将多个输入流保存到ArrayList集合中。
@@ -2269,7 +2335,7 @@ public static void main(String[] args){
     }finally{
         //释放资源
         try{
-            if(fos != null) {
+            if(fos != null) {//判断是否为空，不然会出现空指针异常
                 fos.close();
             }
         }catch(IOException e){
@@ -2287,7 +2353,7 @@ public static void main(String[] args){
 
 **JDK7 异常优化 --> IO流 需要打开物理资源**
 
-```
+```java
 try(流对象;流对象) {
 		正常读写的代码;
 	}catch ( Exception e ){
@@ -2295,7 +2361,7 @@ try(流对象;流对象) {
 	}//当try-catch语句执行结束之后，流对象会自动调用close()释放资源
 ```
 
-```
+```java
 try(
 		FileInputStream fis = new FileInputStream("d:\\");
 		FileOutputStream fos = new FileOutputStream("d:\\");
@@ -2316,7 +2382,7 @@ try(
 
 #### 字节输入缓冲流
 
-java.io.BufferedInputStream
+> java.io.BufferedInputStream
 
 ##### 构造方法
 
@@ -2328,7 +2394,7 @@ java.io.BufferedInputStream
 
 #### 字节输出缓冲流
 
-java.io.BufferedOutputStream
+> java.io.BufferedOutputStream
 
 ##### 构造方法
 
@@ -2342,58 +2408,66 @@ java.io.BufferedOutputStream
 
 ### Writer
 
-​	java.io.Writer:用于写入字符流的顶层抽象父类
+> java.io.Writer:用于写入字符流的顶层抽象父类
 
 #### 成员方法
 
-+ void flush() 刷新此输出流并强制任何缓冲的输出字节被写出，**没被写满一定要刷新**
-+ void write(int c) 写一个字符
-+ void write(char[] cbuf) 写入一个字符数组
-+ abstract void write(char[] cbuf, int off, int len) 写入字符数组的一部分
-+ void write(String str) 写一个字符串
-+ void write(String str, int off, int len) 写一个字符串的一部分
-+ abstract void close() 关闭流，先刷新
+| 类型          | 方法                                 | 描述                                                         |
+| ------------- | ------------------------------------ | ------------------------------------------------------------ |
+| void          | flush()                              | 刷新此输出流并强制任何缓冲的输出字节被写出，**没被写满一定要刷新** |
+| void          | write(int c)                         | 写一个字符                                                   |
+| void          | write(char[] cbuf)                   | 写入一个字符数组                                             |
+| abstract void | write(char[] cbuf, int off, int len) | 写入字符数组的一部分                                         |
+| void          | write(String str)                    | 写一个字符串                                                 |
+| void          | write(String str, int off, int len)  | 写一个字符串的一部分                                         |
+| abstract void | close()                              | 关闭流，先刷新                                               |
 
 #### FileWriter
 
-​	java.io.FileWriter:文件字符输出流，给文件中写入字符数据
+> java.io.FileWriter:文件字符输出流，给文件中写入字符数据
 
 ##### 构造方法
 
-+ FileWriter(File file) 给一个File对象构造一个FileWriter对象
-+ FileWriter(String fileName) 构造一个给定文件名的FileWriter对象
-+ FileWriter(File file, boolean append) 给一个File对象构造一个FileWriter对象
-+ FileWriter(String fileName, boolean append) 构造一个FileWriter对象，给出一个带有布尔值的文件名，表示是否附加写入的数据
+| 构造器                                      | 描述                                                         |
+| ------------------------------------------- | ------------------------------------------------------------ |
+| FileWriter(File file)                       | 给一个File对象构造一个FileWriter对象                         |
+| FileWriter(String fileName)                 | 构造一个给定文件名的FileWriter对象                           |
+| FileWriter(File file, boolean append)       | 给一个File对象构造一个FileWriter对象                         |
+| FileWriter(String fileName, boolean append) | 构造一个FileWriter对象，给出一个带有布尔值的文件名，表示是否附加写入的数据 |
 
 ### Reader
 
-​	java.io.Reader:用于读取字符流的顶层抽象父类
+> java.io.Reader:用于读取字符流的顶层抽象父类
 
 #### 成员方法
 
-+ int read() 读一个字符
-+ int read(char[] cbuf) 将字符读入数组
-+ int read(char[] cbuf, int off, int len) 将字符读入数组的一部分
-+ void close() 关闭流并释放与之相关联的任何系统资源
+| 类型 | 方法                                | 描述                                 |
+| ---- | ----------------------------------- | ------------------------------------ |
+| int  | read()                              | 读一个字符                           |
+| int  | read(char[] cbuf)                   | 将字符读入数组                       |
+| int  | read(char[] cbuf, int off, int len) | 将字符读入数组的一部分               |
+| void | close()                             | 关闭流并释放与之相关联的任何系统资源 |
 
 #### FileReader
 
-​	java.io.FileReader：文件字符输入流，从文件中读取字符数据
+> java.io.FileReader：文件字符输入流，从文件中读取字符数据
 
 ##### 构造方法
 
-+ FileReader(File file) 创建一个新的 FileReader ，给出 File读取
-+ FileReader(String fileName) 创建一个新的 FileReader ，给定要读取的文件的名称
+| 构造器                      | 描述                                             |
+| --------------------------- | ------------------------------------------------ |
+| FileReader(File file)       | 创建一个新的 FileReader ，给出 File读取          |
+| FileReader(String fileName) | 创建一个新的 FileReader ，给定要读取的文件的名称 |
 
 **字符流只能用于操作纯字符数据，一般对于数据的读写，能够通过字节流实现的，一般都使用字节流。 万物皆字节**
 
 ### 转换流
 
-​	通过**编码表**实现字符和字节之间的相互转换
+> 通过**编码表**实现字符和字节之间的相互转换
 
 #### InputStreamReader
 
-​	java.io.InputStreamReader：字节转字符输入流，是从字节流到字符流的桥梁，它读取字节，并使用指定的编码表将其**解码**为字符。编码表可以指定，如果不指定则使用平台默认码表
+> java.io.InputStreamReader：字节转字符输入流，是从字节流到字符流的桥梁，它读取字节，并使用指定的编码表将其**解码**为字符。编码表可以指定，如果不指定则使用平台默认码表
 
 ##### 构造方法
 
@@ -2403,13 +2477,15 @@ java.io.BufferedOutputStream
 
 #### OutputStreamWriter
 
-​	java.io.OutputStreamWriter：字符转字节输出流，是从字符流到字节流的桥梁。使用指定的编码表将写入的字符**编码**为字节。编码表可以指定，如果不指定则使用平台默认码表
+> java.io.OutputStreamWriter：字符转字节输出流，是从字符流到字节流的桥梁。使用指定的编码表将写入的字符**编码**为字节。编码表可以指定，如果不指定则使用平台默认码表
 
 ##### 构造方法
 
-+ OutputStreamWriter(OutputStream out, String charsetName) 创建一个使用命名字符集的OutputStreamWriter
-+ OutputStream out：将转换流转换的字节数据写入到指定的文件中。
-+ String charsetName：编码表的名字
+| 构造器                                                   | 描述                                       |
+| -------------------------------------------------------- | ------------------------------------------ |
+| OutputStreamWriter(OutputStream out, String charsetName) | 创建一个使用命名字符集的OutputStreamWriter |
+| OutputStream out                                         | 将转换流转换的字节数据写入到指定的文件中   |
+| String charsetName                                       | 编码表的名字                               |
 
 【**当读写数据时，使用的码表不统一时使用**】
 
@@ -2419,29 +2495,41 @@ java.io.BufferedOutputStream
 
 #### BufferedWriter
 
-​	java.io.BufferedWriter: 字符输出缓冲流。将文本写入字符输出流，缓冲字符，以提供单个字符，数组和字符串的高效写入
+> java.io.BufferedWriter: 字符输出缓冲流。将文本写入字符输出流，缓冲字符，以提供单个字符，数组和字符串的高效写入
 
 ##### 构造方法
 
-+ BufferedWriter(Writer out) 创建使用默认大小的输出缓冲区的缓冲字符输出流
-+ BufferedWriter(Writer out, int sz) 创建一个新的缓冲字符输出流，使用给定大小的输出缓冲区
+| 构造器                             | 描述                                                 |
+| ---------------------------------- | ---------------------------------------------------- |
+| BufferedWriter(Writer out)         | 创建使用默认大小的输出缓冲区的缓冲字符输出流         |
+| BufferedWriter(Writer out, int sz) | 创建一个新的缓冲字符输出流，使用给定大小的输出缓冲区 |
 
 ##### 特有成员方法
 
-+ void newLine() 写一行行分隔符
+| 类型 | 方法      | 描述           |
+| ---- | --------- | -------------- |
+| void | newLine() | 写一行行分隔符 |
 
 #### BufferedReader
 
-​	java.io.BufferedReader: 字符输入缓冲流。从字符输入流读取文本，缓冲字符，以提供字符，数组和行的高效读取
+> java.io.BufferedReader: 字符输入缓冲流。从字符输入流读取文本，缓冲字符，以提供字符，数组和行的高效读取
 
 ##### 构造方法
 
-+ BufferedReader(Reader in) 创建使用默认大小的输入缓冲区的缓冲字符输入流
-+ BufferedReader(Reader in, int sz) 创建使用指定大小的输入缓冲区的缓冲字符输入流
+| 构造器                            | 描述                                         |
+| --------------------------------- | -------------------------------------------- |
+| BufferedReader(Reader in)         | 创建使用默认大小的输入缓冲区的缓冲字符输入流 |
+| BufferedReader(Reader in, int sz) | 创建使用指定大小的输入缓冲区的缓冲字符输入流 |
 
 ##### 特有成员方法
 
-+ String readLine() 读一行文字
+| 类型   | 方法       | 描述       |
+| ------ | ---------- | ---------- |
+| String | readLine() | 读一行文字 |
+
++ 当一个流的构造方法中需要一个流的时候，被传进来的流叫做"节点流"
++ 外部负责包装的流叫做“包装流”、“处理流”
++ 对于包装流来说，只需要关闭最外层的流就行，里面的节点流会自动关闭
 
 ### Properties
 
@@ -2452,16 +2540,20 @@ java.io.BufferedOutputStream
 
 #### 特有成员方法
 
-+ Object setProperty(String key, String value) 调用 Hashtable 方法 put
-+ String getProperty(String key) 使用此属性列表中指定的键搜索属性
-+ Set\<String> stringPropertyNames() 相当于map集合中的keySet()方法
+| 类型         | 方法                                  | 描述                             |
+| ------------ | ------------------------------------- | -------------------------------- |
+| Object       | setProperty(String key, String value) | 调用 Hashtable 方法 put          |
+| String       | getProperty(String key)               | 使用此属性列表中指定的键搜索属性 |
+| Set\<String> | stringPropertyNames()                 | 相当于map集合中的keySet()方法    |
 
 #### 和流相关的方法
 
-+ void store(OutputStream out, String comments) 通过指定字节输出流，将集合中的数据写到文件中
-+ void store(Writer writer, String comments) 通过指定字符输出流，将集合中的数据写到文件中
-+ void load(InputStream inStream) 通过指定的字节输入流将文件中的数据读取到集合中
-+ void load(Reader reader) 通过指定的字符输入流将文件中的数据读取到集合中
+| 类型 | 方法                                     | 描述                                           |
+| ---- | ---------------------------------------- | ---------------------------------------------- |
+| void | store(OutputStream out, String comments) | 通过指定字节输出流，将集合中的数据写到文件中   |
+| void | store(Writer writer, String comments)    | 通过指定字符输出流，将集合中的数据写到文件中   |
+| void | load(InputStream inStream)               | 通过指定的字节输入流将文件中的数据读取到集合中 |
+| void | load(Reader reader)                      | 通过指定的字符输入流将文件中的数据读取到集合中 |
 
 ### 序列化和反序列化流
 
@@ -2475,16 +2567,16 @@ java.io.BufferedOutputStream
 
 【**注意事项**】
 
-1. 当类实现了Serializable之后，在类中会隐式存在一个变量SerialVersionUID	private static final long serialVersionUID = 1L;
+1. 当类实现了Serializable接口（标志性接口）之后，在类中会隐式存在一个变量SerialVersionUID	private static final long serialVersionUID = 1L;
 2. serialVersionUID的值是根据类中的成员计算的
 3. 当对象被序列化时，会绑定当前的serialVersionUID
 4. 当反序列化时，会检测对象身上的UID变量和类中的UID变量是否一致
 5. 手动赋值，就不会随着类中的成员计算结果
-6. 静态和瞬态修饰的成员变量不会被序列化
+6. 静态和瞬态（transient）修饰的成员变量不会被序列化
 
 #### ObjectOutputStream
 
-​	java.io.ObjectOutputStream：将Java对象的基本类型和引用类型数据，写入到 OutputStream 。
+> java.io.ObjectOutputStream：将Java对象的基本类型和引用类型数据，写入到 OutputStream 。
 
 + 可以使用ObjectInputStream读取（重构）对象。可以通过使用流的文件来实现对象的持久存储。
 + **只有支持java.io.Serializable接口的对象才能写入流中**。每个可序列化对象的类被编码
@@ -2493,46 +2585,60 @@ java.io.BufferedOutputStream
 
 ##### 构造方法
 
-+ ObjectOutputStream(OutputStream out) 创建一个写入指定的OutputStream的ObjectOutputStream
+| 构造器                               | 描述                                               |
+| ------------------------------------ | -------------------------------------------------- |
+| ObjectOutputStream(OutputStream out) | 创建一个写入指定的OutputStream的ObjectOutputStream |
 
 ##### 成员方法
 
-+ void writeObject(Object obj) 将指定的对象写入ObjectOutputStream
+| 类型 | 方法                    | 描述                               |
+| ---- | ----------------------- | ---------------------------------- |
+| void | writeObject(Object obj) | 将指定的对象写入ObjectOutputStream |
 
 #### ObjectInputStream
 
-​	java.io.ObjectInputStream：ObjectInputStream反序列化先前使用ObjectOutputStream编写的原始数据和对象
+> java.io.ObjectInputStream：ObjectInputStream反序列化先前使用ObjectOutputStream编写的原始数据和对象
 
 ##### 构造方法
 
-+ ObjectInputStream(InputStream in) 创建从指定的InputStream读取的ObjectInputStream
+| 构造器                            | 描述                                           |
+| --------------------------------- | ---------------------------------------------- |
+| ObjectInputStream(InputStream in) | 创建从指定的InputStream读取的ObjectInputStream |
 
 ##### 成员方法
 
-+ Object readObject() 从ObjectInputStream读取一个对象
+| 类型   | 方法         | 描述                            |
+| ------ | ------------ | ------------------------------- |
+| Object | readObject() | 从ObjectInputStream读取一个对象 |
 
 ### 打印流
 
-​	java.io.PrintStream: 打印流中的方法没有异常
+> java.io.PrintStream: 打印流中的方法没有异常
 
 #### 构造方法
 
-+ PrintStream(String fileName) 使用指定的文件名创建新的打印流，无需自动换行
+| 构造器                       | 描述                                         |
+| ---------------------------- | -------------------------------------------- |
+| PrintStream(String fileName) | 使用指定的文件名创建新的打印流，无需自动换行 |
 
 ### 随机流
 
-​	java.io.RandomAccessFile: 该类的实例支持**读取和写入**随机访问文件
+> java.io.RandomAccessFile: 该类的实例支持**读取和写入**随机访问文件
 
 随机访问文件的行为类似于存储在文件系统中的大量字节。 有一种游标，或索引到隐含的数组，称为文件指针 ; 输入操作读取从文件指针开始的字节
 
 #### 构造方法
 
-+ RandomAccessFile(File file, String mode) 创建一个随机访问文件流，从File参数指定的文件读取，并可选地写入。
-+ RandomAccessFile(String name, String mode) 创建随机访问文件流，以从中指定名称的文件读取，并可选择写入文件
+| 构造器                                     | 描述                                                         |
+| ------------------------------------------ | ------------------------------------------------------------ |
+| RandomAccessFile(File file, String mode)   | 创建一个随机访问文件流，从File参数指定的文件读取，并可选地写入 |
+| RandomAccessFile(String name, String mode) | 创建随机访问文件流，以从中指定名称的文件读取，并可选择写入文件 |
 
 #### 成员方法
 
-+ void seek(long pos) 设置文件指针偏移，从该文件的开头测量，发生下一次读取或写入
+| 类型 | 方法           | 描述                                                       |
+| ---- | -------------- | ---------------------------------------------------------- |
+| void | seek(long pos) | 设置文件指针偏移，从该文件的开头测量，发生下一次读取或写入 |
 
 ### 字节流字符流总结
 
@@ -2591,6 +2697,22 @@ Writer 用于写入字符流的顶层抽象父类
 
 【**java中每加载一个类时，都会分配一个独立的JVM**】
 
+### 获取类路径下文件的绝对路径
+
+```
+String path = Thread.currentThread().getContextClassLoader().getResource().getPath();
+当前线程.当前线程的类加载器对象.当前线程的类加载器默认从类的根路径下加载资源
+
+InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream();
+```
+
+### 资源绑定器
+
+```
+只能绑定xxx.properties文件并且只能在类路径下
+ResourceBundle bundle = ResourceBundle.getBundle("xxx");//不用写文件扩展名  
+```
+
 ### 线程
 
 ​	java.lang.Thread：是程序中执行的线程。Java虚拟机允许应用程序同时执行多个执行线程
@@ -2603,28 +2725,32 @@ Writer 用于写入字符流的顶层抽象父类
 	2. 守护线程[设置]：用于服务用户线程，当程序中没有可执行的用户线程时，守护线程自动死亡，垃圾回收线程和日志文档是守护线程
 3. 线程有名字，默认名：Thread-x，x从0开始，逐一增加
 
-【**在java中每一个线程会独立的分配一个栈内存，堆内存被所有的线程对象共享**】
+【**在java中每一个线程会独立的分配一个栈内存（栈内存独立），堆内存和方法区内存被所有的线程对象共享**】
 
 #### 构造方法
 
-+ Thread（String name）分配一个新的Thread对象
+| 构造器                | 描述                   |
+| --------------------- | ---------------------- |
+| Thread（String name） | 分配一个新的Thread对象 |
 
 #### 成员方法
 
-+ void run() 用来定义线程执行的任务，需要多线程执行的代码，都要定义在run()中
-+ void start() 导致此线程开始执行; Java虚拟机调用此线程的run方法。【只能被调用一次】
-+ String getName() 返回此线程的名称
-+ void setName(String name) 将此线程的名称更改为等于参数 name 
-+ static Thread currentThread() 返回对当前正在执行的线程对象的引用
-+ int getPriority() 返回此线程的优先级
-+ void setPriority(int newPriority) 更改此线程的优先级
-+ static void sleep(long millis) 使当前正在执行的线程停留（暂停执行）指定的毫秒数
-+ static void yield()对调度程序的一个暗示，即当前线程愿意让出当前处理器的执行权，然后再和其他线程抢夺执行权
-+ void join()等待这个线程死亡
-+ void join(long millis)此线程最多等待millis毫秒
-+ void join(long millis,int nanos)此线程最多等待millis毫秒加上nanos纳秒。当调用此方法的线程指定的时间内，没有执行完线程任务，那么其他线程则不再等待，开始抢夺执行权
-+ void setDaemon(boolean on) 将此线程标记为 daemon线程或用户线程
-+ boolean isDaemon() 测试这个线程是否是守护线程
+| 类型          | 方法                         | 描述                                                         |
+| ------------- | ---------------------------- | ------------------------------------------------------------ |
+| void          | run()                        | 用来定义线程执行的任务，需要多线程执行的代码，都要定义在run()中 |
+| void          | start()                      | 导致此线程开始执行; Java虚拟机调用此线程的run方法。**只能被调用一次** |
+| String        | getName()                    | 获取此线程的名称                                             |
+| void          | setName(String name)         | 设置线程名称为参数name                                       |
+| static Thread | currentThread()              | 获取当前线程对象，出现在哪就获取的是哪个线程                 |
+| int           | getPriority()                | 返回此线程的优先级                                           |
+| void          | setPriority(int newPriority) | 更改此线程的优先级                                           |
+| static void   | sleep(long millis)           | 使当前正在执行的线程停留（暂停执行）指定的毫秒数             |
+| static void   | yield()                      | 对调度程序的一个暗示，即当前线程愿意让出当前处理器的执行权，然后再和其他线程抢夺执行权 |
+| void          | join()                       | 等待这个线程死亡                                             |
+| void          | join(long millis)            | 此线程最多等待millis毫秒                                     |
+| void          | join(long millis,int nanos)  | 此线程最多等待millis毫秒加上nanos纳秒。当调用此方法的线程指定的时间内，没有执行完线程任务，那么其他线程则不再等待，开始抢夺执行权 |
+| void          | setDaemon(boolean on)        | 将此线程标记为 daemon线程或用户线程                          |
+| boolean       | isDaemon()                   | 测试这个线程是否是守护线程                                   |
 
 #### 创建线程的方式
 
@@ -2643,9 +2769,17 @@ Writer 用于写入字符流的顶层抽象父类
 4. 创建Thread对象，传递实现类对象
 5. 启动线程
 
+##### 实现Callable接口（JDK5）
+
+1. 创建FutureTask对象，参数给一个Callable接口实现类对象
+2. 创建线程对象，传入FutureTask对象
+3. 线程对象调用get（）方法
+
+**区别：**可以获得执行结果，效率比较低，会导致当前线程阻塞
+
 java.lang.Runnable: Runnable接口可以由任何类实现，其实例将由线程执行。**线程任务接口，通过重写run()方法来指定线程的任务，然后将任务交给Thread对象去执行**
 
-##### 第二种的好处
+##### 实现Runnable接口的好处
 
 1. 打破了java的单继承性，通过实现不影响当前实现类去继承父类
 2. 实现了线程任务和线程对象的解耦
@@ -2657,11 +2791,11 @@ java.lang.Runnable: Runnable接口可以由任何类实现，其实例将由线�
 
 多线程操作共享的数据，因为线程之间对共享数据的抢夺，造成的数据安全
 
+**`synchronized`出现在静态方法上找类锁**
+
 **造成多线程安全问题的必要因素**：有多条线程在操作（更新）共享的数据，且执行共享数据的操作语句不止一条
 
 **如果加了同步之后依然有安全问题**：1.锁不唯一  2.同步代码中没有包含所有操作共享数据的代码
-
-##### 解决方法
 
 1. 同步代码块
 
@@ -2680,6 +2814,12 @@ java.lang.Runnable: Runnable接口可以由任何类实现，其实例将由线�
 	```
 
 3. Lock锁接口
+
+**解决线程安全问题**
+
+1. 尽量使用局部变量代替实例变量和静态变量
+2. 如果是实例变量，可以考虑创建多个对象
+3. 以上两种都不能使用时只能选择`synchronized`
 
 ##### 同步的好处和弊端
 
@@ -2703,9 +2843,11 @@ java.lang.Runnable: Runnable接口可以由任何类实现，其实例将由线�
 
 ### 等待和唤醒
 
-+ void wait() 导致当前线程等待，直到另一个线程调用该对象的 notify()方法或 notifyAll()方法
-+ void notify() 唤醒正在等待对象监视器的单个线程
-+ void notifyAll() 唤醒正在等待对象监视器的所有线程
+| 类型 | 方法        | 描述                                                         |
+| ---- | ----------- | ------------------------------------------------------------ |
+| void | wait()      | 导致当前线程等待，直到另一个线程调用该对象的 notify()方法或 notifyAll()方法 |
+| void | notify()    | 唤醒正在等待对象监视器的单个线程                             |
+| void | notifyAll() | 唤醒正在等待对象监视器的所有线程                             |
 
 【**上述三个方法必须由锁对象来调用**】
 
@@ -2731,9 +2873,11 @@ java.lang.Runnable: Runnable接口可以由任何类实现，其实例将由线�
 
 ##### 成员方法
 
-+ void lock() 获得锁
-+ void unlock() 释放锁
-+ Condition newCondition() 返回一个新Condition绑定到该实例Lock实例
+| 类型      | 方法           | 描述                                    |
+| --------- | -------------- | --------------------------------------- |
+| void      | lock()         | 获得锁                                  |
+| void      | unlock()       | 释放锁                                  |
+| Condition | newCondition() | 返回一个新Condition绑定到该实例Lock实例 |
 
 ```
 Lock l = ...;
@@ -2768,9 +2912,88 @@ try{
 	+ java.util.concurrent.ExecutorService:真正使用的线程池接口
 	+ java.util.concurrent.Executors:线程池工厂类，专门用于生产线程池的工具类
 		+ static ExecutorService newFixedThreadPool(int nThreads) 创建一个线程池，该线程池重用固定数量的从共享无界队列中运行的线程
+	
 2. 执行线程的任务
-	+ submit(Runnable task) 提交一个可运行的任务执行，并返回一个表示该任务的未来
-	+ void shutdown() 启动有序关闭，其中先前提交的任务将被执行，但不会接受任何新任务
+
+  | 类型         | 方法                  | 描述                                                         |
+  | ------------ | --------------------- | ------------------------------------------------------------ |
+  | <T>Future<T> | submit(Runnable task) | 提交一个可运行的任务执行，并返回一个表示该任务的未来         |
+  | void         | shutdown()            | 启动有序关闭，其中先前提交的任务将被执行，但不会接受任何新任务 |
+
+```java
+ExecutorService ex = Executors.newFixedThreadPool(2);
+MyRunnable mr = new MyRunnable();
+ex.submit(mr);
+ex.shutdown();
+```
+
+### ThreadLocal
+
+> ThreadLocal类用来提供线程内部的局部变量。这种变量在多线程环境下访问（通过get和set方法访问）时能保证各个线程的变量相对独立于其他线程内的变量。ThreadLocal实例通常来说都是private static类型，用于关联线程和线程上下文
+
+**作用：**提供线程内的局部变量，不同的线程之间不会相互干扰，这种变量在线程的生命周期内起作用，减少同一个线程内多个函数或组件之间一些公共变量传递的复杂度。
+
+```
+1.线程并发：在多线程并发的场景下
+2.传递数据：可以通过ThreadLocal在同一线程，不同组件中传递公共变量，避免参数直接传递带来的代码耦合问题
+3.线程隔离：每个线程的变量都是独立的，不会相互影响，各线程之间的数据相互隔离却又具备并发性，避免同步方式带来的性能损失
+```
+
+#### ThreadLocal和synchronized的区别
+
+|        | synchronized                                                 | ThreadLocal                                                  |
+| ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 原理   | 同步机制采用“以时间换空间”的方式，只提供一份变量，让不同的线程排队访问 | ThreadLocal采用“以空间换时间”的方式，为每一个线程都提供了一份变量的副本，从而实现同时访问而相不干扰 |
+| 侧重点 | 多个线程之间访问资源的同步                                   | 多线程中让每个线程之间的数据相互隔离                         |
+
+#### ThreadLocal的设计
+
+1. 每个Thread线程内部都有一个Map（ThreadLocalMap）
+2. Map里面存储ThreadLocal对象（key）和线程的变量副本（value）
+3. Thread内部的Map是由ThreadLocal维护的，由ThreadLocal负责向map获取和设置线程的变量值
+4. 对于不同的线程，每次获取副本值时，别的线程并不能获取到当前线程的副本值，形成了副本的隔离，互不干扰
+
+##### JDK8设计方案两个好处
+
++ 每个Map存储的Entry数量减少
++ 当Thread销毁的时候，ThreadLocalMap也会随之销毁，减少内存的使用
+
+#### ThreadLocal核心方法
+
+| 类型        | 方法           | 描述                         |
+| ----------- | -------------- | ---------------------------- |
+| protected T | initialValue() | 返回当前线程局部变量的初始值 |
+| public void | set(T value)   | 设置当前线程绑定的局部变量   |
+| public T    | get()          | 获取当前线程绑定的局部变量   |
+| public void | remove()       | 移除当前线程绑定的局部变量   |
+
+##### 源码执行流程
+
++ set
+	+ 首先获取当前线程，并根据当前线程获取一个Map
+	+ 如果获取的Map不为空，则将参数设置到Map中（当前ThreadLocal的引用作为key）
+	+ 如果Map为空，则给该线程创建Map，并设置初始值
++ get
+	+ 首先获取当前线程，根据当前线程获取一个Map
+	+ 如果获取的Map不为空，则在Map中以ThreadLocal的引用作为key来在Map中获取对应的Entry e，否则转到第四步
+	+ 如果e不为null，则返回e.value，否则转到第四步
+	+ Map为空或者e为空，则通过initialValue函数获取初始值value，然后用ThreadLocal的引用和value作为firstKey和firstValue创建一个新的Map
+
+**总结：**先获取当前线程的ThreadLocalMap变量，如果存在则返回值，不存在则创建并返回初始值
+
++ remove
+	+ 首先获取当前线程，并根据当前线程获取一个Map
+	+ 如果获取的Map不为空，则移除当前ThreadLocal对象对应的entry
+
+### ThreadLocalMap源码分析
+
+ThreadLocalMap是ThreadLocal的内部类，没有实现Map接口，用独立的方式实现了Map的功能，其内部的Entry也是独立实现![ThreadLocalMap基本结构](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/ThreadLocalMap%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84.png)
+
+##### 为什么使用弱引用
+
+在ThreadLocalMap中的set/getEntry方法中，会对key为null（即ThreadLocal为null）进行判断，如果为null的话，那么是会对value置为null的。
+
+这就意味着使用完ThreadLocal，CurrentThread依然运行的前提下，就算忘记调用remove方法，弱引用比强引用多一层保障：弱引用的ThreadLocal会被回收，对应的value会在下一次ThreadLocalMap调用set、get、remove中任一方法的时候会被清除，从而避免内存泄漏
 
 ## 网络编程
 
@@ -2944,45 +3167,54 @@ java.net.URL :URL代表统一资源定位符，指向互联网上**资源**的�
 
 #### URLConnection
 
-​	java.net.URLConnection:抽象类URLConnection是表示应用程序和URL之间的通信链接的所有类的超类。该类的实例可以用于从URL引用的资源中读取和写入
+​	java.net.URLConnection：抽象类URLConnection是表示应用程序和URL之间的通信链接的所有类的超类。该类的实例可以用于从URL引用的资源中读取和写入
 
 ##### 成员方法
 
 + InputStream getInputStream() 返回从此打开的连接读取的输入流
 
-### Lambda表达式
+## Lambda表达式
 
-​	JDK8最重要的新特性之一。可以用于优化函数式接口的**匿名内部类**使用，写出更简洁的java代码
+> JDK8最重要的新特性之一。可以用于优化函数式接口的**匿名内部类**使用，写出更简洁的java代码
 
 【**本质**】：重写函数式接口中的抽象方法
 
 【**函数式接口**】：有且仅有一个**抽象方法**的接口
 
-#### Lambda语法
+### Lambda语法
 
-```
+```java
 ()->{}
 ():抽象方法的参数列表[形参]
 ->:传递
 {}:重写抽象方法的方法体
 ```
 
-#### 常用的函数式接口
+**优化**
+
+```java
+优化Lambda表达式	::表示引用方法
+对象||类名||this||super||new::方法名;
+1.函数式接口中只有一个参数
+2.{}中只有一条语句，且是通过方法在操作唯一参数
+```
+
+### Lambda表达式省略格式
+
+1. ()中的数据类型可以省略
+2. ()中只有一个参数时，()可以省略
+3. {}中只有一条语句时，{} return ;可以省略，但是必须同时省略
+
+### 常用的函数式接口
 
 + java.lang.Runnable:线程任务接口。 Thread()构造方法    Executor线程池 submit();
 + java.util.FilenameFilter:文件名过滤接口。File类 listFiles()
 + java.util.FileFilter:文件对象过滤器接口。File类 listFiles()
 + java.util.Comparator:比较器接口。 TreeSet TreeMap Arrays.sort() Collections.sort()
 
-#### Lambda表达式省略格式
+## Stream API
 
-1. ()中的数据类型可以省略
-2. ()中只有一个参数时，()可以省略
-3. {}中只有一条语句时，{} return ;可以省略，但是必须同时省略
-
-## Stream流
-
-java.util.stream.Stream<T>：支持顺序和并行聚合操作的一系列元素 ---> 数组和集合
+java.util.stream.Stream\<T>：支持顺序和并行聚合操作的一系列元素 ---> 数组和集合
 
 ### 常用函数式接口
 
@@ -2990,95 +3222,108 @@ java.util.stream.Stream<T>：支持顺序和并行聚合操作的一系列元素
 
 ##### 抽象方法
 
-+ boolean test(T t)在给定的参数上评估这个谓词
+| 类型    | 方法      | 描述                       |
+| ------- | --------- | -------------------------- |
+| boolean | test(T t) | 在给定的参数上评估这个谓词 |
 
 ##### 成员方法
 
-+ default boolean removeIf(Predicate<? super E> filter)删除满足给定谓词的此集合的所有元素
+| 类型            | 方法                                  | 描述                               |
+| --------------- | ------------------------------------- | ---------------------------------- |
+| default boolean | removeIf(Predicate<? super E> filter) | 删除满足给定谓词的此集合的所有元素 |
 
 #### java.util.function.Supplier\<T>生产型接口
 
 ##### 抽象方法
 
-+ T get()获得结果
+| 类型 | 方法  | 描述     |
+| ---- | ----- | -------- |
+| T    | get() | 获得结果 |
 
 #### java.util.function.Consumer\<T>消费型接口
 
 ##### 抽象方法
 
-+ void accept(T t)对给定的参数执行此操作
+| 类型 | 方法        | 描述                   |
+| ---- | ----------- | ---------------------- |
+| void | accept(T t) | 对给定的参数执行此操作 |
 
 #### java.util.function.Function<T,R>转换型接口
 
 ##### 抽象方法
 
-+ R apply(T t) 将此函数应用于给定的参数。将T类型的数据，转换为R类型的数据
+| 类型 | 方法       | 描述                                                       |
+| ---- | ---------- | ---------------------------------------------------------- |
+| R    | apply(T t) | 将此函数应用于给定的参数。将T类型的数据，转换为R类型的数据 |
 
 ### Stream流对象的获取
 
 #### 集合
 
 + Collection单列集合可以直接获取流，双列集合需要先转化为单列集合后，再获取Stream流对象
-	+ default Stream\<E> stream()返回一个序列Stream与此集合作为其来源
+
+| 类型               | 方法     | 描述                                 |
+| ------------------ | -------- | ------------------------------------ |
+| default Stream\<E> | stream() | 返回一个序列Stream与此集合作为其来源 |
 
 #### 数组
 
 **Arrays** 数组工具类
 
-+ static \<T> Stream\<T> stream(T[] array) 返回具有指定数组的序列Stream作为其来源
-+ static \<T> Stream\<T> stream(T[] array, int start, int end) 返回指定数组的指定范围作为源的顺序Stream 
+| 类型                   | 方法                                  | 描述                                     |
+| ---------------------- | ------------------------------------- | ---------------------------------------- |
+| static \<T> Stream\<T> | stream(T[] array)                     | 返回具有指定数组的序列Stream作为其来源   |
+| static \<T> Stream\<T> | stream(T[] array, int start, int end) | 返回指定数组的指定范围作为源的顺序Stream |
 
 #### Stream接口
 
-+ static \<T> Stream\<T> of(T t) 返回包含单个元素的序列 Stream 
-+ static \<T> Stream\<T> of(T... values) 返回其元素是指定值的顺序排序流
+| 类型                   | 方法            | 描述                           |
+| ---------------------- | --------------- | ------------------------------ |
+| static \<T> Stream\<T> | of(T t)         | 返回包含单个元素的序列 Stream  |
+| static \<T> Stream\<T> | of(T... values) | 返回其元素是指定值的顺序排序流 |
 
 ### Stream流常用方法：终结方法和延迟方法
 
-+ void forEach(Consumer<? super T> action) 对此流的每个元素执行操作
-+ Stream\<T> filter(Predicate<? super T> predicate) 返回由与此给定谓词匹配的此流的元素组成的流
-+ long count() 返回此流中的元素数
-+ Stream\<T> limit(long maxSize) 返回由此流的元素组成的流，截短长度不能超过 maxSize
-	+ 参数大于流中的元素个数: 截取所有数据
-	+ 0:截取0个 一个都没有
-	+ 负数:报错
-+ Stream\<T> skip(long n) 在丢弃流的第一个 n元素后，返回由该流的剩余元素组成的流
-	+ 参数大于流中的元素个数: 跳过所有 0个
-	+ 0: 跳过0个，获取所有
-	+ 负数:报错
-+ static\<T> Stream\<T> concat(Stream<? extends T> a, Stream<? extends T> b) 创建一个懒惰连接的流，其元素是第一个流的所有元素，后跟第二个流的所有元素
-+ \<R> Stream\<R> map(Function<? super T,? extends R> mapper) 返回由给定函数应用于此流的元素的结果组成的流。
+| 类型                   | 方法                                                 | 描述                                                         |
+| ---------------------- | ---------------------------------------------------- | ------------------------------------------------------------ |
+| void                   | forEach(Consumer<? super T> action)                  | 对此流的每个元素执行操作                                     |
+| Stream\<T>             | filter(Predicate<? super T> predicate)               | 返回由与此给定谓词匹配的此流的元素组成的流                   |
+| long                   | count()                                              | 返回此流中的元素数                                           |
+| Stream\<T>             | limit(long maxSize)                                  | 返回由此流的元素组成的流，截短长度不能超过 maxSize（参数大于流中的元素个数：截取所有数据；0:截取0个；负数：报错） |
+| Stream\<T>             | skip(long n)                                         | 在丢弃流的第一个 n元素后，返回由该流的剩余元素组成的流（参数大于流中的元素个数: 跳过所有 0个；0: 跳过0个，获取所有；负数：报错） |
+| static\<T> Stream\<T>  | concat(Stream<? extends T> a, Stream<? extends T> b) | 创建一个懒惰连接的流，其元素是第一个流的所有元素，后跟第二个流的所有元素 |
+| \<R>  Stream\<R>       | map(Function<? super T,? extends R> mapper)          | 返回由给定函数应用于此流的元素的结果组成的流                 |
+| Stream\<T>             | distinct()                                           | 返回由该流的不同元素（根据 Object.equals(Object) ）组成的流【**去重**】 |
+| static \<T> Stream\<T> | generate(Supplier<? extends T> s)                    | 返回无限顺序无序流，其中每个元素由提供的 Supplier生成        |
+| Optional\<T>           | max(Comparator<? super T> comparator)                | 根据提供的 Comparator返回此流的最大元素                      |
+| Optional\<T>           | min(Comparator<? super T> comparator)                | 根据提供的 Comparator返回此流的最小元素                      |
+| Stream\<T>             | sorted()                                             | 返回由此流的元素组成的流，根据自然顺序排序                   |
+| Stream\<T>             | sorted(Comparator<? super T> comparator)             | 返回由该流的元素组成的流，根据提供的 Comparator进行排序      |
+| boolean                | allMatch(Predicate<? super T> predicate)             | 返回此流的所有元素是否与提供的谓词匹配                       |
+| boolean                | anyMatch(Predicate<? super T> predicate)             | 返回此流的任何元素是否与提供的谓词匹配                       |
+| boolean                | noneMatch(Predicate<? super T> predicate)            | 返回此流的元素是否与提供的谓词匹配                           |
+| default Stream\<T>     | dropWhile(Predicate<? super T> predicate)            | 根据条件删除流中的数据，直到遇到第一个不满足条件的数据开始停止删除 |
+| default Stream\<T>     | takeWhile(Predicate<? super T> predicate)            | 根据条件保留流中的数据，直到遇到第一个不满足条件的数据开始停止保留 |
+| <R,A> R                | collect(Collector<? super T,A,R> collector)          | 使用 Collector对此流的元素执行 mutable reduction操作         |
+| Object[]               | toArray()                                            | 返回一个包含此流的元素的数组                                 |
+| \<A> A[]               | toArray(IntFunction<A[]> generator)                  | 使用提供的 generator函数返回一个包含此流的元素的数组，以分配返回的数组，以及分区执行或调整大小可能需要的任何其他数组 |
 
-```
-优化Lambda表达式	::表示引用方法
-对象||类名||this||super||new::方法名();
-1.函数式接口中只有一个参数
-2.{}中只有一条语句，且是通过方法在操作唯一参数
-```
++ java.util.stream.Collector<T,A,R>: 收集器对象
 
-+ Stream\<T> distinct() 返回由该流的不同元素（根据 Object.equals(Object) ）组成的流【**去重**】
-+ static \<T> Stream\<T> generate(Supplier<? extends T> s) 返回无限顺序无序流，其中每个元素由提供的 Supplier生成。  
-+ Optional\<T> max(Comparator<? super T> comparator) 根据提供的 Comparator返回此流的最大元素
-+ Optional\<T> min(Comparator<? super T> comparator) 根据提供的 Comparator返回此流的最小元素
-+ Stream\<T> sorted() 返回由此流的元素组成的流，根据自然顺序排序
-+ Stream\<T> sorted(Comparator<? super T> comparator) 返回由该流的元素组成的流，根据提供的 Comparator进行排序
-+ boolean allMatch(Predicate<? super T> predicate) 返回此流的所有元素是否与提供的谓词匹配
-+ boolean anyMatch(Predicate<? super T> predicate) 返回此流的任何元素是否与提供的谓词匹配
-+ boolean noneMatch(Predicate<? super T> predicate) 返回此流的元素是否与提供的谓词匹配
-+ default Stream\<T> dropWhile(Predicate<? super T> predicate) 根据条件删除流中的数据，直到遇到第一个不满足条件的数据开始停止删除
-+ default Stream\<T> takeWhile(Predicate<? super T> predicate) 根据条件保留流中的数据，直到遇到第一个不满足条件的数据开始停止保留
-+ <R,A> R collect(Collector<? super T,A,R> collector) 使用 Collector对此流的元素执行 mutable reduction操作
-	+ java.util.stream.Collector<T,A,R>: 收集器对象
-	+ java.util.stream.Collectors:收集器对象的工厂类。 toSet()   toList()
-+ Object[] toArray() 返回一个包含此流的元素的数组
-+ \<A> A[] toArray(IntFunction<A[]> generator) 使用提供的 generator函数返回一个包含此流的元素的数组，以分配返回的数组，以及分区执行或调整大小可能需要的任何其他数组
++ java.util.stream.Collectors:收集器对象的工厂类。 toSet()   toList()
+
+	```java
+	Stream<String> stream = Stream.of("10", "20", "30", "40", "50");
+	List<String> list = stream.collect(Collectors.toList());
+	Set<String> set = stream.collect(Collectors.toSet());
+	```
 
 ### 并发流
 
 1. 直接获取并发流 Collection
-	+ default Stream\<E> parallelStream()返回可能并行的Stream与此集合作为其来源
+  + default Stream\<E> **parallelStream**()返回可能并行的Stream与此集合作为其来源
 2. 转换为并发流 BaseStream
-	+ S parallel() 返回平行等效流
+	+ S **parallel**() 返回平行等效流
 
 ## 枚举
 
@@ -3174,7 +3419,7 @@ public @interface AnnotationName{
 
 ## Junit
 
-用于测试程序，替代main方法让程序运行
+> 用于测试程序，替代main方法让程序运行
 
 【**jar包**】：指的是java成员压缩之后产生的文件，添加后可以直接使用jar包中的java程序
 
@@ -3187,6 +3432,18 @@ public @interface AnnotationName{
 【**黑盒测试**】：只关注结果是否满足客户的需求，不关注实现的过程
 
 【**白盒测试**】：只关注程序的实现过程，不关注是否满足客户的需求
+
+## 类加载器
+
+> 专门负责加载类的命令/工具	ClassLoader
+
++ 启动类加载器（父）
++ 扩展类加载器（母）
++ 应用类加载器
+
+1. 首先通过`启动类加载器`加载，`启动类加载器`专门加载jre/lib/rt.jar，这个jar包下都是JDK最核心的类库
+2. `启动类加载器`加载不到时，会通过`扩展类加载器`加载，专门加载jre/lib/ext下的所有jar包
+3. `扩展类加载器`加载不到时，会通过`应用类加载器`加载，专门加载classpath中的jar包（class文件）
 
 ## 反射
 
@@ -3209,19 +3466,17 @@ Class类的实例表示正在运行的Java应用程序中的类和接口。枚�
 ### Class 对象的获取方式
 
 1. 通过对象的getClass()方法 --> Object 类  Class<?> getClass() 返回此 Object的运行时类
-2. 通过数据类型的 .class 属性获取
-3. 通过Class类中 forName()方法获取--> static Class<?> forName(String className) 返回与给定字符串名称的类或接口相关联的 Class对象
+2. 通过数据类型的.class 属性获取
+3. 通过Class类中forName()方法获取--> static Class<?> forName(String className) 返回与给定字符串名称的类或接口相关联的 Class对象
 
 ### 反射构造方法
 
-+ Constructor\<T> getConstructor(Class<?>... parameterTypes) 
-			返回一个 Constructor 对象，该对象反映由该 Class 对象表示的类的指定'公共构造函数
-+ Constructor<?>[] getConstructors() 
-			返回一个包含 Constructor 对象的数组， Constructor 对象反映了由该 Class 对象表示的类的所有**公共构造函数**
-+ Constructor\<T> getDeclaredConstructor(Class<?>... parameterTypes)	
-			返回一个 Constructor 对象，该对象反映由此 Class 对象表示的类或接口的指定构造函数。 
-+ Constructor<?>[] getDeclaredConstructors() 
-			返回反映由该 Class 对象表示的类声明的所有构造函数的 Constructor 对象的数组
+| 类型             | 方法                                               | 描述                                                         |
+| ---------------- | -------------------------------------------------- | ------------------------------------------------------------ |
+| Constructor\<T>  | getConstructor(Class<?>... parameterTypes)         | 返回一个 Constructor 对象，该对象反映由该 Class 对象表示的类的指定**公共构造函数** |
+| Constructor<?>[] | getConstructors()                                  | 返回一个包含 Constructor 对象的数组， Constructor 对象反映了由该 Class 对象表示的类的所有**公共构造函数** |
+| Constructor\<T>  | getDeclaredConstructor(Class<?>... parameterTypes) | 返回一个 Constructor 对象，该对象反映由此 Class 对象表示的类或接口的指定构造函数 |
+| Constructor<?>[] | getDeclaredConstructors()                          | 返回反映由该 Class 对象表示的类声明的所有构造函数的 Constructor 对象的数组 |
 
 **java.lang.reflect.Constructor\<T>**
 
@@ -3229,8 +3484,8 @@ Constructor 提供了一个类的单个构造函数的信息和访问权限
 
 #### 成员方法
 
-+ T newInstance(Object... initargs) 
-				使用由此 Constructor对象表示的构造函数，使用指定的初始化参数来创建和初始化构造函数的声明类的新实例
++ T newInstance(Object... initargs) （JDK9以后过时）
+				使用由此 Constructor对象表示的构造函数，使用指定的初始化参数来创建和初始化构造函数的声明类的新实例（无参构造）
 
 **java.lang.reflect.AccessibleObject**
 
@@ -3238,18 +3493,20 @@ Constructor 提供了一个类的单个构造函数的信息和访问权限
 
 #### 成员方法
 
-+ void setAccessible(boolean flag) 将此反射对象的 accessible标志设置为指示的布尔值。 true
++ void setAccessible(boolean flag) 将此反射对象的 accessible标志设置为指示的布尔值。 设为true可以访问私有
 
 ### 反射成员变量
 
-+ Field getField(String name) 返回一个 Field对象，该对象反映由该 Class对象表示的类或接口的**指定公共成员字段**
-+ Field[] getFields() 返回一个包含 Field对象的数组， Field对象反映由该 Class对象表示的类或接口的所有可访问的公共字段
-+ Field getDeclaredField(String name) 返回一个 Field对象，该对象反映由该 Class对象表示的类或接口的**指定声明字段**
-+ Field[] getDeclaredFields() 返回一个 Field对象的数组，反映了由该 Class对象表示的类或接口声明的所有字段
+| 类型    | 方法                          | 描述                                                         |
+| ------- | ----------------------------- | ------------------------------------------------------------ |
+| Field   | getField(String name)         | 返回一个 Field对象，该对象反映由该 Class对象表示的类或接口的**指定公共成员字段** |
+| Field[] | getFields()                   | 返回一个包含 Field对象的数组， Field对象反映由该 Class对象表示的类或接口的所有可访问的公共字段 |
+| Field   | getDeclaredField(String name) | 返回一个 Field对象，该对象反映由该 Class对象表示的类或接口的**指定声明字段** |
+| Field[] | getDeclaredFields()           | 返回一个 Field对象的数组，反映了由该 Class对象表示的类或接口声明的所有字段 |
 
 **java.lang.reflect.Field**
 
-​	提供有关类或接口的单个字段的信息和动态访问，反射的字段可以是类（静态）字段或实例（非静态）字段。
+提供有关类或接口的单个字段的信息和动态访问，反射的字段可以是类（静态）字段或实例（非静态）字段。
 
 #### 成员方法
 
@@ -3262,16 +3519,12 @@ Constructor 提供了一个类的单个构造函数的信息和访问权限
 
 ### 反射成员方法
 
-+ Method getMethod(String name, Class<?>... parameterTypes) 
-			返回一个 方法对象，该对象反映由该 Class对象表示的类或接口的指定公共成员方法。  
-+ Method[] getMethods() 
-			返回一个包含 Method 对象的数组， Method 对象反映由该 Class对象表示的类或接口的所有公共方法，
-			包括由类或接口声明的对象以及从超类和超级接口继承的方法
-+ Method getDeclaredMethod(String name, Class<?>... parameterTypes) 
-			返回一个 方法对象，它反映此表示的类或接口的指定声明的方法 Class对象。  
-+ Method[] getDeclaredMethods() 
-			返回一个包含 Method 对象的数组，Method 对象反映由 Class对象表示的类或接口的所有声明方法，
-			包括public，protected，default（package）访问和私有方法，但不包括继承方法
+| 类型     | 方法                                                       | 描述                                                         |
+| -------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
+| Method   | getMethod(String name, Class<?>... parameterTypes)         | 返回一个 方法对象，该对象反映由该 Class对象表示的类或接口的指定公共成员方法 |
+| Method[] | getMethods()                                               | 返回一个包含 Method 对象的数组， Method 对象反映由该 Class对象表示的类或接口的所有公共方法，<br/>		包括由类或接口声明的对象以及从超类和超级接口继承的方法 |
+| Method   | getDeclaredMethod(String name, Class<?>... parameterTypes) | 返回一个 方法对象，它反映此表示的类或接口的指定声明的方法 Class对象 |
+| Method[] | getDeclaredMethods()                                       | 返回一个包含 Method 对象的数组，Method 对象反映由 Class对象表示的类或接口的所有声明方法，<br/>		包括public，protected，default（package）访问和私有方法，但不包括继承方法 |
 
 **java.lang.reflect.Method**
 
@@ -3284,7 +3537,7 @@ Constructor 提供了一个类的单个构造函数的信息和访问权限
 		+ Object obj：调用方法的对象
 		+ Object... args：方法传递的实参
 	+ 返回值：
-		+ Object: 表示方法的返回值，如果当前方法没有返回值，则返回null
+		+ Object: 表示调用的方法，如果当前方法没有返回值，则返回null
 
 ### 反射注解步骤
 
@@ -4392,7 +4645,7 @@ var 对象名 = new 自定义对象名();
 </body>
 ```
 
-# 第三阶段--JavaWeb
+# JavaWeb
 
 ## jQuery
 
@@ -4747,7 +5000,7 @@ $("#p1").css("color","red")
 
 ### jQuery遍历
 
-> ​	jQuery 遍历，意为**移动**，用于根据其相对于其他元素的关系来**查找**（或选取）HTML 元素。以某项选择开始，并沿着这个选择移动，直到抵达期望的元素为止。
+> jQuery 遍历，意为**移动**，用于根据其相对于其他元素的关系来**查找**（或选取）HTML 元素。以某项选择开始，并沿着这个选择移动，直到抵达期望的元素为止。
 
 #### 祖先
 
@@ -4857,12 +5110,12 @@ $("#p1").css("color","red")
 2. 处理请求
 3. 设置响应值
 
-### Servlet体系 
+#### Servlet体系 
 
-#### Servlet接口
+##### Servlet接口
 
 ```java
-	在ServletAPI中最重要的是Servlet接口，所有Servlet都会直接或间接的与该接口发生联系，或是直接实现该接口，或间接继承自实现了该接口的类。
+在ServletAPI中最重要的是Servlet接口，所有Servlet都会直接或间接的与该接口发生联系，或是直接实现该接口，或间接继承自实现了该接口的类。
 该接口包括以下五个方法：
 
 init(ServletConfig config)
@@ -4876,20 +5129,20 @@ destroy( )
 （3）当服务器停止，会释放Servlet，调用destroy方法。
 ```
 
-#### GenericServlet抽象类
+##### GenericServlet抽象类
 
 ```
 它对Servlet接口中的部分方法（init和destroy）添加了实现，使得开发时只需要考虑针对service方法的业务实现即可。
 ```
 
-#### HttpServlet类
+##### HttpServlet类
 
 ```
 是继承GenericServlet的基础上进一步的扩展
 平时使用Servlet开发基本上就是继承该类，重写doGet和doPost方法
 ```
 
-### Servlet创建方式
+#### Servlet创建方式
 
 > 实现Servlet接口
 
@@ -4918,7 +5171,7 @@ public class FirstServlet extends HttpServlet {
 }
 ```
 
-### Servlet的生命周期
+#### Servlet的生命周期
 
 > 每个servlet都是被服务器创建的，当有请求访问某个servlet时，服务器会创建这个servlet对象，调用一次init()方法，由service()处理该请求，当服务器关闭时，servlet会被服务器杀死，调用destroy()
 
@@ -4953,7 +5206,7 @@ public class FirstServlet extends HttpServlet {
 		Servlet容器在销毁Servlet对象时会调用destroy方法来释放资源。通常情况下Servlet容器停止或者重新启动都会引起销毁Servlet对象的动作，但除此之外，Servlet容器也有自身管理Servlet对象的准则，整个生命周期并不需要人为进行干预。
 	```
 
-### web.xml文件的配置
+#### web.xml文件的配置
 
 > web.xml是服务器的核心配置文件，服务器在启动时会读取web.xml文件中的内容
 
@@ -5004,7 +5257,9 @@ public class FirstServlet extends HttpServlet {
     </filter-mapping>
 ```
 
-## Cookie
+Servlet各组件加载顺序：listener -> filter -> servlet
+
+### Cookie
 
 + cookie，有时我们也用其复数形式cookies，是服务端保存在浏览器端的数据片段。以key/value的形式进行保存。每次请求的时候，请求头会自动包含本网站此目录下的cookie数据。网站经常使用这个技术来识别用户是否登陆等功能。
 + cookie就是服务端留给计算机用户浏览器端的小文件。
@@ -5023,7 +5278,7 @@ public class FirstServlet extends HttpServlet {
 
 ​	Cookie是由服务器创建，然后通过响应发送给客户端的一个键值对。客户端会保存Cookie，并会标注出Cookie的来源（哪个服务器的Cookie）。当客户端向服务器发出请求时会把所有这个服务器Cookie包含在请求中发送给服务器，这样服务器就可以识别客户端了 。
 
-### Cookie的规范
+#### Cookie的规范
 
 +  每一个Cookie大小上限为4KB；
 + 一个服务器最多在客户端浏览器上保存20个Cookie；
@@ -5038,7 +5293,7 @@ response.addCookie(cookie);
 Cookie[] cookies = request.getCookies();
 ```
 
-### Cookie的生命周期
+#### Cookie的生命周期
 
 > Cookie不只是有name和value，Cookie还是生命。所谓生命就是Cookie在客户端的有效时间，可以通过setMaxAge(int)来设置Cookie的有效时间。
 
@@ -5046,14 +5301,29 @@ Cookie[] cookies = request.getCookies();
 + cookie.setMaxAge(60*60)：表示cookie对象可存活1小时。当生命大于0时，浏览器会把Cookie保存到硬盘上，就算关闭浏览器，就算重启客户端电脑，cookie也会存活1小时；
 + cookie.setMaxAge(0)：cookie生命等于0是一个特殊的值，也就是说，如果原来浏览器已经保存了这个Cookie，那么可以通过Cookie的setMaxAge(0)来删除这个Cookie。无论是在浏览器内存中，还是在客户端硬盘上都会删除这个Cookie
 
-### Cookie的中文编码
+#### Cookie的中文编码
 
 >  中文和英文字符不同，中文属于Unicode字符，在内存中占用4个字符，而英文属于ASCII字符，内存中只占2个字节。Cookie中使用Unicode字符时需要对Unicode字符进行编码，否则会出现乱码。
 
 + 编码可以使用java.net.URLEncoder类的encode(String str,String encoding)方法
+
 + 解码使用java.net.URLDecoder类的decode(String str,String encoding)方法
 
-## Session对象
+	```java
+	//保存
+	String s = URLEncoder.encode("老邢", "UTF-8"));
+	//获取
+	String ss = URLDecoder.decode(s, "UTF-8");
+	```
+
+#### Cookie路径
+
+```
+Cookie要是有父路径必须设置Cookie路径为根路径
+cookie.setPath("/");可以在webapp文件夹下的所有应用共享cookie
+```
+
+### Session对象
 
 + Session用于跟踪客户的状态。
 + Session指的是在一段时间内，单个客户与Web服务器的一连串相关的交互过程。
@@ -5066,7 +5336,7 @@ Cookie[] cookies = request.getCookies();
 
 ​	在用户第一次使用session的时候（访问jsp页面会获取session，所以一般访问index.jsp就算是第一次使用session了），服务器会为用户创建一个session域对象。使用jsessionid和这个对象关联，这个对象在整个用户会话期间使用。响应体增加set-cookie:jsessionid=xxx的项。用户下次以后的请求都会携带jsessionid这个参数，我们使用request.getSession()的时候，就会使用jsessionid取出session对象。
 
-### Session的常用方法
+#### Session的常用方法
 
 ```java
 //下面的方法是对session中值的操作  不能销毁session对象
@@ -5087,9 +5357,9 @@ web.xml
 </session-config>
 ```
 
-## HttpServletRequest对象
+### HttpServletRequest对象
 
-### Request对象
+#### Request对象
 
 > ​	request是Servlet.service()方法的一个参数，类型为javax.servlet.http.HttpServletRequest。
 > ​	在客户端发出每个请求时，服务器都会创建一个request对象，并把请求数据封装到request中，然后在调用Servlet.service()方法时传递给service()方法，这说明在service()方法中可以通过request对象来获取请求数据。
@@ -5101,9 +5371,9 @@ web.xml
 + request是一个域对象，可以把它当成Map来添加获取数据
 + request提供了请求转发和请求包含功能
 
-### Request对象常用方法
+#### Request对象常用方法
 
-#### Request的域方法
+##### Request的域方法
 
 + void setAttribute(String name, Object value)：用来存储一个对象，也可以称之为存储一个域属性
 	例如：servletContext.setAttribute(“xxx”, “XXX”)，在request中保存了一个域属性，域属性名称为xxx，域属性的值为XXX。
@@ -5113,13 +5383,13 @@ web.xml
 + void removeAttribute(String name)：用来移除request中的域属性，如果参数name指定的域属性不存在，那么本方法什么都不做
 + Enumeration getAttributeNames()：获取所有域属性的名称
 
-#### Request请求头数据 
+##### Request请求头数据 
 
 + String getHeader(String name)：获取指定名称的请求头
 + Enumeration getHeaderNames()：获取所有请求头名称
 + int getIntHeader(String name)：获取值为int类型的请求头
 
-#### Request其他方法
+##### Request其他方法
 
 > request中还提供了与请求相关的其他方法，有些方法是为了我们更加便捷的方法请求头数据而设计，有些是与请求URL相关的方法。
 
@@ -5130,7 +5400,7 @@ web.xml
 + String getCharacterEncoding()：获取请求编码，如果没有setCharacterEncoding()，那么返回null，表示使用ISO-8859-1编码
 + void **setCharacterEncoding**(String code)：设置请求编码，只对请求体有效！**注意，对于GET而言，没有请求体**，所以此方法**只能对POST请求中的参数有效**
 
-#### 请求路径的方法
+##### 请求路径的方法
 
 + String getContextPath()：返回上下文路径，根路径，例如：/hello
 + String getQueryString()：返回请求URL中的参数，例如：name=zhangSan
@@ -5138,7 +5408,7 @@ web.xml
 + StringBuffer getRequestURL()：返回请求URL路径，全路径，例如：http://localhost/hello/FirstServlet，即返回除了参数以外的路径信息
 + String getServletPath()：返回Servlet路径，例如：/oneServlet
 
-#### 获取客户端的方法
+##### 获取客户端的方法
 
 + String getRemoteAddr()：返回当前客户端的IP地址
 + String getRemoteHost()：返回当前客户端的主机名，但这个方法的实现还是获取IP地址
@@ -5146,7 +5416,7 @@ web.xml
 + String getServerName()：返回主机名，例如：localhost
 + int getServerPort()：返回服务器端口号，例如：8080
 
-#### 接收参数的方法
+##### 接收参数的方法
 
 > 参数传递时，请求中携带的参数  都符合key-value，根据key来接收value
 
@@ -5162,15 +5432,15 @@ web.xml
 request.setCharacterEncoding("utf-8");
 ```
 
-#### 请求转发
+##### 请求转发
 
 > 请求转发的特点：地址栏发起一次请求，地址栏不会发生改变
 
 + request.getRequestDispatcher(“路径”).forword(request,response)
 
-## HttpServletResponse对象
+### HttpServletResponse对象
 
-### Response对象
+#### Response对象
 
 > response是Servlet.service方法的一个参数，类型为javax.servlet.http.HttpServletResponse。
 > 在客户端发出每个请求时，服务器都会创建一个response对象，并传入给Servlet.service()方法。
@@ -5183,7 +5453,7 @@ request.setCharacterEncoding("utf-8");
 + 设置响应正文
 + 重定向
 
-### 响应对象常用方法
+#### 响应对象常用方法
 
 | 方法名称                      | 作用                 |
 | ----------------------------- | -------------------- |
@@ -5194,27 +5464,27 @@ request.setCharacterEncoding("utf-8");
 | getWriter()                   | 获取字符输出流       |
 | getOutputStream()             | 获取字节输出流       |
 
-### 响应正文
+#### 响应正文
 
 + PrintWriter out = response.getWriter()：获取字符流；给指定请求会写字符串
 + ServletOutputStream out = response.getOutputStream()：获取字节流；多用于文件下载
 
-### 响应乱码问题
+#### 响应乱码问题
 
 > 在使用response.getWriter()时需要注意浏览器默认字符编码为ISO-8859-1，但是从后端传去的数据编码为UTF-8
 
 + response.setContentType("text/html;charset=utf-8")设置浏览器的读取和编码
 
-### 响应头的操作
+#### 响应头的操作
 
 + response.setHeader("Refresh","5;url=")
 
-### 设置状态码的方法
+#### 设置状态码的方法
 
 + response.setStatus(200)设置状态码
 + response.sendError(404, “您要查找的资源不存在”)：当发送错误状态码时，Tomcat会跳转到固定的错误页面去，但可以显示错误信息。
 
-### 重定向
+#### 重定向
 
 ```java
 //设置状态码	302是重定向的状态码   可以通过设置响应头引起地址栏发生改变
@@ -5225,32 +5495,40 @@ response.setHeader("Location", "http://localhost:8080/javaweb004/***.html");*/
 response.sendRedirect("***.html");
 ```
 
-## ServletContext对象
+**重定向中文乱码**
+
+```java
+String encoder = "utf-8";
+String s = URLEncoder.encode(name,encoder);
+response.sendRedirect(request.getContextPath()+"/xxx.action?name="+s)
+```
+
+### ServletContext对象
 
 + ServletContext也叫做“公共区域”，也就是同一个WEB应用程序中，所有的Servlet和JSP都可以共享同一个区域。
 + ServletContext对象随着服务器的启动创建,随着服务器的消亡而销毁
 
-### 全局对象的获取方式
+#### 全局对象的获取方式
 
-```
+```markdown
 方式一:GenericServlet提供了getServletContext()方法。
 方式二:ServletConfig提供了getServletContext()方法。
 方式三:HttpSession提供了getServletContext()方法。
 方式四:HttpServletRequest提供了getServletContext()方法。
 ```
 
-### 常用方法
+#### 常用方法
 
 + getParameter()是获取POST/GET传递的参数值
 + getInitParameter获取Tomcat的server.xml中设置Context的初始化参数
 + getAttribute()是获取对象容器中的数据值
 + getRequestDispatcher()是请求转发
 
-## 路径
+### 路径
 
 ![路径](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/%E8%B7%AF%E5%BE%84.png)
 
-### 客户端路径
+#### 客户端路径
 
 超链接、表单、重定向都是客户端路径，客户端路径可以分为三种方式：
 
@@ -5288,16 +5566,16 @@ response.sendRedirect("***.html");
 ${pageContext.request.contextPath}/
 ```
 
-### 服务器路径
+#### 服务器路径
 
 + 服务器路径必须是相对路径,服务器的相对路径参数物取决于请求路径
 + sevlet的请求路径取决于:web.xml中servlet的请求配置
 
-#### ServletContext获取资源
+##### ServletContext获取资源
 
 + 必须是相对路径，可以“/”开头，也可以不使用“/”开头，但无论是否使用“/”开头都是相对当前应用路径
 
-#### 重定向获取根路径
+##### 重定向获取根路径
 
 + 使用request.getContextPath()来获取应用名称
 
@@ -5413,12 +5691,13 @@ v:view  视图   页面  能看到的
 c:controller  处理器	Servlet     业务逻辑层
 ```
 
-+ 项目分包
-	+ bean|entity|domain：放实体类
-	+ dao（data access object）：操作数据库的包
-	+ controller|servlet：放servlet
-	+ service：主要实现操作
-	+ util：工具类
+**项目分包**
+
++ bean|entity|domain：放实体类
++ dao（data access object）：操作数据库的包
++ controller|servlet：放servlet
++ service：主要实现操作
++ util：工具类
 
 ## JSP
 
@@ -5807,7 +6086,9 @@ public class FirstFilter implements Filter {}
 public class AttrListener implements HttpSessionAttributeListener {}
 ```
 
-## 文件上传
+## 功能模块
+
+### 文件上传
 
 **导入commons-fileupload.jar和commons-io.jar包**
 
@@ -5842,14 +6123,14 @@ for(Part part : parts){
 }
 ```
 
-### 路径
+#### 路径
 
 ```java
 //先修改war所在的输出路径	获取web下的指定路径
 request.getServletContext().getRealPath("/fileuploa");
 ```
 
-## 文件下载
+### 文件下载
 
 ```java
 //获取文件名
@@ -5877,13 +6158,2746 @@ while((len = fis.read(bytes))!=-1){
 }
 fis.close;
 os.close;
-
 ```
 
-## 分页
+### 分页
 
 > 在展示数据时，每次查询一定量的数据
 
 + 减轻对数据库访问的压力
 + 减少内存的压力
 + 提高展示效率
+
+### 图片验证码
+
+> 导入validatecode.jar
+
+```java
+public class CodeServlet extends HttpServlet {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//1.设置生成规则
+		/**
+		 * width：验证码的宽度  px 像素
+		 * height: px
+		 * codeCount:生成验证码有几个数
+		 * lineCount:有几根线
+		 */
+        //200高，50宽，6个数字，20干扰线
+		ValidateCode code = new ValidateCode(200, 50, 6, 20);
+		//2.获取生成的验证码的字符串值
+		System.out.println(code.getCode()); //获取正确值
+		//3.响应写回验证图片
+		code.write(response.getOutputStream());
+	}
+} 
+```
+
+## AJAX
+
+> ajax是异步、局部刷新技术
+
+> AJAX = 异步 JavaScript 和 XML(Asynchronized JavaScript And  XML)
+
++ 同步提交：当前页面整体发生改变   页面整体跳转到其它页面
++ 异步提交：当前页面不会发生页面的跳转   页面的局部位置发起请求
+
+### 1. 异步请求对象（XMLHttpRequest）
+
+```javascript
+//封装获取异步对象的方法
+function getXMLHttpRequest(){
+    var xmlHttpRequest;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlHttpRequest=new XMLHttpRequest();
+    }
+    else {// code for IE6, IE5
+        xmlHttpRequest=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    return  xmlHttpRequest;
+}
+```
+
+### 2. 发送异步请求
+
+| 方法                         | 描述                                                         |
+| ---------------------------- | ------------------------------------------------------------ |
+| open(*method*,*url*,*async*) | 规定请求的类型、URL 以及是否异步处理请求。*method*：请求的类型；GET 或 POST*url*：文件在服务器上的位置*async*：true（异步）或 false（同步） |
+| send(*string*)               | 将请求发送到服务器。*string*：仅用于 POST 请求               |
+
+```js
+//获取异步对象
+var  xmlHttpRequest = getXMLHttpRequest();
+//设置异步对象的请求
+/*
+       *  open方法的三个参数
+       *  method:请求方式   get/post
+       *  url:异步请求地址
+       *  async:是否异步   true异步(默认)   false同步
+       * */
+xmlHttpRequest.open("get","url",true);
+//发送请求
+xmlHttpRequest.send();
+```
+
+### 3. 等待响应
+
+| 属性               | 描述                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| onreadystatechange | 存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。 |
+| readyState         | 存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。0: 请求未初始化1: 服务器连接已建立2: 请求已接收3: 请求处理中4: 请求已完成，且响应已就绪 |
+| status             | 200: "OK"404: 未找到页面                                     |
+
+```js
+//等待服务器做出响应
+//我们让异步对象监听服务器的状态码
+xmlHttpRequest.onreadystatechange=function(){
+    alert("状态码:"+xmlHttpRequest.readyState);
+    //判断到状态码为4
+    if(xmlHttpRequest.readyState==4){
+        //说明服务器请求处理完毕  且响应成功
+        //我们需要判断响应码  200  404  500 304  302
+        if(xmlHttpRequest.status==200){
+            //接收到信息
+            alert("响应成功");
+        }
+    }
+}
+```
+
+### 4. 接收响应信息
+
+| 属性         | 描述                       |
+| ------------ | -------------------------- |
+| responseText | 获得字符串形式的响应数据。 |
+
+```js
+//Servlet中输出
+response.getWriter().write("ok");
+```
+
+```js
+//js中接收到信息
+var str = xmlHttpRequest.responseText;
+alert("服务器的响应信息为:"+str);
+```
+
+### Jquery的AjAx
+
+```js
+//jQuery对ajax的封装
+$.ajax({
+    //{}以数组类型进行参数配置   每组值用逗号隔开  最后一个不需要逗号
+    //用key-value方式  进行参数配置
+    //type==method  请求方式
+    type:"get",
+    //url 是请求路径
+    url:"",
+    //async  是否异步 默认异步
+    async:true,
+    //cache  是否在浏览器中产生缓存  默认false
+    cache:false,
+    //contentType  (默认: "application/x-www-form-urlencoded") 发送信息至服务器时内容编码类型
+    contentType:"application/x-www-form-urlencoded",
+    //data  是发送给服务器的参数
+    data:"uname=zs&upwd=123",
+    //dataType  服务器响应值的预期数据类型  text  xml  json	html	JavaScript
+    dataType:"",
+    //enctype  异步文件上传时的操作
+    enctype:"multipart/form-data",
+    //success  服务器成功响应  状态码和响应码的判断都在这
+    //成功得到的是一个回调函数
+    success:function(aaa){
+        //成功的回调函数中的形参  会自动接收服务器的回值
+    },
+    //失败时的回调函数
+    error:function(bbb){}
+});
+```
+
+### jQuery的get和post请求
+
+```js
+$(function(){
+    $("#but1").click(function () {
+        $.ajax({
+            type:"get",
+            url:"${pageContext.request.contextPath}/ajax.action",
+            async:true,
+            success:function(data){
+            }
+        });
+    });
+    $("#but2").click(function(){
+        $.ajax({
+            type:"post",
+            url:"${pageContext.request.contextPath}/ajax.do",
+            data:"uname=zs&upwd=123",
+            async:true,
+            success:function(data){
+            }
+        });
+    });
+});
+```
+
+**简化：**
+
+```js
+$(function(){
+    $.get("url",[data],[function(回执){}],[回执格式])[]可写可不写
+	$.post("${pageContext.request.contextPath}/ajax.do","uname="+uname,[function(回执){
+        alert(回执);
+    }],"text")
+});
+```
+
+## JSON
+
+> JSON(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交换格式。它基于 ECMAScript (w3c制定的js规范)的一个子集，采用完全独立于编程语言的文本格式来存储和表示数据。简洁和清晰的层次结构使得 JSON 成为理想的数据交换语言。易于机器解析和生成，并有效地提升网络传输效率。
+
+```js
+ //json
+//简单的json
+var person = {"name":"zs","age":18,"sex":true};
+alert(person+"---"+typeof(person));
+alert(person.name);
+//复杂的json
+var persons =[
+    {"name":"zs","age":18,"sex":true},
+    {"name":"李四","age":18,"sex":false},
+    {"name":"王五","age":18,"sex":true}
+]
+$.each(persons,function(i,n){
+    alert(n.name);
+});
+//更复杂的json
+var persons1 =[
+    {"name":"zs","age":18,"sex":true,"hobbys":[{"hobby":"游泳"},{"hobby":"看书"}]},
+    {"name":"李四","age":18,"sex":false,"hobbys":[{"hobby":"游泳"},{"hobby":"看书"}]},
+    {"name":"王五","age":18,"sex":true}
+]
+for(var i=0;i<persons1.length;i++){
+    var person = persons1[i];
+    alert(person.name+"---"+person.sex);
+    $.each(person.hobbys,function(i,n){
+        alert(n.hobby);
+    });
+}
+```
+
+### Java传递json
+
+```java
+//回值是json串
+//json对象的用法  和map集合一样
+JSONObject json = new JSONObject();
+json.put("id", 1);
+json.put("name", "亚索");
+json.put("age", 18);
+response.getWriter().write(json.toString());
+```
+
+### 接受json
+
+由于 JSON 语法是 JavaScript 语法的子集，JavaScript 函数 eval() 可用于将 JSON 文本转换为 JavaScript 对象。
+
+eval() 函数使用的是 JavaScript 编译器，可解析 JSON 文本，然后生成 JavaScript 对象。必须把文本包围在括号中，这样才能避免语法错误：
+
+```js
+var obj = eval ("(" + data + ")");
+```
+
+### 把java对象直接转换成json对象
+
+#### 单个对象
+
+```java
+User user = new User(1, "锐雯", 21, "女");
+String json = JsonUtil.fromObject(user);
+response.getWriter().write(json);
+```
+
+#### List
+
+```java
+List<User> users = new ArrayList();
+User user1 = new User(1, "亚索", 18, "男");
+User user2 = new User(2, "锐雯", 19, "女");
+User user3 = new User(3, "佐伊", 17, "女");
+users.add(user1);
+users.add(user2);
+users.add(user3);
+String json = JsonUtil.fromObject(users);
+response.getWriter().write(json);
+```
+
+```js
+$.each(data,function (i,n){
+	alert(n.id + n.name + n.age + n.sex);
+})
+```
+
+#### Map
+
+```java
+HashMap<String, User> map = new HashMap<>();
+User user1 = new User(1, "亚索", 18, "男");
+User user2 = new User(2, "锐雯", 19, "女");
+User user3 = new User(3, "佐伊", 17, "女");
+map.put("user1", user1);
+map.put("user2", user2);
+map.put("user3", user3);
+String json = JsonUtil.fromObject(map);
+response.getWriter().write(json);
+```
+
+```js
+for (var key in data){
+	var a = data[key];
+	for (var k in a){
+		var b = a[k]
+		alert(b.id + b.name + b.sex + b.age);
+	}
+}
+```
+
+## Selenium
+
+> Selenium是一个用于Web应用程序测试的工具
+
++ 浏览器驱动chromeDriver
+
++ 准备Maven依赖
+
+	```xml
+	<dependency>
+		<groupId>org.seleniumhq.selenium</groupId>
+		<artifactId>selenium-java</artifactId>
+		<version>4.0.0</version>
+	</dependency>
+	```
+
++ ```java
+	System.getProperties().setProperty("webdriver.chrome.driver", "D:\\Java\\chromedriver.exe");
+	WebDriver driver = new ChromeDriver();
+	driver.get(url);
+	```
+
+
+https://blog.csdn.net/qq_22003641/article/details/79137327?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-79137327-blog-123590369.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-79137327-blog-123590369.pc_relevant_default&utm_relevant_index=2
+
+## Maven
+
+> Maven 可以把 jar 包所依赖的其它 jar 包自动下载并引入项目。
+
+### 构建
+
+>  构建（build），是面向过程的(从开始到结尾的多个步骤)，涉及到多个环节的协同工作。
+
+1. 清理：删除以前的编译结果，为重新编译做好准备。
+2. 编译：将Java源程序编译为字节码文件。 
+3. 测试：针对项目中的关键点进行测试，确保项目在迭代开发过程中关键点的正确性。 
+4. 报告：在每一次测试后以标准的格式记录和展示测试结果。 
+5. 打包：将一个包含诸多文件的工程封装为一个压缩文件用于安装或部署。Java 工程对应 jar 包，Web工程对应war包。 
+6. 安装：在Maven环境下特指将打包的结果——jar包或war包安装到本地仓库中。 
+7. 部署：将打包的结果部署到远程仓库或将war包部署到服务器上运行
+
+### Maven实现自动化过程
+
+1. POM  
+
+2. 约定的目录结构 
+3. 坐标 
+4. 依赖管理 
+5. 仓库管理 
+6. 生命周期 
+7. 插件和目标 
+8. 继承 
+9. 聚合 
+
+### settings.xml
+
+```xml
+<!--本地仓库位置-->
+<localRepository>E:\javatools\repository</localRepository>
+配置maven插件
+<pluginGroups>
+    <!-- pluginGroup
+     | Specifies a further group identifier to use for plugin lookup.
+    <pluginGroup>com.your.plugins</pluginGroup>
+    -->
+	<!--加入插件组，解决idea的maven项目tomcat插件debug无法运行的问题-->
+	<pluginGroup>org.apache.tomcat.maven</pluginGroup>
+  </pluginGroups>
+  镜像文件   提高maven工程的构建和jar包的引入
+  <mirrors>
+		<!-- 阿里镜像 -->
+		<mirror>
+			<id>alimaven</id>
+			<mirrorOf>central</mirrorOf>
+			<name>aliyun maven</name>
+			<url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
+		</mirror>
+    <mirror>
+			<id>alimaven</id>
+			<name>aliyun maven</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<mirrorOf>central</mirrorOf>
+		</mirror>
+		<mirror>
+			<id>central</id>
+			<name>Maven Repository Switchboard</name>
+			<url>http://repo1.maven.org/maven2/</url>
+			<mirrorOf>central</mirrorOf>
+		</mirror>
+		<mirror>
+			<id>repo2</id>
+			<mirrorOf>central</mirrorOf>
+			<name>Human Readable Name for this Mirror.</name>
+			<url>http://repo2.maven.org/maven2/</url>
+		</mirror>
+		<mirror>
+			<id>ibiblio</id>
+			<mirrorOf>central</mirrorOf>
+			<name>Human Readable Name for this Mirror.</name>
+			<url>http://mirrors.ibiblio.org/pub/mirrors/maven2/</url>
+		</mirror>
+		<mirror>
+			<id>jboss-public-repository-group</id>
+			<mirrorOf>central</mirrorOf>
+			<name>JBoss Public Repository Group</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public</url>
+		</mirror>
+		<mirror>
+			<id>google-maven-central</id>
+			<name>Google Maven Central</name>
+			<url>https://maven-central.storage.googleapis.com
+			</url>
+			<mirrorOf>central</mirrorOf>
+		</mirror>
+		<!-- 中央仓库在中国的镜像 -->
+		<mirror>
+			<id>maven.net.cn</id>
+			<name>oneof the central mirrors in china</name>
+			<url>http://maven.net.cn/content/groups/public/</url>
+			<mirrorOf>central</mirrorOf>
+		</mirror>
+  </mirrors>
+  <!--更改默认的JDK-->
+	    <profile>
+        <id>jdk-1.8</id>  
+        <activation>  
+          <activeByDefault>true</activeByDefault>  
+          <jdk>1.8</jdk>  
+        </activation>  
+        <properties>  
+          <maven.compiler.source>1.8</maven.compiler.source>  
+          <maven.compiler.target>1.8</maven.compiler.target>  
+          <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>  
+        </properties>  
+      </profile>
+```
+
+**创建maven的web工程要注意文件缺省**
+
+**Maven** **工程约定目录结构** 
+
+| src/main/java          | application library sources - java源代码文件                 |
+| ---------------------- | ------------------------------------------------------------ |
+| **src/main/resources** | application library resources - 资源库，会自动复制到classes文件夹下 |
+| **src/main/webapp**    | web application sources - web应用的目录，WEB-INF,js,css等    |
+| **src/test/java**      | 单元测试java源代码文件                                       |
+| **src/test/resources** | 测试需要的资源库                                             |
+| **target/**            | 存放项目构建后的文件和目录，jar包,war包，编译的class文件等；Maven构建时生成的 |
+| **pom.xml**            | 工程描述文件                                                 |
+
+![maven仓库](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/maven%E4%BB%93%E5%BA%93.png)
+
+### pom.xml
+
+> 即 Project Object Model 项目对象模型。Maven 把一个项目的结构和内容抽象成一个模型，在 xml 文件中
+
+| modelVersion | Maven 模型的版本，对于 Maven2 和 Maven3 来说，它只能是 4.0.0 |
+| ------------ | ------------------------------------------------------------ |
+| groupId      | 组织 id，一般是公司域名的倒写。 格式可以为： 1. 域名倒写。 例如 com.baidu 2. 域名倒写+项目名。例如 com.baidu.app |
+| version      | 项目的版本号。如果项目还在开发中，是不稳定版本， 通常在版本后带-SNAPSHOT version 使用三位数字标识，例如 1.1.0 |
+| packaging    | 项目打包的类型，可以使 jar、war、rar、ear、pom，默认是 jar   |
+
+**groupId 、 artifactId 、 version 三个元素组成了当前maven项目的坐标**
+
++ 在众多的 maven 项目中可以唯一定位到某一个项目。坐标也决定着将来项目在仓库中的路径及名称
+
+```xml
+ <modelVersion>4.0.0</modelVersion>
+  <!--当前工程的打包性质  默认是打成jar包   web工程需要指定是war-->
+  <packaging>war</packaging>
+ <!--当前工程的三要素
+  groupId：包名
+  artifactId：工程名
+  version：版本号
+  groupId 、 artifactId 、 version 三个元素 组成了当前maven项目的坐标
+在众多的 maven 项目中可以唯一定位到某一个项目。坐标也决 定着将来项目在仓 库 中 的 路 径 及 名 称。
+ -->
+  <name>maven002</name>
+  <groupId>com.bjpn</groupId>
+  <artifactId>maven002</artifactId>
+  <version>1.0-SNAPSHOT</version>
+```
+
+```xml
+<!--全局设置-->
+    <properties>
+      <!--源码编译 jdk 版本-->
+      <maven.compiler.source>1.8</maven.compiler.source>
+      <!--运行代码的 jdk 版本-->
+      <maven.compiler.target>1.8</maven.compiler.target>
+      <!--项目构建使用的编码，避免中文乱码-->
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <!--生成报告的编码-->
+      <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+```
+
+```xml
+<!--  dependencies：依赖管理  管理当前项目的第三方依赖
+相当于引入第三方jar文件  通过jar的三要素  maven坐标  从maven仓库中引入该依赖
+-->
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+<!--scope      对待依赖的处理方式-->
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+```
+
+```xml
+<!-- 项目构建时  扫描主程序下的 配置文件-->
+<build>
+<!--配置资源扫描-->
+  <resources>
+    <resource>
+      <directory>src/main/java</directory><!--所在的目录-->
+      <includes><!--包括目录下的.properties,.xml 文件都会扫描到-->
+        <include>**/*.properties</include>
+        <include>**/*.xml</include>
+      </includes>
+      <!-- filtering 选项 false 不启用过滤器， *.property 已经起到过滤的作用了 -->
+      <filtering>false</filtering>
+    </resource>
+  </resources>
+</build>
+```
+
+```
+构建
+build 
+表示与构建相关的配置，例如设置编译插件的 jdk 版本
+继承
+parent 
+在 Maven 中，如果多个模块都需要声明相同的配置，例如：groupId、
+version、有相同的依赖、或者相同的组件配置等，也有类似 Java 的继承机
+制，用 parent 声明要继承的父工程的 pom 配置。
+聚合
+modules 在 Maven 的多模块开发中，为了统一构建整个项目的所有模块，可以提供一
+个额外的模块，该模块打包方式为 pom，并且在其中使用 modules 聚合的
+其它模块，这样通过本模块就可以一键自动识别模块间的依赖关系来构建所有
+模块，叫 Maven 的聚合。
+```
+
+### maven的生命周期
+
+![maven生命周期](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/maven%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png)
+
+- **compile**
+
+	```
+	compile 是 maven 工程的编译命令，作用是将 src/main/java 下的文件编译为 class 文件输出到 target目录下。
+	```
+
+- **test**
+
+	```
+	test 是 maven 工程的测试命令 mvn test，会执行 src/test/java 下的单元测试类。
+	```
+
+- **clean**
+
+	```
+	clean 是 maven 工程的清理命令，执行 clean 会删除 target 目录及内容。
+	```
+
+- **package**
+
+	```
+	package 是 maven 工程的打包命令，对于 java 工程执行 package 打成 jar 包，对于 web 工程打成 war包。
+	```
+
+- **install**
+
+	```
+	install 是 maven 工程的安装命令，执行 install 将 maven 打成 jar 包或 war 包发布到本地仓库。
+	```
+
+
+**每一个步骤都会把前面的步骤再执行一遍**
+
+```
+- Clean Lifecycle 在进行真正的构建之前进行一些清理工作。 
+- Default Lifecycle 构建的核心部分，编译，测试，打包，部署等等。 
+- Site Lifecycle 生成项目报告，站点，发布站点。 
+```
+
+### jar包依赖管理的生命周期
+
+![maven依赖管理生命周期](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/maven%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png)
+
++ compile
+
+	```
+	编译范围，指 A 在编译时依赖 B，此范围为默认依赖范围。编译范围的依赖会用在编译、测试、运行，由于运行时需要所以编译范围的依赖会被打包。
+	```
+
+- provided
+
+	```
+	provided 依赖只有在当 JDK 或者一个容器已提供该依赖之后才使用， provided 依 赖在编译和测试时需要，在运行时不需要，比如：servlet api 被 tomcat 容器提供。
+	```
+
+- runtime
+
+	```
+	依赖在运行和测试系统的时候需要，但在编译的时候不需要。比如：jdbc的驱动包。由于运行时需要所以 runtime 范围的依赖会被打包。
+	```
+
+- test
+
+	```
+	test 范围依赖 在编译和运行时都不需要，它们只有在测试编译和测试运行阶段可用，比如：junit。由于运行时不需要所以 test范围依赖不会被打包。
+	```
+
+- system
+
+	```
+	system 范围依赖与 provided 类似，但是你必须显式的提供一个对于本地系统中 JAR文件的路径，需要指定 systemPath 磁盘路径，system依赖不推荐使用。
+	```
+
+### 本地jar包导入本地maven仓库
+
+```
+mvn install:install-file -Dfile=D:\Test\Java\03-JavaWeb\03\ValidateCode.jar -DgroupId=cn.dsna -DartifactId=ValidateCode -Dversion=1.0.0 -Dpackaging=jar
+```
+
+```
+mvn install:install-file 
+-Dfile:  jar包所在本地路径，不能有中文
+-DgroupId: 项目组织唯一的标识符，实际对应JAVA的包的结构
+-DartifactId:	项目的唯一的标识符，实际对应项目的名称，就是项目根目录的名称
+-Dversion:		版本号
+-Dpackaging:	打包的类型  jar   war
+```
+
+
+
+## 框架
+
+> 框架是基于某种思想对某个或某些功能的封装
+
+### 三层架构
+
++ 界面层（User Interface Layer）：接受用户的数据，显示请求的处理结果
++ 业务逻辑层（Business Logic Layer）：接收表示传递过来的数据，检查数据，计算业务逻辑，调用数据访问层获取数据
++ 数据访问层（Data Access Layer）：实现对数据的增、删、改、查。将存储在数据库中的数据提交给业务层，同时将业务层处理的数据保存到数据库
+
+### 三层的处理请求的交互：
+
+![三层处理请求的交互](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/%E4%B8%89%E5%B1%82%E5%A4%84%E7%90%86%E8%AF%B7%E6%B1%82%E7%9A%84%E4%BA%A4%E4%BA%92.png)
+
+**优点：**
+
++ 结构清晰、耦合度低，各层分工明确
++ 可维护性高，可扩展性高
++ 有利于标准化
++ 开发人员可以只关注整个结构中的其中某一层的功能实现
++ 有利于各层逻辑的复用
+
+### 常用的框架
+
+```
+MyBatis 框架：
+MyBatis 是一个优秀的基于 java 的持久层框架，内部封装了 jdbc，开发者只需要关注 sql 语句
+本身，而不需要处理加载驱动、创建连接、创建 statement、关闭连接，资源等繁杂的过程。
+MyBatis 通过 xml 或注解两种方式将要执行的各种 sql 语句配置起来，并通过 java 对象和 sql 的
+动态参数进行映射生成最终执行的 sql 语句，最后由 mybatis 框架执行 sql 并将结果映射为 java 
+对象并返回。
+```
+
+```
+Spring 框架：
+Spring 框架为了解决软件开发的复杂性而创建的。Spring 使用的是基本的 JavaBean 来完成以前
+非常复杂的企业级开发。Spring 解决了业务对象，功能模块之间的耦合，不仅在 javase,web 中使用，
+大部分 Java 应用都可以从 Spring 中受益。
+Spring 是一个轻量级控制反转(IoC)和面向切面(AOP)的容器。
+```
+
+```
+SpringMVC 框架
+Spring MVC 属于 SpringFrameWork 3.0 版本加入的一个模块，为 Spring 框架提供了构建 Web 
+应用程序的能力。现在可以 Spring 框架提供的 SpringMVC 模块实现 web 应用开发，在 web 项目中
+可以无缝使用 Spring 和 Spring MVC 框架。
+```
+
+## mybatis
+
+> 数据访问层框架	
+
+```
+mybatis的核心思想：orm思想   对象关系映射
+
+数据库中的表的字段和java中的类属性建立映射关系，每次操作由orm自动提供相互的赋值动作
+
+mybatis是一个轻量级的提供半自动化SQL语句的持久层框架，对JDBC进行封装
+```
+
+### mybatis的使用
+
+> mybatis的官方网站：https://mybatis.org/mybatis-3/
+
+1. 引入jar包
+
+	```xml
+	<!--mybatis的核心包-->
+	<dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis</artifactId>
+	    <version>3.5.1</version>
+	</dependency>
+	<!--mysql的驱动包-->
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>8.0.19</version>
+	</dependency>
+	```
+
+2. 创建mybatis的核心配置文件
+
+  ```xml
+  <?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE configuration
+          PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+          "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  <!--当前xml文件的约束  约束了当前xml文件中只能出现规定的标签-->
+  <!--根标签-->
+  <configuration>
+  <!--    1.读取配置文件-->
+  <!--    <properties></properties>-->
+  <!--    2.设置全局配置-->
+      <settings>
+          <!-- 打印sql日志   控制台中打印sql-->
+          <setting name="logImpl" value="STDOUT_LOGGING" />
+      </settings>
+  <!--    3.数据源信息-->
+      <environments default="connMysql">
+  <!--        配置多组数据源
+              id:这组数据源的唯一标识
+  -->
+          <environment id="connMysql">
+  <!--            事务管理器-->
+              <transactionManager type="JDBC"></transactionManager>
+  <!--            数据源信息
+                  type：数据库的连接类型   POOLED数据库连接池
+  -->
+              <dataSource type="POOLED">
+  <!--            提供连接数据库的四大参数-->
+                  <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                  <property name="url" value="jdbc:mysql://localhost:3306/dljd1?serverTimezone=UTC"/>
+                  <property name="username" value="root"/>
+                  <property name="password" value="root"/>
+              </dataSource>
+          </environment>
+          <!--可以配置多个-->
+          <environment id="connOracle">
+              <transactionManager type=""></transactionManager>
+              <dataSource type=""></dataSource>
+          </environment>
+      </environments>
+  <!--    4.mapper    写sql语句的地方-->
+  <!--    我们会把sql语句写在xml文件中    由mybatis的主配置文件去读取所有的sql-->
+      <mappers>
+          <!--        sql配置文件路径-->
+          <mapper resource="mapper/AdminMapper.xml" />
+      </mappers>
+  </configuration>
+  ```
+
+3. mapper.xml
+
+  ```xml
+  <?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper
+          PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!--根标签    namespace是当前sql文件的唯一标识-->
+  <!--mapper的细节    所有的sql语句不需要写;-->
+  <mapper namespace="adminDao">
+      <!--    id:这个添加语句的唯一标识    相当于之前在dao里面写的方法名
+              parameterType:参数类型    当前这个sql语句需要有参数拼接
+              一个参数：直接写参数类型    java.lang.String
+              多个参数：传递对象
+      -->
+      <!--    mybatis封装的PreparedStatement和Statement
+              #{} ==》代表?占位符表示要预编译的对象
+              ${} ==》简单的字符串替换		拼接单个参数的时候  变量名只能是value
+      -->
+      <insert id="addAdmin" parameterType="com.bjpn.bean.Admin">
+          insert
+          lols(name,money) values(
+          #{name},
+          #{money}
+          )
+      </insert>
+      <select id="findAdmin" resultType="com.bjpn.bean.Admin">
+          select id, name, money from lols
+      </select>
+      <select id="findAllAdmin" resultType="com.bjpn.bean.Admin">
+          select *
+          from lols
+      </select>
+      <delete id="delAdmin">
+          delete from lols where money > 5
+      </delete>
+      <update id="updateAdmin" parameterType="com.bjpn.bean.Admin">
+          update lols set money = #{money} where name = '库里'
+      </update>
+  </mapper>
+  ```
+
+4. mybatis的运行![mybatis的运行流程](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/mybatis%E7%9A%84%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B.png)
+
+	**详细过程：**![mybatis运行详细过程](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/mybatis%E8%BF%90%E8%A1%8C%E8%AF%A6%E7%BB%86%E8%BF%87%E7%A8%8B.png)
+
+	```
+	每个基于 MyBatis 的应用都是以一个 SqlSessionFactory 的实例为核心的。SqlSessionFactory 的实例可以通过 SqlSessionFactoryBuilder 获得。而 SqlSessionFactoryBuilder 则可以从 XML 配置文件或一个预先配置的 Configuration 实例来构建出 SqlSessionFactory 实例。
+	```
+
+	```java
+	//        1.读取主配置文件     加载连接信息和mapper.xml
+	InputStream is = Resources.getResourceAsStream("mybatis.xml");
+	//        2.生成sqlSessionFactory   这是sqlSession工厂
+	SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+	//        3.获取sqlSession
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	//        4.使用sqlSession执行要操作的sql语句     String:需要操作的方法      Object：这个方法是否需要传参
+	//        5.关闭sqlSession
+	```
+
+### 动态代理
+
+动态代理：代理类对象在程序运行时由 JVM 根据反射机制动态生成的。动态代理不需要定义代理类的.java 源文件。 **在编译阶段不存在，运行时才动态生成的代理称为动态代理**
+
+动态代理的实现方式常用的有两种：使用 JDK 代理代理，与通过 CGLIB 动态代理
+
+### 基于Mapper映射开发
+
++ **原理：**持久层采用接口开发，没有实现类，采用代理方式创建接口的实现类
++ **要求规范：**
+	+ mapper.xml映射文件名要和mapper接口名要一致
+	+ namespace必须是mapper接口全路径名
+	+ sql标签中的id号必须和mapper中对应方法的名字要一致
+	+ sql标签中的parameterType必须和mapper中对应方法的参数类型要一致(不写paramerType，由接口默认提供  只能接收单个值或对象)
+	+ sql标签中的resultType必须和mapper中对应方法的返回值类型要一致
+
+![Mapper对应规则](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/Mapper%E5%AF%B9%E5%BA%94%E8%A7%84%E5%88%99.png)
+
+1. 提供mapper的接口
+2. 针对mapper接口的.xml文件
+3. 动态代理的实现
+4. 扫描主程序的资源文件
+
+### mybatis的参数信息
+
+#### parameterType
+
+> 接口中方法参数的类型， 类型的完全限定名或别名
+
+#### myBatis传递参数
+
+1. 传递一个参数
+
+2. 传递多个参数
+
+	```
+	@Param
+	```
+
+3. 传递多个参数使用对象
+
+4. 传递多个参数使用 Map
+
+#### mybatis返回值
+
++ 字段名和属性名不一致，对更新操作没有影响
+
++ 字段名和属性名不一致 ，对查询操作有两种解决办法
+
+1. 别名
+
+2. 手动关系映射 resultMap
+
+	```xml
+	<!-- mybatis 提供orm手动关系映射  resultMap
+	        id:唯一标示  是名字
+	        type:java的映射实体类
+	    -->
+	<resultMap id="stuResultMap" type="com.bjpn.bean.Student">
+	        <!-- id:主键
+	            column：数据库字段   property：java实体类对应的属性
+	        -->
+	        <id column="stu_id" property="stuId" javaType="int"/>
+	        <result column="stu_name" property="stuName" javaType="java.lang.String"/>
+	        <result column="stu_sex" property="stuSex"/>
+	        <result column="stu_phone" property="stuPhone"/>
+	    </resultMap>
+	```
+
+### 动态sql
+
+#### mapper.xml的包名配置
+
+```xml
+<mappers>
+    <!--配置mapper.xml所在的包名  会自动扫描包下所有的 mapper文件-->
+    <package name="com.bjpn.dao"/>
+</mappers>
+```
+
+#### sql片段
+
+```
+在 mapper 的动态 SQL 中若出现大于号（>）、小于号（<）、大于等于号（>=），小于等于号（<=）等符号，最好将其转换为实体符号。否则，XML 可能会出现解析出错问题。特别是对于小于号（<），在 XML 中是绝不能出现的。否则解析 mapper 文件会出错。 
+```
+
+```xml
+<sql id="baseColumn">
+        goods_id,goods_name,goods_price,goods_img,type_id
+</sql>
+<insert id="addGoods" parameterType="com.bjpn.bean.Goods">
+    insert into goods (
+	<include refid="baseColumn"/>
+    ) values(null,#{goodsName},#{goodsPrice},#{goodsImg},#{typeId})
+</insert>
+```
+
+#### if和set
+
+```xml
+ <if test="id !=null">
+    id=#{id},
+</if>
+```
+
+```
+<!--set标签的作用:1  会自动去掉最后一个参数的，
+    2  给sql语句拼接set关键字
+-->
+```
+
+```xml
+<!--set标签的作用:1  会自动去掉最后一个参数的，
+    2  给sql语句拼接set关键字--> 
+<set>
+    <if test="goodsName != null">
+        goods_name=#{goodsName},
+    </if>
+    <if test="typeId != 0">
+        type_id=#{typeId},
+    </if>
+</set>
+```
+
+#### where
+
+```xml
+<!--    1 自动拼装where 关键字
+        2 自动去掉第一个条件的and-->
+<select id="getByActivity" parameterType="com.bjpn.bean.Goods" resultMap="goodsResultMap">
+    select *  from  goods
+    <where>
+        <if test="goodsName != null">
+         	and goods_name = #{goodsName}
+        </if>
+        <if test="typeId != 0">
+            and type_id =#{typeId}
+        </if>
+    </where>
+</select>
+```
+
+#### trim
+
+> 所有场合均能使用，**既能去除逗号,又能去除and**
+
+| 属性            | 描述                                                         |
+| --------------- | ------------------------------------------------------------ |
+| prefix          | 给sql语句拼接的前缀                                          |
+| suffix          | 给sql语句拼接的后缀                                          |
+| prefixOverrides | 去除sql语句前面的关键字或者字符，该关键字或者字符由prefixOverrides属性指定，假设该属性指定为"AND"，当sql语句的开头为"AND"，trim标签将会去除该"AND" |
+| suffixOverrides | 去除sql语句后面的关键字或者字符，该关键字或者字符由suffixOverrides属性指定 |
+
+#### foreach
+
+```xml
+<!--
+    collection:指参数类型
+        集合:list、map
+        数组:array
+参数类型需要是List 如果接口中使用了 @Param(“pay”) 来指定参数名称，则Mapper文件中使用时collection属性就不能使用 list，必须要使用指定的名称"pay"
+    item:每次的中间变量
+    separator:中间的分隔符
+    open:前缀
+    close:后缀
+-->
+<select id="getByList" parameterType="java.util.List" resultMap="goodsResultMap">
+    select *  from  goods  where goods_id in
+        <foreach collection="list" open="(" close=")" item="goodsId" separator=",">
+            #{goodsId}
+        </foreach>
+</select>
+```
+
+## SpringMVC
+
+> 从控制器的历史发展来看，第一代控制器是Servlet，第二代是Struts（同期还有WebWork），第三代是Struts2(Struts+WebWork合并而来)，第四代是SpringMVC。业务层框架，可以理解为是对servlet的封装。SpringMVC是Spring框架的一部分,Spring3.0以后提出的技术
+
+### SpringMVC基础
+
+#### SpringMVC的执行流程
+
+![SpringMVC的执行流程](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/SpringMVC%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.png)
+
+**面试**
+
+```
+1. 用户发送请求到前端控制器（DispatcherServlet）。
+2. 前端控制器请求处理器映射器（HandlerMapping）去查找处理器（Handler）。
+3. 找到以后处理器映射器（HandlerMappering）向前端控制器返回执行链（HandlerExecutionChain）。
+4. 前端控制器（DispatcherServlet）调用处理器适配器（HandlerAdapter）去执行处理器（Handler）。
+5. 处理器适配器去执行Handler。
+6. 处理器执行完给处理器适配器返回ModelAndView。
+7. 处理器适配器向前端控制器返回ModelAndView。
+8. 前端控制器请求视图解析器（ViewResolver）去进行视图解析。
+9. 视图解析器向前端控制器返回View。
+10. 前端控制器对视图进行渲染。
+11. 前端控制器向用户响应结果。
+```
+
+#### SpringMVC基本配置
+
+##### 1. 非注解版
+
++ 配置前端控制器web.xml
+
+	```xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	         id="WebApp_ID" version="4.0">
+	  <!--注意web.xml的版本  SpringMVC是spring3.0之后的产物  web.xml文件的版本要高于3.0-->
+	  <servlet>
+	    <servlet-name>dispatcherservlet</servlet-name>
+	    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	    <!--前端控制器在启动时需要识别处理器适配器、处理器映射器、处理器、视图解析器-->
+	    <init-param><!--contextConfigLocation：配置文件的本地地址-->
+	      <param-name>contextConfigLocation</param-name>
+	      <!--classpath：文件路径-->
+	      <param-value>classpath:springmvc.xml</param-value>
+	    </init-param>
+	    <!--第一时间启动前端控制器-->
+	    <load-on-startup>1</load-on-startup>
+	  </servlet>
+	  <servlet-mapping>
+	    <servlet-name>dispatcherservlet</servlet-name>
+	    <!--请求配置的路径
+	    第一种方案：/ 任何请求都要走前端控制器  html  css js  images
+	    第二种方案：*.后缀  *.action  *.do  *.jsp
+	    -->
+	    <url-pattern>/</url-pattern>
+	  </servlet-mapping>
+	</web-app>
+	```
+
++ 配置springMVC.xml
+
+	```xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+	       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	       xmlns:p="http://www.springframework.org/schema/p"
+	       xmlns:context="http://www.springframework.org/schema/context"
+	       xmlns:mvc="http://www.springframework.org/schema/mvc"
+	       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	  http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	  http://www.springframework.org/schema/context
+	  http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	  http://www.springframework.org/schema/mvc
+	  http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+	    <!--非注解版的SpringMVC-->
+	    <!--处理器映射器-->
+	    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+	    <!--处理器适配器-->
+	    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+	    <!--处理器
+	    id/name:唯一标识    访问处理器的路径
+	    -->
+	    <bean id="/firstDemo.action" class="com.bjpn.controller.FirstController"/>
+	    <!--视图解析器-->
+	    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
+	</beans>
+	```
+
++ 实现处理器
+
+	```java
+	public class FirstController implements Controller {
+	    @Override
+	    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	        return null;
+	    }
+	}
+	```
+
+##### 2. 注解版
+
++ 配置web.xml
+
++ 配置springMVC.xml
+
+	```xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+	       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	       xmlns:p="http://www.springframework.org/schema/p"
+	       xmlns:context="http://www.springframework.org/schema/context"
+	       xmlns:mvc="http://www.springframework.org/schema/mvc"
+	       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	  http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	  http://www.springframework.org/schema/context
+	  http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	  http://www.springframework.org/schema/mvc
+	  http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+	    <!--注解版的SpringMVC-->
+	    <!--处理器适配器、处理器映射器、视图解析器 用驱动扫描直接加载-->
+	    <mvc:annotation-driven/>
+	    <!--使用注解加载处理器类  需要开启注解扫描-->
+	    <context:component-scan base-package="com.bjpn.controller"/>
+	</beans>
+	```
+
++ 处理器
+
+	```java
+	/*
+	    @Controller:放在类上
+	    1.表示当前是处理器类
+	    2.会被Spring扫描并加入spring容器
+	 */
+	/*
+	    @RequesyMapping:请求映射
+	    1.出现在类上    给当前类中的所有的处理方法提供前置路径
+	    2.value:前置路径
+	     */
+	@Controller
+	@RequestMapping("/second")
+	public class SecondController {
+	    //在一个处理器中可以写很多处理方法
+	    /*
+	    @RequesyMapping:请求映射
+	    1.出现在方法上    该方法可以被请求访问
+	    2.value:请求路径
+	      method:请求方式   默认所有
+	     */
+	    @RequestMapping("/handlerMethodDemo1.action")
+	    public ModelAndView handlerMethodDemo1(){
+	        return null;
+	    }
+	}
+	```
+
+#### SpringMVC常用的注解
+
+```
+@Controller           标示该类是处理器类
+@RequestMapping       映射url路径
+@Resource			  J2EE的注解（作用类似@Autowired）
+@ModelAttribute
+@SessionAttributes 
+@PathVariable         接收动态参数  参数值写在请求中
+@RequestParam         配置不同名参数
+@ResponseBody         异步ajax的json格式
+@RequestBody          接收前端异步请求参数
+```
+
+#### SpringMVC的处理器
+
++ 使用ModelAndView方式
++ 使用String方式
++ 使用void方式
+
+#### 处理器适配器的使用
+
++ 读取当前工程中所有对象
++ 接收请求中携带参数
+
+##### 参数绑定
+
+1. 使用servlet-api
+2. 从适配器中接收同名参数
+3. 用对象去接收参数
+	+ 适配器绑定对象，传参时参数名和对象属性名一致即可
+4. 传递的参数名和处理器方法的绑定参数名不一致
+	+ @requestParam         配置不同名参数
+5. restful风格的请求   参数在请求路径中
+	+ @PathVariable         接收动态参数  参数值写在请求路径中
+
+#### SpringMVC的乱码问题
+
+```
+tomcat6   tomcat7：get请求也会出现中文乱码
+改tomcat的配置文件  8080端口处   加Encoding="utf-8"
+```
+
+```xml
+tomcat8之后只有post中文乱码	SpringMVC提供了编码过滤器	在web.xml中直接配置即可
+<!--解决post中文乱码问题-->
+<filter>
+  <filter-name>CharacterEncodingFilter</filter-name>
+  <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+  <init-param>
+    <param-name>encoding</param-name>
+    <param-value>utf-8</param-value>
+  </init-param>
+  <!--这两个可以不写-->
+  <!--强制开启request字符集-->
+  <init-param>
+    <param-name>forceRequestEncoding</param-name>
+    <param-value>true</param-value>
+  </init-param>
+  <!--强制开启response字符集-->
+  <init-param>
+    <param-name>forceResponseEncoding</param-name>
+    <param-value>true</param-value>
+  </init-param>
+</filter>
+<filter-mapping>
+  <filter-name>CharacterEncodingFilter</filter-name>
+  <url-pattern>/*</url-pattern>
+</filter-mapping>
+```
+
+#### SpringMVC转发与重定向
+
+```
+SpringMVC处理器的返回，无论是ModelAndView还是String  默认调用请求转发	不写关键字默认是转发
+
+forward:表示转发，实现 request.getRequestDispatcher("xx.jsp").forward()
+
+redirect:表示重定向，实现 response.sendRedirect("xxx.jsp") 
+
+转发和重定向都需要明确根路径: /
+```
+
+#### 域对象传值
+
++ ModelAndView对象：可以当做域对象使用，但是只能在返回类型为ModelAndView的方法中用
+	+ 转发时：效果和request对象一致
+	+ 重定向是：会把key-value直接拼接到重定向的请求中，作为参数传递
+		重定向访问处理器时key-value拼接在请求中，多用在跳转其它处理器
++ Model对象，是ModelAndView的域对象简化写法，可以在返回值为String的方法中用
+	+ 重定向时会把key-value拼接在请求中  多用在跳转其它处理器
+
+#### 静态资源访问
+
+>  静态资源主要包括：html、js、image、css等在webapp下不需要action的请求或文件。
+
+```
+前端控制器的请求方式有两种：/和*.后缀
+
+写/的情况，因为 DispatcherServlet 会将向静态资源的获取请求，例如.css、.js、.jpg、.png 等资源的获取请求，当作是一个普通的Controller 请求。中央调度器会调用处理器映射器为其查找相应的处理器。当然也是找不到的，所以在这种情况下，所有的静态资源获取请求也均会报 404 错误。
+
+静态资源：不需要处理器处理的
+动态资源：必须被处理器处理的
+```
+
+##### 使用default Servlet处理静态文件
+
+在web.xml当中加入以下内容：
+
+```xml
+<!-- 使用default Servlet处理以下请求 -->
+<servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>/images/*</url-pattern>
+    <url-pattern>*.js</url-pattern>
+    <url-pattern>*.css</url-pattern>
+</servlet-mapping>
+```
+
+```
+原理：我们是有两个servlet的，一个叫做default，一个叫做dispatcher,当图片,js,css这几个请求进来以后，到底是哪个servlet处理这些请求呢？肯定是default，因为它的**url-pattern**更精确一些，dispatcher的**url-pattern**是/更抽象一些，精确的规则是要优先到抽象规则的。
+
+所以我们会看到控制台日志空空如也。它根本没有走SpringMVC。
+
+这种配置的优点在于效率很高，直接把请求从SpringMVC手中抢夺走了（完全不走SpringMVC的那11个执行流程）。
+
+缺点是不同的Web容器不通用，default这个servlet是tomcat自带的，它是在apache-tomcat-9.0.30\conf\web.xml当中进行注册的，只是没有mapping而已，如果更换了Web容器的话，这个default Servlet也需要更换，例如在WebLogic下面这个Servlet被叫做FileServlet。
+```
+
+##### 在SpringMVC中配置静态资源的路径
+
+在SpringMVC的核心配置文件中
+
+```xml
+<!-- 以下路径不会被当控制器拦截，当静态资源处理 -->
+<mvc:resources mapping="/images/*" location="/images/" />
+<mvc:resources mapping="/css/*" location="/css/" />
+<mvc:resources mapping="/js/*" location="/js/" />
+```
+
+##### SpringMVC交还default Servlet处理
+
+在SpringMVC的核心配置文件中
+
+```xml
+<!-- 由springmvc对请求进行分类，如果是静态资源，则交给DefaultServlet处理 -->
+<mvc:default-servlet-handler/>
+```
+
+```
+声明了<mvc:default-servlet-handler/>后，springmvc框架会在容器中创建
+
+DefaultServletHttpRequestHandler处理器对象。它会像一个检查员，对进入DispatcherServlet的URL进行筛查，如果发现是静态资源的请求，就将该请求转由 Web 应用服务器默认的
+
+Servlet 处理。一般的服务器都有默认的 Servlet。 在 Tomcat 中，有一个专门用于处理静态资源访问的 Servlet 名叫 DefaultServlet。其<servlet-name/>为 default。可以处理各种静态资源访问请求。该 Servlet 注册在 Tomcat 服务器的 web.xml 中。在 Tomcat 安装目录/conf/web.xml。
+
+在没有特殊要求的情况下，SpringMVC 的中央调度器 DispatcherServlet 的<url-pattern/> 常使用后辍匹配方式，如写为*.do 或者 *.action, *.mvc 等。 
+```
+
+### SpringMVC核心
+
+#### 使用jackson来处理json数据
+
+```xml
+<!--导入jackson-->
+<dependency>
+  <groupId>com.fasterxml.jackson.core</groupId>
+  <artifactId>jackson-core</artifactId>
+  <version>2.9.0</version>
+</dependency>
+<dependency>
+  <groupId>com.fasterxml.jackson.core</groupId>
+  <artifactId>jackson-databind</artifactId>
+  <version>2.9.0</version>
+</dependency>
+```
+
+```
+@RequestBody	接受json数据
+@ResponseBody	返回json数据	必须符合key-value这种形式的返回值：java对象、集合
+@RestController    相当于@Controller和@ResponseBody合在一起的作用	如果使用@RestController注解Controller层的话，则返回的是return里面的内容，无法返回到指定的页面
+```
+
+#### 配置前置后置路径
+
+避免地址栏发起对页面的直接请求，把页面放在WEB-INF下  WEB-INF不接受直接请求  需要使用处理器转发过来
+
+```xml
+<!--配置视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--在视图解析器中配置前缀和后缀  所有访问页面的代码可以自动拼装-->
+        <!--前缀-->
+        <property name="prefix" value="/WEB-INF/"/>
+        <!--后缀-->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+```
+
+```xml
+<mvc:view-resolvers>
+        <mvc:jsp view-class="org.springframework.web.servlet.view.InternalResourceView"/>
+        <mvc:jsp prefix="/WEB-INF/pages/"/>
+        <mvc:jsp suffix=".jsp"/>
+</mvc:view-resolvers>
+```
+
+#### 文件上传
+
++ post请求
++ 在要上传的form标签中添加enctype="multipart/form-data"属性
++ 接收参数名和input标签的name属性一致
+
+```xml
+<!--导入commons-fileupload   commons-io-->
+<dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.3.1</version>
+</dependency>
+```
+
+```xml
+<!-- 配置文件上传解析器 id:必须是multipartResolver-->
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <property name="maxUploadSize" value="#{1024*1024*80}"/>
+    <property name="defaultEncoding" value="utf-8"/>
+</bean>
+```
+
+**上传路径：**
+
+1. 利用webapp路径![webapp路径](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/webapp%E8%B7%AF%E5%BE%84.png)
+
+	```java
+	//我们要把文件上传在 web下的fileUpload文件夹中
+	// 不能直接写磁盘路径   项目在服务器中部署   服务器会部署我们的项目
+	//随着服务器的改变  我们的路径会发生改变
+	//通过服务器的部署路径  去访问web下的内容
+	String  path = request.getServletContext().getRealPath("/fileUpload");
+	System.out.println("真实路径:"+path);
+	```
+
+2. 配置虚拟路径![虚拟路径](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/虚拟路径.png)
+
+![](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/%E8%99%9A%E6%8B%9F%E8%B7%AF%E5%BE%842.png)
+
+#### 拦截器
+
+SpringMVC 中的 Interceptor 拦截器是非常重要和相当有用的，它的主要作用是拦截指定的用户请求，并进行相应的预处理与后处理。其拦截的时间点在“处理器映射器根据用户提 交的请求映射出了所要执行的处理器类，并且也找到了要执行该处理器类的处理器适配器， 在处理器适配器执行处理器之前”。当然，在处理器映射器映射出所要执行的处理器类时， 已经将拦截器与处理器组合为了一个处理器执行链，并返回给了中央调度器。 
+
+SpringMVC的拦截器(Interceptor)跟Servlet的Filter用法上是差不多的，区别在于Filter的拦截范围更大，可拦截任意地址。SpringMVC的拦截器能拦截的只是已经进入到SpringMVC的请求。
+
+```xml
+ <!-- 拦截器配置 -->
+    <mvc:interceptors>
+        <!-- 多个拦截器将顺序执行 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/> <!-- 拦截路径  **代表着多层路径 -->
+            <mvc:exclude-mapping path="/loginAndReg/*"/><!-- 不拦截路径 -->
+            <bean class="com.bjpn.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+```
+
++ **preHandle(request,response, Object handler)**
+
+	```markdown
+	该方法在处理器方法执行之前执行。其返回值为 boolean，若为 true，则紧接着会执行处理器方法，且会将 afterCompletion()方法放入到一个专门的方法栈中等待执行。
+	```
+
++ **postHandle(request,response, Object handler,modelAndView)**
+
+	```
+	该方法在处理器方法执行之后执行。处理器方法若最终未被执行，则该方法不会执行。 
+	由于该方法是在处理器方法执行完后执行，且该方法参数中包含 ModelAndView，所以该方法可以修改处理器方法的处理结果数据，且可以修改跳转方向。
+	```
+
++ **afterCompletion(request,response, Object handler, Exception ex)**
+
+	```
+	当 preHandle()方法返回 true 时，会将该方法放到专门的方法栈中，等到对请求进行响应的所有 工作完成之后才执行该方法。即该方法是在中央调度器渲染（数据填充）了响应页面之后执行的，此时对 ModelAndView 再操作也对响应无济于事。 
+	```
+
+	**afterCompletion最后执行的方法，关闭资源**
+
+## Spring
+
+> Spring 的核心是控制反转（IoC：Inverse of Control）和面向切面编程（AOP：Aspect Oriented Programming）
+
+内部实现机制：框架写了自己的工厂类，读用户的配置文件，然后反射出配置文件中配置的各种对象
+
+### 主要作用
+
+```
+Spring的主要作用就是为代码“解耦”，降低代码间的耦合度。就是让对象和对象（模块和模块）之间关系不是使用代码关联，而是通过配置来说明。即在Spring中说明对象（模块）的关系。 
+
+Spring根据代码的功能特点，使用 Ioc 降低业务对象之间耦合度。IoC 使得主业务在相互调用过程中，不用再自己维护关系了，即不用再自己创建要使用的对象了。而是由 Spring容器统一管理，自动“注入”,注入即赋值。 而 AOP 使得系统级服务得到了最大复用，且不用再由程序员手工将系统级服务“混杂”到主业务逻辑中了，而是由 Spring 容器统一完成“织入”。 
+```
+
+### Spring的优点
+
+```
+Spring 是一个框架，是一个半成品的软件。有 20 个模块组成。它是一个容器管理对象，容器是装东西的，Spring 容器不装文本，数字。装的是对象。Spring 是存储对象的容器。
+```
+
+1. **轻量**
+
+	```
+	Spring 框架使用的 jar 都比较小，一般在 1M 以下或者几百 kb。Spring 核心功能的所需的 jar 总共在 3M 左右。 
+	Spring 框架运行占用的资源少，运行效率高。不依赖其他 jar 
+	```
+
+2. **针对接口编程，解耦合** 
+
+	```
+	Spring 提供了 Ioc 控制反转，由容器管理对象，对象的依赖关系。原来在程序代码中的对象创建方式，现在由容器完成。对象之间的依赖解耦合。 
+	
+	Spring 是于 2003 年兴起的一个轻量级的 Java 开发框架，它是为了解决企业应用开发的复杂性而创建的。Spring 的核心是控制反转（IoC）和面向切面编程（AOP）。Spring 是可以在 Java SE/EE 中使用的轻量级开源框架。
+	```
+
+3. **AOP编程的支持** 
+
+	```
+	通过 Spring 提供的 AOP 功能，方便进行面向切面的编程，许多不容易用传统 OOP 实现的功能可以通过 AOP 轻松应付 在 Spring 中，开发人员可以从繁杂的事务管理代码中解脱出来，通过声明式方式灵活地 进行事务的管理，提高开发效率和质量。 
+	```
+
+4. **方便集成各种优秀框架** 
+
+	```
+	Spring 不排斥各种优秀的开源框架，相反 Spring 可以降低各种框架的使用难度，Spring提供了对各种优秀框架（如 Struts,Hibernate、MyBatis）等的直接支持。简化框架的使用。Spring 像插线板一样，其他框架是插头，可以容易的组合到一起。需要使用哪个框架，就把这个插头放入插线板。不需要可以轻易的移除
+	```
+
+### Spring体系结构
+
+![Spring体系结构](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/Spring%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png)
+
+Spring 由 20 多个模块组成，它们可以分为数据访问/集成（Data Access/Integration）、 Web、面向切面编程（AOP, Aspects）、提供JVM的代理（Instrumentation）、消息发送（Messaging）、 核心容器（Core Container）和测试（Test）。
+
+### Spring的核心：IOC
+
+```
+控制反转（IoC，Inversion of Control），是一个概念，是一种思想。指将传统上由程序代码直接操控的对象调用权交给容器，通过容器来实现对象的装配和管理。控制反转就是对对象控制权的转移，从程序代码本身反转到了外部容器。通过容器实现对象的创建，属性赋值，依赖的管理。 
+```
+
+```
+IoC 是一个概念，是一种思想，其实现方式多种多样。当前比较流行的实现方式是依赖注入
+```
+
+#### 什么是控制反转：
+
+```
+以前我们主动new对象,控制权在我们自己手中Spring提供对象管理容器,创建对象的过程由Spring完成,我们没有权利创建对象了我们把创建的对象的权利交给了Spring容器，这个过程叫做控制反转
+```
+
+#### 控制反转的作用
+
+```
+解除代码间的耦合
+```
+
+**Spring.xml的头文件**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+    <!--beans  就是对象容器-->
+</beans>
+```
+
+**Spring.xml文件中配置**
+
+```xml
+ <!--配置要被容器管理的类
+        user类交给了Spring容器   在这个容器中的唯一名称名字:u
+        id:唯一标示
+    -->
+    <bean id="u" class="com.bjpn.bean.User"/>
+```
+
+**从Spring容器中获取对象**
+
+```java
+ //从Spring容器中获取对象
+//首先需要获取Spring容器   被容器管理的对象 可以从容器中获取
+ClassPathXmlApplicationContext ioc = new ClassPathXmlApplicationContext("Spring.xml");
+//我需要容器中  id= u的对象   容器会帮我们创建对象
+Object obj = ioc.getBean("u");
+User user = (User)obj;
+System.out.println(user);
+```
+
+**Spring容器创建对象的方式：默认调用无参构造创建对象**
+
++ 调用有参构造
+
+	```xml
+	<bean id="user" class="com.bjpn.bean.User">
+	    <!--如果只有有参构造  需要告诉容器创建对象的属性值-->
+	    <constructor-arg name="id" value="1001"/>
+	    <constructor-arg name="name" value="亚索"/>
+	</bean>
+	```
+
++ 调用set方法
+
+	```xml
+	<!--  通过set方法-->
+	<bean id="user" class="com.bjpn.bean.User">
+	    <property name="id" value="1002"/>
+	    <property name="name" value="锐雯"/>
+	</bean>
+	```
+
+#### Spring的两种加载方式
+
+```java
+ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-config.xml");
+```
+
+ClassPathXmlApplicationContext 默认会去 classPath 路径下找。classPath 路径指的就是编译后的 classes 目录。
+
+```java
+FileSystemXmlApplicationContext applicationContext = new FileSystemXmlApplicationContext("classpath:spring-config.xml");
+```
+
+FileSystemXmlApplicationContext 默认是去项目的路径下加载，可以是相对路径，也可以是绝对路径，若是绝对路径，“file:” 前缀可以缺省。
+
+#### 从IOC容器获取Bean的两种常用方式
+
+```java
+UserController userController = (UserController)applicationContext.getBean("userController");
+```
+
+```java
+UserController userController = applicationContext.getBean(UserController.class);
+```
+
+#### DI	依赖注入（Dependency Injection）
+
+依赖：classA 中含有 classB 的实例，在 classA 中调用 classB 的方法完成功能，即 classA 对 classB 有依赖。 
+
+```
+依赖注入 DI 是指程序运行过程中，若需要调用另一个对象协助时，无须在代码中创建被调用者，而是依赖于外部容器，由外部容器创建后传递给程序。
+Spring 的依赖注入对调用者与被调用者几乎没有任何要求，完全支持对象之间依赖关系的管理。 
+```
+
+```xml
+<!--依赖注入	容器需要管理两个类-->
+<bean id="ud" class="com.bjpn.dao.UserDao" 	scope="singleton"/><!--scope默认是单例，可设置prototype为多例-->
+<bean id="us" class="com.bjpn.service.UserService">
+    <property name="ud"  ref="ud"/>
+</bean>
+```
+
+DI：依赖注入，将对象所依赖的对象注入到对象的属性中。 就是IOC的具体实现方法。
+
+1. IOC就是一个容器
+2. IOC容器中包括spring管理的所有bean。
+3. IOC容器负责对bean进行实例化
+4. IOC容器对bean进行实例化时候，检查有哪些依赖的属性，将依赖的属性注入到实例化的bean的属性中。
+
+#### 基于注解的DI开发
+
+实体类的注解：每个bean注解都有name属性  不写默认是类名的驼峰式
+
+```
+@controller:当前类为处理器类
+@Service:当前类为业务层
+@Repository:当前类为持久层
+@Component :普通类
+
+依赖注入的注解：
+@Autowired:可以标识在属性上，根据属性类型去spring容器中找同类型的bean，找到则将bean注入到属性中
+@Qualifier:是Autowired的辅助注解  标明注入的是那个类
+```
+
+```
+@Repository和@Mapper的区别：
+1.@Repository 是 Spring 的注解	@Mapper是mybatis的注解	
+2.使用@Mapper后，不需要在spring配置中设置扫描地址，通过mapper.xml里面的namespace属性对应相关的mapper类，spring将动态的生成Bean后注入到ServiceImpl中。
+3.也可以不再每个Mapper类上加@Mapper，只在启动类上加@MapperScan(指定包名)即可
+4.@repository则需要在Spring中配置扫描包地址，然后生成dao层的bean，之后被注入到ServiceImpl中
+```
+
+```
+@Autowired和@Resource的区别：
+1.@Autowired是Spring的，@Resource是javax包下的。
+2.@Autowired默认按类型byType匹配，@Resource默认按名称byN匹配
+```
+
+
+
+### Spring的核心：AOP 
+
+AOP（Aspect Orient Programming），面向切面编程。面向切面编程是从动态角度考虑程序运行过程。 AOP 底层，就是采用动态代理模式实现的。一个类实现了接口时，Spring默认使用JDK动态代理实现AOP，一个类没有实现接口时，Spring默认使用CGLIB实现AOP。
+
+#### AOP编程的好处
+
+1. 减少重复
+2. **专注于业务功能增强的实现**，就是OOP编程的一个完美补充
+
+#### AOP编程术语
+
+1. 切面：Aspect
+
+	```
+	切面泛指交叉业务逻辑。常用的切面是通知（Advice）。实际就是对主业务逻辑的一种增强
+	切面指的是辅助业务类，实际就是对主业务逻辑的一种增强管理的类
+	```
+
+2. 连接点：JoinPoint
+
+	```
+	连接点指可以被切面织入的具体方法。通常业务接口中的方法均为连接点
+	```
+
+3. 切入点：Pointcut
+
+	```
+	切入点指声明的一个或多个连接点的集合。通过切入点指定一组方法
+	被标记为 final 的方法是不能作为连接点与切入点的。因为最终的是不能被修改的，不能被增强的。
+	```
+
+4. 目标对象：Target
+
+	```
+	目标对象指将要被增强的对象。即包含主业务逻辑的类的对象
+	```
+
+5. 通知：Advice
+
+	```
+	通知定义了增强代码切入到目标代码的时间点，是目标方法执行之前执行，还是之后执行等。通知类型不同，切入时间不同。切入点定义切入的位置，通知定义切入的时间
+	```
+
+6. 织入：Weaving
+
+	```
+	织入是将增强添加对目标类具体连接点上的过程。AOP像一台织布机，将目标类、增强或引介通过AOP	这台织布机天衣无缝地编织到一起
+	```
+
+#### AspectJ 对 AOP 的实现
+
+**引入依赖**
+
+```xml
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-aspects</artifactId>
+    <version>5.3.19</version>
+</dependency>
+```
+
+##### AspectJ 五种通知类型
+
+1. 前置通知   @Before
+2. 后置通知   @AfterReturning	返回通知, 在方法返回结果之后执行
+3. 环绕通知   @Around 	环绕通知, 围绕着方法执行
+4. 异常通知   @AfterThrowing	异常通知, 在方法抛出异常之后
+5. 最终通知  @After
+
+**执行顺序：**
+
+正常情况下执行顺序：`Around start` -> `Before` -> `Around end` -> `After` -> `AfterReturning`
+有异常情况下执行顺序：`Around start` -> `Before` -> `After` -> `AfterThrowing` ，有异常时，`Around end` 逻辑不会执行
+
+##### AspectJ 的切入点表达式
+
+```
+execution(modifiers-pattern? ret-type-pattern 
+          declaring-type-pattern?name-pattern(param-pattern)
+          throws-pattern?)
+
+modifiers-pattern 访问权限类型 
+
+ret-type-pattern 返回值类型 
+
+declaring-type-pattern 包名类名 
+
+name-pattern(param-pattern) 方法名(参数类型和参数个数) 
+
+throws-pattern 抛出异常类型 
+
+？表示可选的部分
+```
+
+**execution(访问权限 方法返回值 方法声明(参数) 异常类型) **
+
+![execution表达式](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/execution%E8%A1%A8%E8%BE%BE%E5%BC%8F.png)
+
+```
+execution(public * *(..))
+指定切入点为：任意公共方法。
+execution(* set*(..))
+指定切入点为：任何一个以“set”开始的方法。
+execution(* com.xyz.service.*.*(..))
+指定切入点为：定义在 service 包里的任意类的任意方法。
+execution(* com.xyz.service..*.*(..))
+指定切入点为：定义在 service 包或者子包里的任意类的任意方法。“..”出现在类名中时，后面必须跟“*”，表示包、子包下的所有类。
+execution(* *..service.*.*(..))
+指定所有包下的 serivce 子包下所有类（接口）中所有方法为切入点
+```
+
+##### AspectJ 的 AOP 实现
+
+```xml
+<!--非注解版的aop
+        1、目标类和增强类都需要被spring容器管理
+        2,在目标类上设置切点
+    -->
+<!--让Spring通过aop调用动态代理的方式  来给目标类设置切点-->
+<aop:config>
+    <!--面向切面  需要指明这个切面的增强类是谁-->
+    <aop:aspect ref="active">
+        <!--明确切面所处的位置  通知  前置 后置 环绕  异常 最终-->
+        <!--pointcut:切点
+                id：这个切点的名字
+                expression：切点所处的位置
+                    execution:(public * *(..))切点作用在当前工程中所有类上的公开方法上
+            -->
+        <!--设置了一个切点  跟Q有关-->
+        <aop:pointcut id="qBefer" expression="execution(* com.bjpn.aop.*.Q(..))"/>
+        <!--设置通知  在Q方法之前 调用增强类中的方法 只要方法名
+                调用哪个切点
+            -->
+        <aop:before method="sayHi" pointcut-ref="qBefer"/>
+    </aop:aspect>
+</aop:config>
+```
+
+```xml
+<!--使用注解配置切面编程-->
+<!--声明自动代理生成器，创建代理-->
+<aop:aspectj-autoproxy/>
+```
+
+```
+对同一个切点配置5种通知发现，这个切点表达式写了5遍，如果发生变动修改很麻烦。我们对它进行优化：
+在切面类当中定义一个空方法, 后面所有的通知，引用这个空方法的切点就可以了。
+```
+
+### Spring利用aop实现事务管理
+
+#### Spring和Mybatis的整合
+
++ mybatis环境
+	+ mysql-connector-java
+	+ mybatis
+	+ 数据库连接池druid
++ Spring环境
+	+ spring-context
++ Spring整合mybatis
+	+ mybatis-spring
++ spring事务体系
+	+ spring-jdbc
+	+ spring-aspects
+	+ spring-tx
+
+```xml
+<!--mybatis的配置-->
+    <!--mybatis连接数据库的动作交给了spring  -->
+    <!--读取连接数据库的配置文件  -->
+    <!-- 读取工程下面的properties文件 -->
+<!--1.读取数据源参数的配置文件-->
+    <context:property-placeholder location="classpath:JDBCUtil.properties" />
+<!--2.数据源   datasource-->
+    <!--配置四大参数
+        数据路连接池  c3p0  dbcp   druid
+        Spring管理数据库连接池   以对象的方式
+    -->
+   <!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+           destroy-method="close">
+            <property name="driverClassName" value="${jdbcDriver}" />
+           <property name="url" value="${jdbcUrl}" />
+           <property name="username" value="${jdbcUname}" />
+           <property name="password" value="${jdbcUpwd}" />
+
+    </bean>-->
+ <!-- 声明数据源DataSource, 作用是连接数据库的 druid-->
+    <bean id="myDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+       <!-- set注入给DruidDataSource提供连接数据库信息
+            使用属性配置文件中的数据，语法 ${key}
+            druid:提供的数据库连接池会自动扫描当前mysql的jar
+            -->
+        <property name="url" value="${jdbcUrl}" />
+        <property name="username" value="${jdbcUname}"/>
+        <property name="password" value="${jdbcUpwd}" />
+        <!--<property name="maxActive" value="${jdbc.max}" />-->
+        <!--<property name="driverClassName" value="${jdbcDriver}"/>-->
+    </bean>
+    <!-- sqlSessinFactory在mybatis单独使用的时候
+   咱们封装了一个工具类来获取该单例，但是和spring整合之后
+   完全交给spring的ioc容器来实例化该对象,j交由ioc管理sqlSessionFactory，
+   只能使用mybtias-spring整合包中的类
+   -->
+<!--3.sqlSessionFactory工厂-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 加载mybatis的核心配置文件 -->
+        <property name="configLocation" value="classpath:mybatis.xml" />
+        <!-- 数据源，是SqlSessionFactoryBean的依赖对象 -->
+        <property name="dataSource" ref="myDataSource"/>
+        <!-- 映射文件位置 -->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+    </bean>
+    <!--mapper.xml原来是用动态代理的方式生成，现在需要交给ioc容器管理  -->
+    <!-- mybatis-spring-1.3.0.jar,提供了
+    自动生成mapper代理对象的机制，
+    只需要配置mapper接口的包路径
+    和sqlsessionfactory
+    -->
+<!--4.根据工程生成的sqlSession 生成mapper扫描器     就是使用sqlSession动态代理得到的每一个mapper接口的实现类
+        以前会用sqlSession的动态代理方式   自己去生成mapper接口的实现类
+        Spring通过mapper扫描器，加载所有的mapper接口和mapper.xml文件
+        直接借助SqlSessionFactory，生成sqlSession  动态代理生成mapper接口的实现类  直接放在spring容器中
+    -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--mapper接口的所在的包  -->
+        <property name="basePackage" value="com.bjpn.mapper"/>
+        <!--得到sqlSessionFactory自动生成sqlSession  -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+<!--5.spring的配置
+        mapper不需要扫描了    mapper扫描器已经扫描了所有的mapper接口和mapper.xml
+        mapper接口的实现类已经在Spring容器中了
+    -->
+    <context:annotation-config/>
+    <context:component-scan base-package="com"/>
+```
+
+#### Spring提供的事务
+
+| **事务行为**              | **说明**                                                     |
+| ------------------------- | ------------------------------------------------------------ |
+| **PROPAGATION_REQUIRED**  | 支持当前事务，假设当前没有事务。就新建一个事务   最常用 增删改 |
+| **PROPAGATION_SUPPORTS**  | 支持当前事务，假设当前没有事务，就以非事务方式运行  查询     |
+| PROPAGATION_MANDATORY     | 支持当前事务，假设当前没有事务，就抛出异常                   |
+| PROPAGATION_REQUIRES_NEW  | 新建事务，假设当前存在事务。把当前事务挂起                   |
+| PROPAGATION_NOT_SUPPORTED | 以非事务方式运行操作。假设当前存在事务，就把当前事务挂起     |
+| PROPAGATION_NEVER         | 以非事务方式运行，假设当前存在事务，则抛出异常               |
+| PROPAGATION_NESTED        | 如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则执行与PROPAGATION_REQUIRED类似的操作。 |
+
+PROPAGATION_REQUIRED:一定会提供事务  如果有多个操作会自动合并事务  多用于增删改
+
+PROPAGATION_SUPPORTS:有事务就有  没有 就没有  多用于查询操作
+
+**非注解版的事务管理**
+
+```xml
+ <!--第二种方案  使用aop  切面-->
+    <!--配置事务管理器 jdk的事务管理  在spring中 引入事务管理器类-->
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"/>
+</bean>
+<!--配置事务 在需要事务的地方设置切点   所有的service方法都需要事务  在所有的service方法上设置切点-->
+<aop:config>
+    <aop:pointcut expression="execution(* com.bjpn..service.*.*(..))" id="allMethodPointcut"/>
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="allMethodPointcut"/>
+</aop:config>
+<!--spring根据不同的方法 或不同的增删改查操作 提供不同的事务行为-->
+<tx:advice id="txAdvice" transaction-manager="transactionManager">
+    <tx:attributes>
+        <tx:method name="add*" propagation="REQUIRED" rollback-for="Exception"/>
+        <tx:method name="save*" propagation="REQUIRED" rollback-for="Exception"/>
+        <tx:method name="edit*" propagation="REQUIRED" rollback-for="Exception"/>
+        <tx:method name="update*" propagation="REQUIRED" rollback-for="Exception"/>
+        <tx:method name="delete*" propagation="REQUIRED" rollback-for="Exception"/>
+        <tx:method name="remove*" propagation="REQUIRED" rollback-for="Exception"/>
+        <tx:method name="modify*" propagation="REQUIRED" rollback-for="Exception"/>
+        <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+        <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+    </tx:attributes>
+</tx:advice>
+```
+
+**注解版的事务管理**
+
+```xml
+<bean id="transactionManager"
+      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="myDataSource" />
+</bean>
+<!-- 开启注解控制事务 -->
+<tx:annotation-driven transaction-manager="transactionManager" />
+```
+
+## SSM整合
+
+```xml
+spring整合时   spring-web这个包会出现web片段会导致web的地址排序变成相对排序
+会导致contextConfigLocation第一时间不读xml文件		而是去找webspring-web下的web片段不找webapp 
+<!--配置web片段的绝对地址排序-->
+<absolute-ordering/>
+```
+
+[ssm整合]: D:\Test\Java\03-JavaWeb\01-讲义\day35-ssm整合\ssm.md
+[ssm整合2]: D:\Test\Java\03-JavaWeb\01-讲义\day35-ssm整合\ssm整合第二版.md
+
+## mybatis的逆向工程
+
+> 使用逆向工程插件，根据数据库表和orm思想，自动生成对应实体类、通用的mapper接口和mapper.xml
+
+1. 引入mybatis逆向工程的插件
+
+	```xml
+	<build>
+	    <plugins>
+	        <!--myBatis逆向工程插件-->
+	        <plugin>
+	            <groupId>org.mybatis.generator</groupId>
+	            <artifactId>mybatis-generator-maven-plugin</artifactId>
+	            <version>1.3.2</version>
+	            <configuration>
+	                <verbose>true</verbose>
+	                <overwrite>true</overwrite>
+	            </configuration>
+	        </plugin>
+	    </plugins>
+	</build>
+	```
+
+2. 配置逆向工程的配置文件
+
+	generator.properties
+
+	```xml
+	jdbc.driverLocation=D:/Java/Maven_repository/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.jar
+	jdbc.driverClass=com.mysql.cj.jdbc.Driver
+	jdbc.connectionURL=jdbc:mysql://localhost:3306/dljd3?serverTimezone=UTC&nullCatalogMeansCurrent=true
+	jdbc.userId=root
+	jdbc.password=root
+	```
+
+	generatorConfig.xml
+
+	```xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE generatorConfiguration
+	        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+	        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+	
+	<generatorConfiguration>
+	
+	    <!--指定mysql数据库驱动-->
+	    <!--<classPathEntry location="D:/Java/Maven_repository/mysql/mysql-connector-java/8.0.25/mysql-connector-java-8.0.25.jar"/>-->
+	
+	    <!--导入属性配置-->
+	    <properties resource="generator.properties"></properties>
+	
+	    <!--指定特定数据库的jdbc驱动jar包的位置-->
+	    <classPathEntry location="${jdbc.driverLocation}"/>
+	
+	    <context id="default" targetRuntime="MyBatis3">
+	
+	        <!-- optional，旨在创建class时，对注释进行控制，false生成注释,true无注释 -->
+	        <commentGenerator>
+	            <property name="suppressDate" value="false"/>
+	            <property name="suppressAllComments" value="false"/>
+	        </commentGenerator>
+	
+	        <!--jdbc的数据库连接 -->
+	        <jdbcConnection
+	                driverClass="${jdbc.driverClass}"
+	                connectionURL="${jdbc.connectionURL}"
+	                userId="${jdbc.userId}"
+	                password="${jdbc.password}">
+	        </jdbcConnection>
+	
+	
+	        <!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制-->
+	        <javaTypeResolver>
+	            <property name="forceBigDecimals" value="false"/>
+	        </javaTypeResolver>
+	    <!--根据数据库生成      bean    mapper  mapper.xml-->
+	
+	        <!-- Model模型生成器,用来生成含有主键key的类，记录类 以及查询Example类
+	            targetPackage     指定生成的model生成所在的包名
+	            targetProject     指定在该项目下所在的路径|指定生成到的工程名称
+	        -->
+	        <!--根据表中字段生成实体类-->
+	        <javaModelGenerator targetPackage="com.bjpn.settings.bean"
+	                            targetProject="D:/Test/JavaProjects/crm/src/main/java">
+	
+	            <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
+	            <property name="enableSubPackages" value="false"/>
+	            <!-- 是否对model添加 构造函数 true添加，false不添加-->
+	            <property name="constructorBased" value="false"/>
+	            <!-- 是否对类CHAR类型的列的数据进行trim操作 -->
+	            <property name="trimStrings" value="true"/>
+	            <!-- 建立的Model对象是否 不可改变  即生成的Model对象不会有 setter方法，只有构造方法 -->
+	            <property name="immutable" value="false"/>
+	        </javaModelGenerator>
+	        <!--生成对应的mapper.xml文件   只生成基本的增删改查-->
+	        <!--Mapper映射文件生成所在的目录 为每一个数据库的表生成对应的SqlMap文件 -->
+	        <sqlMapGenerator targetPackage="com.bjpn.settings.mapper"
+	                         targetProject="D:/Test/JavaProjects/crm/src/main/java">
+	            <property name="enableSubPackages" value="false"/>
+	        </sqlMapGenerator>
+	
+	        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
+	                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+	                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
+	                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
+	        -->
+	        <!--对应的mapper的接口文件-->
+	        <javaClientGenerator targetPackage="com.bjpn.settings.mapper"
+	                             targetProject="D:/Test/JavaProjects/crm/src/main/java" type="XMLMAPPER">
+	            <property name="enableSubPackages" value="true"/>
+	        </javaClientGenerator>
+	
+	        <!--映射的数据库表-->
+	        <table tableName="tbl_user" domainObjectName="User"
+	               enableCountByExample="false" enableUpdateByExample="false"
+	               enableDeleteByExample="false" enableSelectByExample="false"
+	               selectByExampleQueryId="false">
+	        </table>
+	
+	        <!--
+	        <table tableName="tbl_user" domainObjectName="User"
+	               enableCountByExample="false" enableUpdateByExample="false"
+	               enableDeleteByExample="false" enableSelectByExample="false"
+	               selectByExampleQueryId="false">
+	        </table>
+	
+	
+	        <table tableName="tbl_clue" domainObjectName="Clue"
+	               enableCountByExample="false" enableUpdateByExample="false"
+	               enableDeleteByExample="false" enableSelectByExample="false"
+	               selectByExampleQueryId="false">
+	        </table>
+	
+	        <table tableName="tbl_clue_activity_relation" domainObjectName="ClueActivityRelation"
+	               enableCountByExample="false" enableUpdateByExample="false"
+	               enableDeleteByExample="false" enableSelectByExample="false"
+	               selectByExampleQueryId="false">
+	        </table>
+	
+	        <table tableName="tbl_clue_remark" domainObjectName="ClueRemark"
+	               enableCountByExample="false" enableUpdateByExample="false"
+	               enableDeleteByExample="false" enableSelectByExample="false"
+	               selectByExampleQueryId="false">
+	        </table>
+	        -->
+	        <!--
+	        <table tableName="tbl_contacts" domainObjectName="Contacts"
+	               enableCountByExample="false" enableUpdateByExample="false"
+	               enableDeleteByExample="false" enableSelectByExample="false"
+	               selectByExampleQueryId="false">
+	        </table>
+	        <table tableName="tbl_contacts_activity_relation" domainObjectName="ContactsActivityRelation"
+	               enableCountByExample="false" enableUpdateByExample="false"
+	               enableDeleteByExample="false" enableSelectByExample="false"
+	               selectByExampleQueryId="false">
+	        </table>
+	        <table tableName="tbl_contacts_remark" domainObjectName="ContactsRemark"
+	               enableCountByExample="false" enableUpdateByExample="false"
+	               enableDeleteByExample="false" enableSelectByExample="false"
+	               selectByExampleQueryId="false">
+	        </table>
+	        -->
+	        <!--
+	        <table tableName="tbl_customer" domainObjectName="Customer"
+	               enableCountByExample="false" enableUpdateByExample="false"
+	               enableDeleteByExample="false" enableSelectByExample="false"
+	               selectByExampleQueryId="false">
+	        </table>
+	
+	        <table tableName="tbl_customer_remark" domainObjectName="CustomerRemark"
+	               enableCountByExample="false" enableUpdateByExample="false"
+	               enableDeleteByExample="false" enableSelectByExample="false"
+	               selectByExampleQueryId="false">
+	        </table>
+	        -->
+	        <!--
+	                <table tableName="tbl_dictionary_type" domainObjectName="DictionaryType"
+	                       enableCountByExample="false" enableUpdateByExample="false"
+	                       enableDeleteByExample="false" enableSelectByExample="false"
+	                       selectByExampleQueryId="false">
+	                </table>
+	
+	
+	                <table tableName="tbl_dictionary_value" domainObjectName="DictionaryValue"
+	                       enableCountByExample="false" enableUpdateByExample="false"
+	                       enableDeleteByExample="false" enableSelectByExample="false"
+	                       selectByExampleQueryId="false">
+	                </table>
+	
+	
+	                <table tableName="tbl_marketing_activities" domainObjectName="MarketingActivities"
+	                       enableCountByExample="false" enableUpdateByExample="false"
+	                       enableDeleteByExample="false" enableSelectByExample="false"
+	                       selectByExampleQueryId="false">
+	                </table>
+	
+	
+	                <table tableName="tbl_marketing_activities_remark" domainObjectName="MarketingActivitiesRemark"
+	                       enableCountByExample="false" enableUpdateByExample="false"
+	                       enableDeleteByExample="false" enableSelectByExample="false"
+	                       selectByExampleQueryId="false">
+	                </table>
+	                 -->
+	
+	        <!--<table tableName="tbl_transaction" domainObjectName="Transaction"
+	               enableCountByExample="false" enableUpdateByExample="false"
+	               enableDeleteByExample="false" enableSelectByExample="false"
+	               selectByExampleQueryId="false">
+	        </table>
+	        <table tableName="tbl_transaction_history" domainObjectName="TransactionHistory"
+	               enableCountByExample="false" enableUpdateByExample="false"
+	               enableDeleteByExample="false" enableSelectByExample="false"
+	               selectByExampleQueryId="false">
+	        </table>
+	        <table tableName="tbl_transaction_remark" domainObjectName="TransactionRemark"
+	               enableCountByExample="false" enableUpdateByExample="false"
+	               enableDeleteByExample="false" enableSelectByExample="false"
+	               selectByExampleQueryId="false">
+	        </table>-->
+	
+	    </context>
+	</generatorConfiguration>
+	```
+
+## Mybatis 的分页插件 pageHelper 的配置和使用
+
+### 配置maven依赖
+
+```xml
+<!-- 添加分布插件的包pagehelper -->
+<dependency>
+    <groupId>com.github.pagehelper</groupId>
+    <artifactId>pagehelper</artifactId>
+    <version>5.2.0</version>
+</dependency>
+```
+
+### 配置分页插件
+
++ 在Spring中的配置分页插件
+
+	```xml
+	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	    <property name="dataSource" ref="dataSource"/>
+	    <property name="plugins">
+	        <array>
+	            <bean class="com.github.pagehelper.PageInterceptor">
+	                <property name="properties">
+	                    <!--使用下面的方式配置参数，一行配置一个 -->
+	                    <value>
+	                        offsetAsPageNum=true
+	                        rowBoundsWithCount=true
+	                        pageSizeZero=true
+	                        reasonable=true
+	                    </value>
+	                </property>
+	            </bean>
+	        </array>
+	    </property>
+	</bean>
+	<!-- #offset作为PageNum使用
+	  offset-as-page-num: true
+	  #RowBounds方式是否做count查询
+	  row-bounds-with-count: true
+	  #分页合理化，true开启，如果分页参数不合理会自动修正。默认false不启用（当该参数设置为 true 时，
+	  #pageNum<=0 时会查询第一页pageNum>pages（超过总数时），会查询最后一页。默认false 时，直接根据
+	  #参数进行查询。）
+	  reasonable: true
+	  #pageSizeZero   //当设置为true的时候，如果pagesize设置为0（或RowBounds的limit=0），就不执行分页
+	-->
+	```
+
++ 在 Mybatis 中配置分页插件（不常用）
+
+	```xml
+	<plugins>
+	    <plugin interceptor="com.github.pagehelper.PageInterceptor">
+	        <property name="helperDialect" value="mysql"/>
+	    </plugin>
+	</plugins>	
+	```
+
+### 使用 
+
++ serviceImpl层
+
+	```java
+	 @Resource
+	    ActivityMapper activityMapper;
+	    //查询所有活动    分页查询
+	    @Override
+	    public List<Activity> getAllActivity(int pageNum,int pageSize) {
+	        //分页信息必须写在需要分页查询的上一行
+	        PageHelper.startPage(pageNum, pageSize);
+	        List<Activity> list = activityMapper.getAllActivity();//紧跟上一行
+	        return list;
+	//        return activityMapper.getAllActivity();
+	    }
+	```
+
++ controller层
+
+	```java
+	@RequestMapping("/toWorkbenchActivityIndex.action")
+	    public String toWorkbenchActivityIndex(HttpServletRequest request, @RequestParam(defaultValue = "1") int pageNum) {
+	        //分页查询
+	        int pageSize = 10;
+	        List<Activity> activityList = activityService.getAllActivity(pageNum,pageSize);
+	        PageInfo pageInfo = new PageInfo(activityList);
+	        request.setAttribute("pageInfo", pageInfo);
+	        return "workbench/activity/index";
+	    }
+	```
+
+### pageInfo的参数含义
+
+```
+pageNum：当前页   pageSize：步长   total：总条数    pages：总页数
+list：查询的数据库数据
+prePage：上一页页码              nextPage:下一页页码
+isFristPage:是否是第一页         isLastPage:是否是最后一页
+hasPreviousPage：是否有上一页    hasNextPage：是否有下一页
+navigatePages导航页码数         navigatepageNums所有导航页号
+navigateFirstPage导航第一页     navigateLastPage导航最后一页
+firstPage第一页       lastPage最后一页
+```
+
+## Lombok
+
+lombok给类里面的字段，自动的加上属性，构造器，ToString方法，Equals方法，编译自动生成，比较方便的一点是，你在更改字段的时候，lombok会立即发生改变以保持和你代码的一致性
+
+```java
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@Data=@Getter + @Setter + @ToString + @EqualsAndHashCode + @RequiredArgsConstructor //常用注解
+@AllArgsConstructor //全参数构造器
+@NoArgsConstructor //无参数构造器
+@TableName("表名") //能够和底层的数据库表明进行对应
+@RequiredArgsConstructor //只包含final和@NonNull注解的成员变量的私有构造器
+@NonNull //用在类的属性上，限定属性不能为空，否则抛出空指针异常
+@Value = @Getter + @ToString + @EqualsAndHashCode + @RequiredArgsConstructor
+```
+
+## Git
+
+### 安装完成后进行配置
+
+```nginx
+指定用户信息设置
+$ git config  user.name "Your Name"
+$ git config  user.email "email@example.com"
+```
+
+```nginx
+全局用户信息设置
+$ git config --global user.name "Your Name"
+$ git config --global user.email "email@example.com"
+<!--上述配置是为了标识自己，让其他人知道是谁提交的代码，git规定用名字和邮箱来标识-->
+```
+
+### 本地仓库
+
++ `git init `初始化版本库：当前目录变成Git可以管理的仓库
+
++ `git add`告诉Git，把文件添加到**暂存区**
+
+	```nginx
+	$ git add readme.md
+	```
+
++ `git commit`告诉Git，把文件提交到**仓库**,`-m`后面输入的是本次提交的说明，最好写的内容和本次提交有关系
+
+	```nginx
+	$ git commit -m "first commit"
+	```
+
++ `git status`：查看仓库当前的状态
+
++ `git diff`：查看差异.即修改后未添加和已添加的区别
+
+	```nginx
+	$ git diff hello.txt
+	```
+
++ `git reflog`：用来查看你每次的操作历史记录，即使误操作,也可以恢复你想要的版本
+
+### 远程仓库
+
++ `git remote`: 将本地仓库和远程仓库链接起来 origin是远程仓库的名称，git的默认，可以理解为给远程仓库起了个别名
+
+	```nginx
+	git remote add origin https://gitee.com/mszlu/ms-git.git
+	```
+
++ `git push`：将本地仓库的内容变更 提交到远程仓库 origin就代表远程仓库，master代表分支 ,第一次提交需要加上`-u`参数，git会将本地仓库的master分支和远程仓库的master分支做一个关联
+
+	```
+	git push -u origin "master"
+	```
+
+### 版本回退
+
+`git log`：查看历史的提交日志（--pretty =oneline）
+
+`git reset`：git reset 命令用于回退版本，可以指定退回某一次提交的版本
+
+**reset** 有三个参数：
+
+1. **--mixed**
+
+	默认，可以不用带该参数，用于重置暂存区的文件与指定的回退的版本的提交(commit)保持一致，工作区文件内容保持不变。
+
+	示例：
+
+	```bash
+	git reset HEAD^
+	```
+
+2. **--soft**
+
+	参数用于回退到某个版本，暂存区不会重置，工作区也不会改，版本回退（git log 版本截止到回退的版本）
+
+	示例：
+
+	```bash
+	git reset --soft HEAD~3
+	```
+
+3. **--hard**
+
+	参数撤销工作区中所有未提交的修改内容，将暂存区与工作区都回到指定的回退版本，并删除之前的所有信息提交
+
+	示例：
+
+	```bash
+	git reset --hard origin/master    # 将本地的状态回退到和远程的一样 
+	```
+
+	**注意：**谨慎使用 --hard 参数，它会删除回退点之前的所有信息，一定要在使用--hard之前 先把本地的代码提交到远程仓库
+
+### 克隆
+
+`git clone 远程仓库地址`： 从远程仓库拉取最新的代码到本地
+
+### 分支的创建和合并
+
++ **创建`dev`分支，然后切换到`dev`分支**
+
+	```nginx
+	$ git checkout -b dev
+	或者
+	$ git branch dev
+	$ git switch dev/$ git checkout dev
+	或者
+	$ git switch -c dev
+	```
+
++ **查看当前分支**
+
+	```nginx
+	$ git branch
+	```
+
++ **分支合并**
+
+	```nginx
+	$ git merge dev
+	```
+
++ **删除分支**
+
+	```nginx
+	$ git branch -d dev
+	强制删除使用-D
+	```
+
+## GitHub
+
+s聚焦到搜索框
+
+t搜索仓库内文件
+
+l跳转导某行
+
+b查看文件改动记录
+
+ctrl+k命令面板
+
+代码在vscode打开 仓库页按。
+
+项目地址前加上gitpod.io/#/
+
+# 高级框架
+
+## Redis
+
++ redis-benchmark：性能测试工具
++ redis-check-aof：修复有问题的AOF文件
++ redis-check-dump：修复有问题的dump.rdb文件
++ redis-wentinel：redis集群使用
++ redis-server：redis服务器启动命令
++ redis-cil：客户端，操作入口
+
+### Redis基本操作命令
+
+| 语法               | 说明                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| ping               | 沟通命令，查看状态                                           |
+| dbsize             | 查看当前数据库中key的数目                                    |
+| select db          | 切换数据库                                                   |
+| flushdb            | 删除当前数据库数据                                           |
+| exit或quit         | 退出当前redis连接                                            |
+| keys pattern       | 查找所有符合模式 pattern 的 key 可以使用通配符（*代表多个字符，？代表一个字符） |
+| exists key [key…]  | 判断key是否存在                                              |
+| expire key seconds | 设置 key 的生存时间，超过时间，key 自动删除。单位是秒        |
+| ttl key            | 以秒为单位，返回 key 的剩余生存时间（ttl: time to live）返回值（-1表示key永不过期，-2表示key不存在） |
+| type key           | 查看 key 所存储值的数据类型返回值                            |
+| del key [key…]     | 删除存在的 key ，不存在的 key 忽略                           |
+
+### Redis的五种数据类型
+
++ **字符串类型string**
+
+	```
+	--等同于java中String
+	字符串类型是 Redis 中最基本的数据类型，它能存储任何形式的字符串，包括二进制数据，序列化后的数据，JSON 化的对象甚至是一张图片。最大 512M
+	```
+
+	| 语法                        | 说明                                                         |
+	| --------------------------- | ------------------------------------------------------------ |
+	| set key value               | 将字符串值 value 设置到 key 中                               |
+	| get key                     | 获取 key 中设置的字符串值                                    |
+	| incr key                    | 将 key 中储存的数字值加 1，如果 key 不存在，则 key 的值先被初始化为 0 再执行 incr 操作（只能对数字类型的字符串数据操作） |
+	| decr key                    | 将 key 中储存的数字值减1，如果 key 不存在，则么 key 的值先被初始化为 0 再执行 decr 操作（只能对数字类型的字符串数据操作） |
+	| append key value            | 如果 key 存在， 则将 value 追加到 key 原来旧值的末尾，如果key 不存在， 则将 key 设置值为 value |
+	| strlen key                  | 返回 key 所储存的字符串值的长度返回值                        |
+	| getrange key start end      | 获取 key 中字符串值从 start 开始 到 end 结束 的子字符串,包括 start 和 end, 负数表示从字符串的末尾开始， -1 表示最后一个字符 |
+	| setrange key offset value   | 用 value 覆盖（替换）key 的存储的值从 offset 开始,不存在的 key 做空白字符串 |
+	| mset key value [key value…] | 同时设置一个或多个 key-value 对返回值                        |
+	| mget key [key …]            | 获取所有(一个或多个)给定 key 的值返回值：包含所有 key 的列表 |
+
++ **哈希类型hash**
+
+	```
+	-–等同于java对象
+	Redis hash 是一个 string 类型的 field 和 value 的映射表，hash 特别适合用于存储对象 
+	```
+
+	| 语法                                 | 说明                                                         |
+	| ------------------------------------ | ------------------------------------------------------------ |
+	| hset hash 表的 key field value       | 将哈希表 key 中的域 field 的值设为 value ，如果 key 不存在，则新建 hash 表，执行赋值，如果有 field ,则覆盖值 |
+	| hget key field                       | 获取哈希表 key 中给定域 field 的值                           |
+	| hmset key field value [field value…] | 同时将多个 field-value (域-值)设置到哈希表 key 中，此命令会覆盖已经存在的 field， hash 表 key 不存在，创建空的 hash 表，执行 hmset |
+	| hmget key field [field…]             | 获取哈希表 key 中一个或多个给定域的值                        |
+	| hgetall key                          | 获取哈希表 key 中所有的域和值                                |
+	| hdel key field [field…]              | 删除哈希表 key 中的一个或多个指定域 field，不存在 field 直接忽略 |
+	| hkeys key                            | 查看哈希表 key 中的所有 field 域                             |
+	| hvals key                            | 返回哈希表 中所有域的值                                      |
+	| hexists key field                    | 查看哈希表 key 中，给定域 field 是否存在                     |
+
++ **列表类型list**
+
+	```
+	--java list array
+	Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边） 
+	```
+
+	| 语法                                  | 说明                                                         |
+	| ------------------------------------- | ------------------------------------------------------------ |
+	| lpush key value [value…]              | 将一个或多个值 value 插入到列表 key 的表头（最左边），从左边开始加入值，从左到右的顺序依次插入到表头 |
+	| rpush key value [value…]              | 将一个或多个值 value 插入到列表 key 的表尾（最右边），各个 value 值按从左到右的顺序依次插入到表尾 |
+	| lrange key start stop                 | 获取列表 key 中指定区间内的元素，0 表示列表的第一个元素，以 1 表示列表的第二个元素；start , stop 是列表的下标值，也可以负数的下标， -1 表示列表的最后一个元素， -2 表示列表的倒数第二个元素，以此类推。 start ，stop 超出列表的范围不会出现错误 |
+	| lindex key index                      | 获取列表 key 中下标为指定 index 的元素，列表元素不删除，只是查询。0 表示列表的第一个元素，以 1 表示列表的第二个元素；start , stop 是列表的下标值，也可以负数的下标， -1 表示列表的最后一个元素， -2 表示列表的倒数第二个元素，以此类推 |
+	| llen key                              | 获取列表 key 的长度                                          |
+	| lrem key count value                  | 根据参数 count 的值，移除列表中与参数 value 相等的元素， count >0 ，从列表的左侧向右开始移除； count < 0 从列表的尾部开始移除；count = 0 移除表中所有与 value 相等的值 |
+	| lset key index value                  | 将列表 key 下标为 index 的元素的值设置为 value               |
+	| linsert key BEFORE\|AFTER pivot value | 将值 value 插入到列表 key 当中位于值 pivot 之前或之后的位置。key 不存在，pivot 不在列表中，不执行任何操作 |
+
++ **集合类型 set**
+
+	```
+	--hashset
+	Redis 的 Set 是 string 类型的无序集合，集合成员是唯一的，即集合中不能出现重复的数据
+	```
+
+	| 语法                      | 说明                                                         |
+	| ------------------------- | ------------------------------------------------------------ |
+	| sadd key member [member…] | 将一个或多个 member 元素加入到集合 key 当中，已经存在于集合的 member 元素将被忽略，不会再加入 |
+	| smembers key              | 获取集合 key 中的所有成员元素，不存在的 key 视为空集合       |
+	| sismember key member      | 判断 member 元素是否是集合 key 的成员                        |
+	| scard key                 | 获取集合里面的元素个数                                       |
+	| srem key member [member…] | 删除集合 key 中的一个或多个 member 元素，不存在的元素被忽略  |
+	| srandmember key [count]   | 只提供 key，随机返回集合中一个元素，元素不删除，依然在集合中；提供了 count 时，count 正数, 返回包含 count 个数元素的集合， 集合元素各不相同。count 是负数，返回一个 count 绝对值的长度的集合， 集合中元素可能会重复多次 |
+	| spop key [count]          | 随机从集合中删除一个元素, count 是删除的元素个数             |
+
++ **有序集合类型 zset**
+
+	```
+	--treeset
+	Redis 有序集合 zset 和集合 set 一样也是 string 类型元素的集合，且不允许重复的成员。不同的是 zset 的每个元素都会关联一个分数（分数可以重复），redis 通过分数来为集合中的成员进行从小到大的排序
+	```
+
+	| 语法                                                         | 说明                                                         |
+	| ------------------------------------------------------------ | ------------------------------------------------------------ |
+	| zadd key score member [score member…]                        | 将一个或多个 member 元素及其 score 值加入到有序集合 key 中，如果 member 存在集合中，则更新值；score 可以是整数或浮点数 |
+	| zrange key start stop [WITHSCORES]                           | 查询有序集合，指定区间的内的元素。集合成员按 score 值从小到大来排序。 start， stop 都是从 0 开始。0 是第一个元素，1 是第二个元素，依次类推。以 -1 表示最后一个成员，-2 表示倒数第二个成员。WITHSCORES 选项让 score 和 value 一同返回 |
+	| zrevrange key start stop [WITHSCORES]                        | 返回有序集 key 中，指定区间内的成员。其中成员的位置按 score 值递减(从大到小) 来排列。其它同 zrange 命令 |
+	| zrem key member [member…]                                    | 删除有序集合 key 中的一个或多个成员，不存在的成员被忽略      |
+	| zcard key                                                    | 获取有序集 key 的元素成员的个数                              |
+	| zrangebyscore key min max [WITHSCORES ] [LIMIT offset count] | 获取有序集 key 中，所有 score 值介于 min 和 max 之间（包括 min 和 max）的成员，有序成员是按递增（从小到大）排序 |
+	| zrevrangebyscore key max min [WITHSCORES ] [LIMIT offset count] | 返回有序集 key 中， score 值介于 max 和 min 之间(默认包括等于 max 或 min )的所有的成员。有序集成员按 score 值递减(从大到小)的次序排列。其他同 zrangebyscore |
+	| zcount key min max                                           | 返回有序集 key 中， score 值在 min 和 max 之间(默认包括 score 值等于 min 或 max ) 的成员的数量 |
+
+### Redis事务
+
+| 语法                | 说明                                                         |
+| ------------------- | ------------------------------------------------------------ |
+| multi               | 标记一个事务的开始。事务内的多条命令会按照先后顺序被放进一个队列当中 |
+| exec                | 执行所有事务块内的命令                                       |
+| discard             | 取消事务，放弃执行事务块内的所有命令                         |
+| watch key [key ...] | 监视一个(或多个) key ，如果在事务执行之前这个(或这些) key 被其他命令所改动，那么事务将被打断 |
+| unwatch             | 取消**WATCH**命令对所有 key 的监视。如果在执行**WATCH**命令之后，**EXEC**命令或**DISCARD**命令先被执行了的话，那么就不需要再执行**UNWATCH**了 |
+
+### Redis的持久化
+
+#### RDB
+
+> Redis Database（RDB），就是在指定的时间间隔内将内存中的数据集快照写入磁盘，数据恢复时将快照文件直接再读到内存
+
+```
+RDB 保存了在某个时间点的数据集（全部数据）。存储在一个二进制文件中，只有一个文件。默认是 dump.rdb。RDB 技术非常适合做备份，可以保存最近一个小时，一天，一个月的全部数据。保存数据是在单独的进程中写文件，不影响 Redis 的正常使用。RDB 恢复数据时比其他 AOF 速度快。
+```
+
+```
+在配置文件 redis.conf 中搜索 SNAPSHOTTING
+①：配置执行 RDB 生成快照文件的时间策略
+配置格式：save  <seconds>  <changes> 
+②：dbfilename：设置 RDB 的文件名，默认文件名为 dump.rdb 
+③：dir：指定 RDB 文件的存储位置，默认是 ./ 当前目录
+```
+
+**优点：**
+
++ 由于存储的是数据快照文件，恢复数据很方便，也比较快 ，**容灾备份**
+
+**缺点：**
+
++ 会丢失最后一次快照以后更改的数据。如果你的应用能容忍一定数据的丢失，那么使用 rdb 是不错的选择；如果你不能容忍一定数据的丢失，使用 rdb 就不是一个很好的选择
++ 由于需要经常操作磁盘，RDB 会分出一个子进程。如果你的 redis 数据库很大的话，子进程占用比较多的时间，并且可能会影响 Redis 暂停服务一段时间（millisecond 级别），如果你的数据库超级大并且你的服务器 CPU 比较弱，有可能是会达到一秒
+
+#### AOF
+
+> Append-only File（AOF），Redis 每次接收到一条改变数据的命令时，它将把该命令写到一个 AOF 文件中（只记录写操作，读操作不记录），当 Redis 重启时，它通过执行 AOF 文件中所有的命令来恢复数据  **回放**
+
+```
+①：appendonly：默认是 no，改成 yes 即开启了 aof 持久化 
+②：appendfilename：指定 AOF 文件名，默认文件名为 appendonly.aof 
+③：dir : 指定 RDB 和 AOF 文件存放的目录，默认是 ./  
+④：appendfsync：配置向 aof 文件写命令数据的策略： 
+no：不主动进行同步操作，而是完全交由操作系统来做（即每 30 秒一次），比较快但不是很安全。 
+always：每次执行写入都会执行同步，慢一些但是比较安全。 
+everysec：每秒执行一次同步操作，比较平衡，介于速度和安全之间。这是默认项。 
+⑤：auto-aof-rewrite-min-size：允许重写的最小 AOF 文件大小，默认是 64M 。当 aof 文件大于 64M 时，开始整理 aof文件， 去掉无用的操作命令。缩小 aof文件	瘦身计划
+```
+
+**总结：**
+
+```
+1）append-only 文件是另一个可以提供完全数据保障的方案； 
+2）AOF 文件会在操作过程中变得越来越大。比如，如果你做一百次加法计算，最后你只会在数据库里面得到最终的数值，但是在你的 AOF 里面会存在 100 次记录，其中 99 条记录对最终的结果是无用的；但 Redis 支持在不影响服务的前提下在后台重构 AOF 文件，让文件得以整理变小 
+3）可以同时使用这两种方式，redis默认优先加载aof文件（aof数据最完整）
+```
+
+### 主从复制
+
+#### 读写分离
+
+> 为了避免单点故障，我们需要将数据复制多份部署在多台不同的服务器上，即使有一台服务器出现故障其他服务器依然可以继续提供服务
+
+```
+修改配置文件，启动时，服务器读取配置文件，并自动成为指定服务器的从服务器，从而构成主从复制的关系
+```
+
+##### 编辑 **Master** 配置文件
+
+```
+include /usr/local/redis-3.2.9/redis.conf 
+daemonize yes 
+port 6380 
+pidfile /var/run/redis_6380.pid 
+logfile 6380.log 
+dbfilename dump6380.rdb
+
+include ： 包含原来的配置文件内容。
+/usr/local/redis-3.2.9/redis.conf 按照自己的目录设置。 
+daemonize：yes 后台启动应用，相当于 ./redis-server & , &的作用。 
+port : 自定义的端口号 
+pidfile : 自定义的文件，表示当前程序的 pid ,进程 id。 
+logfile：日志文件名 
+dbfilename：持久化的 rdb 文件名
+```
+
+##### 编辑 **Slave** 配置文件
+
+```
+include /usr/local/redis-3.2.9/redis.conf 
+daemonize yes 
+port 6382 pidfile /var/run/redis_6382.pid
+logfile 6382.log 
+dbfilename dump6382.rdb 
+slaveof 127.0.0.1 6380
+```
+
+#### 容灾处理
+
+> 当 Master 服务出现故障，需手动将 slave 中的一个提升为 master， 剩下的 slave 挂至新的master 上
+
+**总结：**
+
+1. 一个 master 可以有多个 slave 
+2. slave 下线，读请求的处理性能下降 
+3. master 下线，写请求无法执行 
+4. 当 master 发生故障，需手动将其中一台 slave 使用 slaveof no one 命令提升为 master，其它 slave 执行 slaveof 命令指向这个新的 master，从新的 master 处同步数据 
+5. 主从复制模式的故障转移需要手动操作，要实现自动化处理，这就需要 Sentinel 哨兵，实现故障自动转移 
+
+### sentinel哨兵
+
+> Sentinel 哨兵是 redis 官方提供的高可用方案，可以用它来监控多个 Redis 服务实例的运行情况。Redis Sentinel 是一个运行在特殊模式下的 Redis 服务器。Redis Sentinel 是在多个 Sentinel 进程环境下互相协作工作的。
+
+#### 主要任务
+
+1. 监控：Sentinel 不断的检查主服务和从服务器是否按照预期正常工作。 
+2. 提醒：被监控的 Redis 出现问题时，Sentinel 会通知管理员或其他应用程序。 
+3. 自动故障转移：监控的主 Redis 不能正常工作，Sentinel 会开始进行故障迁移操作。将一个从服务器升级新的主服务器。 让其他从服务器挂到新的主服务器。同时向客户端提供新的主服务器地址。
+
+![哨兵模式图解](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F%E5%9B%BE%E8%A7%A3.png)
+
+#### 监控
+
+1. Sentinel 会不断检查 Master 和 Slave 是否正常 
+2. 如果 Sentinel 挂了，就无法监控，所以需要多个哨兵，组成 Sentinel 网络，一个健康的 Sentinel 至少有 3 个 Sentinel 应用。 彼此在独立的物理机器或虚拟机。 
+3. 监控同一个 Master 的 Sentinel 会自动连接，组成一个分布式的 Sentinel 网络，互相通信并交换彼此关于被监控服务器的信息 
+4. 当一个 Sentinel 认为被监控的服务器已经下线时，它会向网络中的其它 Sentinel 进行确认，判断该服务器是否真的已经下线 
+5. 如果下线的服务器为主服务器，那么 Sentinel 网络将对下线主服务器进行自动故障转移，通过将下线主服务器的某个从服务器提升为新的主服务器（随机的），并让其从服务器转移到新的主服务器下，以此来让系统重新回到正常状态
+6. 下线的旧主服务器重新上线，Sentinel 会让它成为从，挂到新的主服务器下 
+
+## Dubbo
+
+> 高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡，以及服务自动注册和发现。
+
+### 基本流程
+
+![Dubbo工作流程](https://raw.githubusercontent.com/BlueLava127/PictureBed/master/TyporaImg/Dubbo%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B.png)
+
++ **服务提供者（Provider）**：暴露服务的服务提供方，服务提供者在启动时，向注册中心注册自己提供的服务
++ **服务消费者（Consumer）**: 调用远程服务的服务消费方，服务消费者在启动时，向注册中心订阅自己所需的服务，服务消费者，从提供者地址列表中，基于软负载均衡算法，选一台提供者进行调用，如果调用失败，再选另一台调用
++ **注册中心（Registry）**：注册中心返回服务提供者地址列表给消费者，如果有变更，注册中心将基于长连接推送变更数据给消费者 –**如果信息有变，注册中心提供新的信息给消费者**
++ **监控中心（Monitor）**：服务消费者和提供者，在内存中累计调用次数和调用时间，定时每分钟发送一次统计数据到监控中心 –**监控服务提供者、消费者状态，与开发没有直接关系**
+
+#### 调用流程
+
++ 服务容器spring负责启动，加载，运行服务提供者
++ 服务提供者在启动时，向注册中心注册自己提供的服务
++ 服务消费者在启动时，向注册中心订阅自己所需的服务
++ 注册中心返回服务提供者地址列表给消费者，如果有变更，注册中心将基于长连接推送变更数据给消费者
++ 服务消费者，从提供者地址列表中，基于软负载均衡算法，选一台提供者进行调用，如果调用失败，再选另一台调用
++ 服务消费者和提供者，在内存中累计调用次数和调用时间，定时每分钟发送一次统计数据到监控中心
+
+# Java设计模式
